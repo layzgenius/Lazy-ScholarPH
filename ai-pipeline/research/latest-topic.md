@@ -1,4 +1,4 @@
-Status: READY_FOR_WRITING
+Status: COMPLETED
 
 Title: The Overthinking Protocol: A Structured System for Quieting the Loop
 

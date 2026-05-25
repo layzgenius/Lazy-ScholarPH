@@ -1,0 +1,1921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Overthinking Protocol — Lazy Scholar PH</title>
+<style>
+  /* ── RESET & BASE ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:    #1a2744;
+    --gold:    #c9a84c;
+    --gold-lt: #e8c96a;
+    --cream:   #fafaf6;
+    --charcoal:#1a1a2e;
+    --slate:   #4a5568;
+    --silver:  #8a95a3;
+    --teal:    #3a7ca5;
+    --accent:  #2d5a8e;
+    --divider: #e2e8f0;
+    --page-w:  780px;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: #f0eee8;
+    color: var(--charcoal);
+    line-height: 1.75;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ── PAGE WRAPPER ── */
+  .page {
+    background: var(--cream);
+    max-width: var(--page-w);
+    margin: 32px auto;
+    box-shadow: 0 4px 40px rgba(0,0,0,0.18);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  /* ── COVER PAGE ── */
+  .cover {
+    background: var(--navy);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 60px;
+    position: relative;
+    page-break-after: always;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 60px,
+        rgba(201,168,76,0.04) 60px,
+        rgba(201,168,76,0.04) 61px
+      );
+  }
+
+  .cover-brand {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 56px;
+    position: relative;
+  }
+
+  .cover-eyebrow {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .cover h1 {
+    font-family: 'Georgia', serif;
+    font-size: 52px;
+    font-weight: 400;
+    line-height: 1.15;
+    color: white;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .cover h1 span {
+    color: var(--gold);
+  }
+
+  .cover-rule {
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+    margin: 28px auto;
+    position: relative;
+  }
+
+  .cover h2 {
+    font-family: 'Georgia', serif;
+    font-size: 20px;
+    font-weight: 400;
+    font-style: italic;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.5;
+    max-width: 480px;
+    position: relative;
+  }
+
+  .cover-footer {
+    position: absolute;
+    bottom: 48px;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .cover-footer span {
+    width: 40px;
+    height: 1px;
+    background: rgba(255,255,255,0.2);
+    display: inline-block;
+  }
+
+  /* ── CONTENT SECTIONS ── */
+  .content {
+    padding: 72px 80px;
+  }
+
+  /* ── TOC ── */
+  .toc-page {
+    padding: 72px 80px;
+    min-height: 80vh;
+    page-break-after: always;
+  }
+
+  .toc-title {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 48px;
+  }
+
+  .toc-list {
+    list-style: none;
+  }
+
+  .toc-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px dotted var(--divider);
+    padding: 10px 0;
+    font-family: 'Georgia', serif;
+    font-size: 14px;
+    color: var(--charcoal);
+  }
+
+  .toc-list li.toc-section {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-top: 8px;
+    border-bottom: 1px solid var(--navy);
+    padding-bottom: 6px;
+  }
+
+  .toc-label { flex: 1; padding-right: 16px; }
+  .toc-num { color: var(--silver); font-size: 12px; }
+
+  /* ── SECTION DIVIDER ── */
+  .section-break {
+    page-break-before: always;
+    padding-top: 0;
+  }
+
+  .section-header {
+    background: var(--navy);
+    color: white;
+    padding: 56px 80px;
+    margin-bottom: 0;
+  }
+
+  .section-label {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .section-header h2 {
+    font-family: 'Georgia', serif;
+    font-size: 34px;
+    font-weight: 400;
+    color: white;
+    line-height: 1.25;
+    margin-bottom: 12px;
+  }
+
+  .section-header p {
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    color: rgba(255,255,255,0.55);
+    font-size: 15px;
+  }
+
+  .section-body {
+    padding: 56px 80px;
+  }
+
+  /* ── TYPOGRAPHY ── */
+  h3 {
+    font-family: 'Georgia', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--navy);
+    margin-top: 44px;
+    margin-bottom: 14px;
+    line-height: 1.3;
+  }
+
+  h4 {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 36px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 15px;
+    color: var(--charcoal);
+    margin-bottom: 16px;
+    line-height: 1.8;
+  }
+
+  strong {
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  em { font-style: italic; }
+
+  /* ── INTRO QUOTE ── */
+  .epigraph {
+    text-align: center;
+    padding: 56px 80px 48px;
+    border-bottom: 1px solid var(--divider);
+    margin-bottom: 0;
+  }
+
+  .epigraph blockquote {
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-size: 19px;
+    line-height: 1.65;
+    color: var(--navy);
+    max-width: 540px;
+    margin: 0 auto 20px;
+  }
+
+  .epigraph cite {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--silver);
+    font-style: normal;
+  }
+
+  /* ── PULL QUOTE ── */
+  .pull-quote {
+    border-left: 4px solid var(--gold);
+    padding: 20px 28px;
+    margin: 32px 0;
+    background: rgba(201,168,76,0.06);
+    border-radius: 0 4px 4px 0;
+  }
+
+  .pull-quote p {
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--navy);
+    margin: 0;
+  }
+
+  /* ── CALLOUT BOX ── */
+  .callout {
+    background: var(--navy);
+    color: white;
+    padding: 28px 32px;
+    border-radius: 4px;
+    margin: 32px 0;
+  }
+
+  .callout p {
+    color: rgba(255,255,255,0.92);
+    font-size: 15px;
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  .callout strong { color: var(--gold-lt); }
+
+  .callout-label {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  /* ── KEY INSIGHT ── */
+  .key-insight {
+    border: 2px solid var(--navy);
+    border-radius: 4px;
+    padding: 24px 28px;
+    margin: 32px 0;
+  }
+
+  .key-insight .ki-label {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .key-insight p {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--navy);
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  /* ── LOOP TYPE CARDS ── */
+  .loop-card {
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 28px 0;
+    box-shadow: 0 2px 12px rgba(26,39,68,0.10);
+  }
+
+  .loop-card-header {
+    background: var(--navy);
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .loop-badge {
+    background: var(--gold);
+    color: var(--navy);
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+
+  .loop-card-header h4 {
+    font-family: 'Georgia', serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: white;
+    margin: 0;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .loop-card-body {
+    background: white;
+    padding: 24px;
+    border: 1px solid var(--divider);
+    border-top: none;
+  }
+
+  .loop-card-body .loop-row {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 8px 16px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .loop-row-label {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--silver);
+    padding-top: 1px;
+  }
+
+  .loop-row-value { color: var(--charcoal); }
+
+  .loop-exit-tag {
+    display: inline-block;
+    background: rgba(201,168,76,0.12);
+    color: var(--navy);
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-top: 8px;
+    border: 1px solid rgba(201,168,76,0.3);
+  }
+
+  /* ── CHECKLIST ── */
+  .checklist-section {
+    background: #f8f7f3;
+    border: 1px solid var(--divider);
+    border-radius: 4px;
+    padding: 28px 32px;
+    margin: 28px 0;
+  }
+
+  .checklist-title {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--divider);
+  }
+
+  .checklist-group-label {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 20px;
+    margin-bottom: 8px;
+  }
+
+  .checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: var(--charcoal);
+    line-height: 1.55;
+  }
+
+  .checkbox {
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid var(--silver);
+    border-radius: 2px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .fill-line {
+    border: none;
+    border-bottom: 1px solid var(--divider);
+    width: 100%;
+    margin: 16px 0 4px;
+    font-family: 'Georgia', serif;
+    font-size: 14px;
+    color: var(--charcoal);
+    background: transparent;
+    height: 28px;
+    display: block;
+  }
+
+  .fill-label {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--silver);
+    margin-top: 20px;
+    margin-bottom: 2px;
+    display: block;
+  }
+
+  /* ── TABLES ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 14px;
+  }
+
+  th {
+    background: var(--navy);
+    color: white;
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    text-align: left;
+  }
+
+  td {
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--divider);
+    color: var(--charcoal);
+    line-height: 1.5;
+  }
+
+  tr:nth-child(even) td { background: #f8f7f3; }
+
+  /* ── STEP SEQUENCE ── */
+  .step-sequence { margin: 28px 0; }
+
+  .step-item {
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    gap: 0 20px;
+    margin-bottom: 20px;
+    align-items: start;
+  }
+
+  .step-num {
+    width: 52px;
+    height: 52px;
+    background: var(--navy);
+    color: var(--gold);
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  .step-content h4 {
+    margin-top: 12px;
+    margin-bottom: 4px;
+    font-size: 13px;
+    color: var(--navy);
+  }
+
+  .step-timing {
+    display: inline-block;
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--silver);
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+
+  .step-content p {
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+
+  /* ── PROTOCOL CARD ── */
+  .protocol-card {
+    background: var(--navy);
+    color: white;
+    border-radius: 6px;
+    padding: 36px 40px;
+    margin: 36px 0;
+    text-align: center;
+  }
+
+  .protocol-card-title {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+  }
+
+  .protocol-steps {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .proto-step {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 4px;
+    padding: 14px 8px;
+  }
+
+  .proto-num {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .proto-action {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 4px;
+  }
+
+  .proto-time {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .protocol-total {
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: rgba(255,255,255,0.55);
+  }
+
+  /* ── CONSTRAINT FRAMEWORK ── */
+  .constraint-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 28px 0;
+  }
+
+  .constraint-card {
+    border: 1px solid var(--divider);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .constraint-card-header {
+    background: var(--gold);
+    padding: 14px 16px;
+  }
+
+  .constraint-card-header .c-num {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(26,39,68,0.7);
+    margin-bottom: 4px;
+  }
+
+  .constraint-card-header h4 {
+    font-family: 'Georgia', serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--navy);
+    margin: 0;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .constraint-card-body {
+    padding: 16px;
+    font-size: 13px;
+    color: var(--charcoal);
+    line-height: 1.6;
+  }
+
+  /* ── THREE ZONE DAY ── */
+  .zone-card {
+    border-left: 5px solid var(--gold);
+    padding: 20px 24px;
+    margin: 20px 0;
+    background: #f8f7f3;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .zone-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .zone-num {
+    background: var(--navy);
+    color: var(--gold);
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+
+  .zone-title {
+    font-family: 'Georgia', serif;
+    font-size: 16px;
+    color: var(--navy);
+  }
+
+  .zone-duration {
+    margin-left: auto;
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 11px;
+    color: var(--silver);
+    font-weight: 600;
+  }
+
+  .zone-purpose {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 10px;
+  }
+
+  /* ── 30 DAY PLAN ── */
+  .week-block {
+    border: 1px solid var(--divider);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 20px 0;
+  }
+
+  .week-header {
+    background: var(--navy);
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .week-label {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .week-goal {
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .week-body {
+    padding: 20px;
+  }
+
+  .week-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .week-day {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--gold);
+    white-space: nowrap;
+    padding-top: 2px;
+    min-width: 52px;
+  }
+
+  /* ── CLOSING / OS TABLE ── */
+  .os-table { margin: 28px 0; }
+
+  .os-table table { font-size: 14px; }
+
+  /* ── APPENDIX ── */
+  .appendix-tool {
+    border: 1px solid var(--divider);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 32px 0;
+    page-break-inside: avoid;
+  }
+
+  .appendix-tool-header {
+    background: var(--navy);
+    color: white;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .tool-badge {
+    background: var(--gold);
+    color: var(--navy);
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+  }
+
+  .appendix-tool-header h3 {
+    font-family: 'Georgia', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: white;
+    margin: 0;
+  }
+
+  .appendix-tool-body {
+    padding: 24px 24px 20px;
+    background: #fefefe;
+  }
+
+  .audit-table { margin: 0; }
+
+  .audit-table th { background: var(--slate); font-size: 9px; padding: 10px 12px; }
+  .audit-table td { padding: 16px 12px; font-size: 13px; }
+
+  /* ── EXIT CARD PRINTOUT ── */
+  .exit-card {
+    background: var(--navy);
+    color: white;
+    border-radius: 6px;
+    padding: 32px 36px;
+    margin: 28px 0;
+    max-width: 460px;
+  }
+
+  .exit-card-title {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .exit-card-subtitle {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 10px;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .exit-step-row {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+
+  .exit-step-num {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gold);
+    min-width: 16px;
+  }
+
+  .exit-step-action {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: white;
+    margin-right: 6px;
+  }
+
+  .exit-step-desc {
+    font-family: 'Georgia', serif;
+    font-size: 12px;
+    font-style: italic;
+    color: rgba(255,255,255,0.55);
+  }
+
+  .exit-step-t {
+    margin-left: auto;
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 10px;
+    color: rgba(255,255,255,0.3);
+    white-space: nowrap;
+    padding-left: 12px;
+  }
+
+  .exit-card-footer {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+    text-align: center;
+  }
+
+  /* ── CLOSING PAGE ── */
+  .closing-page {
+    background: var(--navy);
+    color: white;
+    padding: 80px 80px;
+    page-break-before: always;
+  }
+
+  .closing-eyebrow {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+  }
+
+  .closing-page h2 {
+    font-family: 'Georgia', serif;
+    font-size: 38px;
+    font-weight: 400;
+    color: white;
+    line-height: 1.25;
+    margin-bottom: 20px;
+  }
+
+  .closing-page p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.8;
+    margin-bottom: 20px;
+    max-width: 540px;
+  }
+
+  .closing-rule { width: 60px; height: 2px; background: var(--gold); margin: 36px 0; }
+
+  .closing-trilogy {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 40px;
+  }
+
+  .trilogy-item {
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 4px;
+    padding: 18px 16px;
+  }
+
+  .trilogy-num {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .trilogy-name {
+    font-family: 'Georgia', serif;
+    font-size: 14px;
+    color: white;
+    line-height: 1.4;
+  }
+
+  .trilogy-item.active {
+    background: rgba(201,168,76,0.1);
+    border-color: var(--gold);
+  }
+
+  .closing-brand {
+    margin-top: 60px;
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    body { background: white; }
+    .page { box-shadow: none; margin: 0; max-width: 100%; border-radius: 0; }
+    .cover { min-height: 100vh; page-break-after: always; }
+  }
+
+  @page {
+    margin: 0;
+    size: A4;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══════════════════════════════ COVER ══════════════════════════════ -->
+  <div class="cover">
+    <div class="cover-brand">Lazy Scholar PH</div>
+    <div class="cover-eyebrow">Premium Cognitive Architecture Series · Vol. III</div>
+    <h1>The <span>Overthinking</span><br>Protocol</h1>
+    <div class="cover-rule"></div>
+    <h2>A Structured System for Quieting the Loop</h2>
+    <div class="cover-footer">
+      <span></span>
+      Digital Edition · 2026
+      <span></span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════ EPIGRAPH ══════════════════════════════ -->
+  <div class="epigraph">
+    <blockquote>"The loop is not a character flaw. It is a regulatory failure — and regulatory failures have structural solutions."</blockquote>
+    <cite>Lazy Scholar PH</cite>
+  </div>
+
+  <!-- ══════════════════════════════ TABLE OF CONTENTS ══════════════════════════════ -->
+  <div class="toc-page">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list">
+      <li><span class="toc-label">Introduction — Why Your Brain Won't Stop</span><span class="toc-num">4</span></li>
+      <li class="toc-section"><span class="toc-label">Part I — Understanding the Loop</span></li>
+      <li><span class="toc-label">Section 1 — The Default Mode Network</span><span class="toc-num">6</span></li>
+      <li><span class="toc-label">Section 2 — Loop Taxonomy: Your Pattern Type</span><span class="toc-num">9</span></li>
+      <li class="toc-section"><span class="toc-label">Part II — Interruption Protocols</span></li>
+      <li><span class="toc-label">Section 3 — The Externalization Method</span><span class="toc-num">14</span></li>
+      <li><span class="toc-label">Section 4 — The 3-Constraint Decision Framework</span><span class="toc-num">18</span></li>
+      <li><span class="toc-label">Section 5 — The Loop Exit Protocol</span><span class="toc-num">22</span></li>
+      <li><span class="toc-label">Section 6 — The Uncertainty Anchor</span><span class="toc-num">26</span></li>
+      <li class="toc-section"><span class="toc-label">Part III — Preventive Architecture</span></li>
+      <li><span class="toc-label">Section 7 — Daily Cognitive Architecture</span><span class="toc-num">30</span></li>
+      <li><span class="toc-label">Section 8 — The 30-Day Implementation Plan</span><span class="toc-num">35</span></li>
+      <li><span class="toc-label">Closing — Your Cognitive Operating System</span><span class="toc-num">39</span></li>
+      <li class="toc-section"><span class="toc-label">Appendix — Tools &amp; Worksheets</span></li>
+      <li><span class="toc-label">Tool 1 — Loop Audit Worksheet</span><span class="toc-num">42</span></li>
+      <li><span class="toc-label">Tool 2 — Decision Constraint Template</span><span class="toc-num">43</span></li>
+      <li><span class="toc-label">Tool 3 — Overthinking Trigger Map</span><span class="toc-num">44</span></li>
+      <li><span class="toc-label">Tool 4 — 5-Step Loop Exit Card</span><span class="toc-num">45</span></li>
+      <li><span class="toc-label">Tool 5 — Daily Architecture Checklist</span><span class="toc-num">46</span></li>
+    </ul>
+  </div>
+
+  <!-- ══════════════════════════════ INTRODUCTION ══════════════════════════════ -->
+  <div class="section-break">
+    <div class="section-header">
+      <span class="section-label">Introduction</span>
+      <h2>Why Your Brain Won't Stop</h2>
+      <p>The problem isn't that you think too much. The problem is that you're thinking without a target.</p>
+    </div>
+    <div class="section-body">
+      <p>Overthinking is not a personality trait. It is not weakness. It is not the price of being intelligent, sensitive, or ambitious. It is what happens when a high-powered cognitive system — the human brain — is left running without structured input.</p>
+      <p>When you don't give your brain a task, it creates one. And the task it creates is almost always: <em>scan for what could go wrong.</em></p>
+
+      <div class="pull-quote">
+        <p>"This document is a protocol — not a pep talk, not a collection of mindfulness metaphors. A structured sequence of interventions designed to interrupt the loop."</p>
+      </div>
+
+      <p>By the time you finish, you will have:</p>
+      <ul style="margin: 0 0 16px 24px; font-size:15px; line-height:2; color:var(--charcoal);">
+        <li>A precise name for your overthinking pattern type</li>
+        <li>A real-time loop exit sequence deployable in under 3 minutes</li>
+        <li>A decision-making framework that removes structural conditions creating analysis paralysis</li>
+        <li>A daily design that reduces your brain's need to loop</li>
+      </ul>
+
+      <div class="key-insight">
+        <span class="ki-label">Core Premise</span>
+        <p>The loop is not permanent. It is a system error — and system errors have structural solutions.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════ SECTION 1 ══════════════════════════════ -->
+  <div class="section-break">
+    <div class="section-header">
+      <span class="section-label">Section 1 · The Default Mode Network</span>
+      <h2>Why Your Brain Loops</h2>
+      <p>Understanding the biological architecture of overthinking is the first step to interrupting it.</p>
+    </div>
+    <div class="section-body">
+
+      <h3>Two Operating Modes</h3>
+      <p>The brain operates in two primary modes:</p>
+
+      <table>
+        <tr><th>Mode</th><th>When Active</th><th>Associated With</th></tr>
+        <tr><td><strong>Task-Positive Mode (TPN)</strong></td><td>When focused on external task</td><td>Goal-directed behavior, deliberate problem-solving</td></tr>
+        <tr><td><strong>Default Mode Network (DMN)</strong></td><td>When <em>not</em> focused on external task</td><td>Mind-wandering, self-referential thinking, future simulation</td></tr>
+      </table>
+
+      <div class="callout">
+        <span class="callout-label">Critical Insight</span>
+        <p><strong>The DMN is not broken.</strong> It is doing exactly what it was designed to do. Threat-scanning, social rehearsal, and future simulation are evolutionarily adaptive. Your ancestors who mentally rehearsed dangerous scenarios were more likely to survive them.</p>
+      </div>
+
+      <p>The problem: the DMN was designed for a world where threats were finite and resolvable. It was not designed for information overload, unresolvable social anxiety, perpetual uncertainty, or high-stakes decisions with insufficient data.</p>
+      <p>When the modern brain has no clear task, the DMN activates. When the DMN activates without a resolution pathway, it <strong>loops.</strong></p>
+      <p>And because simulation <em>feels</em> like thinking — because mentally rehearsing a problem feels like solving it — the loop can persist for hours, days, or years.</p>
+
+      <h3>The Loop Reinforcement Cycle</h3>
+
+      <div style="background:#f8f7f3; border:1px solid var(--divider); border-radius:4px; padding:24px; margin:24px 0; text-align:center;">
+        <div style="display:flex; align-items:center; justify-content:center; gap:0; flex-wrap:nowrap; font-family:-apple-system,'Helvetica Neue',sans-serif; font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;">
+          <div style="background:var(--navy); color:white; padding:10px 14px; border-radius:4px 0 0 4px;">Trigger</div>
+          <div style="color:var(--gold); font-size:16px; padding:0 4px;">→</div>
+          <div style="background:var(--navy); color:white; padding:10px 14px;">Activation</div>
+          <div style="color:var(--gold); font-size:16px; padding:0 4px;">→</div>
+          <div style="background:var(--navy); color:white; padding:10px 14px;">Simulation</div>
+          <div style="color:var(--gold); font-size:16px; padding:0 4px;">→</div>
+          <div style="background:var(--navy); color:white; padding:10px 14px;">False Resolution</div>
+          <div style="color:var(--gold); font-size:16px; padding:0 4px;">→</div>
+          <div style="background:var(--gold); color:var(--navy); padding:10px 14px; border-radius:0 4px 4px 0;">↩ Trigger</div>
+        </div>
+      </div>
+
+      <p>Each cycle creates a neurological groove. The more you loop, the more efficiently your brain loops. Chronic overthinkers find their loops become faster and more automatic over time — they have, quite literally, <em>practiced</em> the loop.</p>
+
+      <div class="key-insight">
+        <span class="ki-label">Key Takeaway</span>
+        <p>The intervention must be <strong>structural, not motivational.</strong> Telling someone to "just stop overthinking" is equivalent to telling someone to "just stop breathing" underwater. The solution is to surface — not to try harder within the loop.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════ SECTION 2 ══════════════════════════════ -->
+  <div class="section-break">
+    <div class="section-header">
+      <span class="section-label">Section 2 · Loop Taxonomy</span>
+      <h2>Identifying Your Overthinking Pattern Type</h2>
+      <p>Applying the wrong exit protocol to the wrong loop type is why generic advice fails. Precision matters.</p>
+    </div>
+    <div class="section-body">
+
+      <p>There are four primary loop types. Each has a distinct pattern, a core belief driving it, and a specific exit strategy. Identifying yours is the prerequisite to everything that follows.</p>
+
+      <div class="loop-card">
+        <div class="loop-card-header">
+          <span class="loop-badge">Type 01</span>
+          <h4>Rumination Loop</h4>
+        </div>
+        <div class="loop-card-body">
+          <div class="loop-row"><span class="loop-row-label">Pattern</span><span class="loop-row-value">Repetitive cycling through past events, mistakes, or perceived failures</span></div>
+          <div class="loop-row"><span class="loop-row-label">Core Belief</span><span class="loop-row-value"><em>"If I think about it enough, I can change it, fix it, or make sense of it."</em></span></div>
+          <div class="loop-row"><span class="loop-row-label">Signature</span><span class="loop-row-value">Replaying conversations. Reliving decisions. Mentally editing closed events.</span></div>
+          <div class="loop-row"><span class="loop-row-label">The Trap</span><span class="loop-row-value">The past cannot be changed by reviewing it — but emotional activation during review feels like progress. The loop never reaches a satisfying conclusion.</span></div>
+          <span class="loop-exit-tag">Exit: Externalization Method + Writing Constraint</span>
+        </div>
+      </div>
+
+      <div class="loop-card">
+        <div class="loop-card-header">
+          <span class="loop-badge">Type 02</span>
+          <h4>Catastrophizing Loop</h4>
+        </div>
+        <div class="loop-card-body">
+          <div class="loop-row"><span class="loop-row-label">Pattern</span><span class="loop-row-value">Threat amplification — a neutral event is perceived through a worst-case lens and escalates through increasingly severe simulations</span></div>
+          <div class="loop-row"><span class="loop-row-label">Core Belief</span><span class="loop-row-value"><em>"If I prepare for the worst, I'll be safe."</em></span></div>
+          <div class="loop-row"><span class="loop-row-label">Signature</span><span class="loop-row-value">Rapid escalation chains: one email unread → relationship damaged → professional consequences → catastrophic outcome</span></div>
+          <div class="loop-row"><span class="loop-row-label">The Trap</span><span class="loop-row-value">Each simulation feels like rational preparation — but simulations escalate rather than resolve. No simulation of a catastrophe removes the actual threat.</span></div>
+          <span class="loop-exit-tag">Exit: Uncertainty Anchor + Scenario Bracketing</span>
+        </div>
+      </div>
+
+      <div class="loop-card">
+        <div class="loop-card-header">
+          <span class="loop-badge">Type 03</span>
+          <h4>Analysis Paralysis Loop</h4>
+        </div>
+        <div class="loop-card-body">
+          <div class="loop-row"><span class="loop-row-label">Pattern</span><span class="loop-row-value">Information-gathering as avoidance — seeking more data, more options, more perspectives because deciding feels risky and researching feels safe</span></div>
+          <div class="loop-row"><span class="loop-row-label">Core Belief</span><span class="loop-row-value"><em>"Enough information will make the right decision obvious and the wrong choice impossible."</em></span></div>
+          <div class="loop-row"><span class="loop-row-label">Signature</span><span class="loop-row-value">Still researching a decision long past the point it deserves. Always needing "just one more" data point.</span></div>
+          <div class="loop-row"><span class="loop-row-label">The Trap</span><span class="loop-row-value">Beyond a threshold, additional information increases variables to process, which increases uncertainty, which increases the need for more information. It is recursive by design.</span></div>
+          <span class="loop-exit-tag">Exit: The 3-Constraint Decision Framework</span>
+        </div>
+      </div>
+
+      <div class="loop-card">
+        <div class="loop-card-header">
+          <span class="loop-badge">Type 04</span>
+          <h4>Perfectionism Spiral</h4>
+        </div>
+        <div class="loop-card-body">
+          <div class="loop-row"><span class="loop-row-label">Pattern</span><span class="loop-row-value">Execution avoidance disguised as quality standards — work is repeatedly revised, delayed, or never started because it might be imperfect</span></div>
+          <div class="loop-row"><span class="loop-row-label">Core Belief</span><span class="loop-row-value"><em>"If it isn't excellent, releasing it is dangerous."</em></span></div>
+          <div class="loop-row"><span class="loop-row-label">Signature</span><span class="loop-row-value">"Almost ready" for a long time. Completing work but unable to ship/submit/send it — the internal standard keeps moving.</span></div>
+          <div class="loop-row"><span class="loop-row-label">The Trap</span><span class="loop-row-value">Perfectionism is rarely about quality. It is about the emotional safety of not being evaluated. "Not done yet" is safer than "done and judged."</span></div>
+          <span class="loop-exit-tag">Exit: 3-Constraint Framework + Release Protocol</span>
+        </div>
+      </div>
+
+      <h3>Identify Your Loop Type</h3>
+
+      <div class="checklist-section">
+        <div class="checklist-title">Loop Type Identification Checklist</div>
+
+        <div class="checklist-group-label">Rumination Markers</div>
+        <div class="checklist-item"><div class="checkbox"></div><span>I frequently replay past conversations or events</span></div>
+        <div class="checklist-item"><div class="checkbox"></div><span>I often wish I had said or done something differently</span></div>
+        <div class="checklist-item"><div class="checkbox"></div><span>Certain memories return repeatedly without invitation</span></div>
+        <div class="checklist-item"><div class="checkbox"></div><span>I struggle to "let things go" even when I know I should</span></div>
+
+        <div class="checklist-group-label">Catastrophizing Markers</div>
+        <div class="checklist-item"><div class="checkbox"></div><span>Small problems often feel like they have large consequences</span></div>
+        <div class="checklist-item"><div class="checkbox"></div><span>I frequently imagine worst-case scenarios</span></div>
+        <div class="checklist-item"><div class="checkbox"></div><span>Negative events feel disproportionately significant</span></div>
+        <div class="checklist-item"><div class="checkbox"></div><span>I scan for threats even in neutral situations</span></div>
+
+        <div class="checklist-group-label">Analysis Paralysis Markers</div>
+        <div class="checklist-item"><div class="checkbox"></div><span>I research decisions for longer than they deserve</span></div>
+        <div class="checklist-item"><div class="checkbox"></div><span>I find it hard to commit once a choice is made</span></div>
+        <div class="checklist-item"><div class="checkbox"></div><span>I frequently seek others' input before deciding</span></div>
+        <div class="checklist-item"><div class="checkbox"></div><span>I feel anxious when I must decide without complete information</span></div>
+
+        <div class="checklist-group-label">Perfectionism Spiral Markers</div>
+        <div class="checklist-item"><div class="checkbox"></div><span>I delay starting tasks until conditions feel right</span></div>
+        <div class="checklist-item"><div class="checkbox"></div><span>I revise work well past the point of meaningful improvement</span></div>
+        <div class="checklist-item"><div class="checkbox"></div><span>I struggle to submit/share/publish completed work</span></div>
+        <div class="checklist-item"><div class="checkbox"></div><span>"Good enough" feels like failure</span></div>
+
+        <span class="fill-label">My primary loop type</span>
+        <div class="fill-line"></div>
+        <span class="fill-label">My secondary loop type</span>
+        <div class="fill-line"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════ SECTION 3 ══════════════════════════════ -->
+  <div class="section-break">
+    <div class="section-header">
+      <span class="section-label">Section 3 · The Externalization Method</span>
+      <h2>Getting Thoughts Out of Your Head and Into a System</h2>
+      <p>The single most powerful intervention for most overthinking loops — and the simplest to implement.</p>
+    </div>
+    <div class="section-body">
+
+      <p>The Externalization Method is a structured process of offloading cognitive content from working memory into a physical or digital system — not to feel better, but to give the prefrontal cortex a concrete task to execute instead of a void to fill.</p>
+
+      <h3>Why Externalization Works</h3>
+      <p>The prefrontal cortex cannot operate efficiently on imagined content. When thoughts exist only inside the mind, the brain must simultaneously: maintain the thought in working memory, process it analytically, generate new thoughts in response, and monitor for emotional relevance. This is too many concurrent tasks. The result is degraded quality across all of them — which is why internal looping rarely produces resolution.</p>
+      <p>When thoughts are externalized, the brain's load-bearing shifts: memory maintenance is offloaded to the page, freeing cognitive resources for actual processing.</p>
+
+      <div class="pull-quote">
+        <p>"The loop continues because the brain is trying to remember something it hasn't been allowed to put down. Externalization is permission to put it down."</p>
+      </div>
+
+      <h3>The Cognitive Offload Protocol</h3>
+      <p><strong>When to use:</strong> First thing in the morning (recommended), or at the onset of a loop.<br>
+      <strong>Materials:</strong> Notebook or blank document. No editing as you write.</p>
+
+      <div class="step-sequence">
+
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <span class="step-timing">5–7 minutes</span>
+            <h4>DUMP</h4>
+            <p>Write everything currently in your head. Uncategorized, unfiltered, in any order. Complete sentences are optional. The goal is not quality — it is extraction. Write until the internal monologue slows. This is the extraction marker.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <span class="step-timing">3–5 minutes</span>
+            <h4>SORT</h4>
+            <p>Review what you wrote. Place each item into one of three categories:<br>
+            <strong>ACT</strong> → Things I can do something about today<br>
+            <strong>HOLD</strong> → Things I cannot act on yet<br>
+            <strong>RELEASE</strong> → Things I cannot act on at all</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <span class="step-timing">Variable</span>
+            <h4>ASSIGN</h4>
+            <p>For every <strong>ACT</strong> item: assign a specific action and time. Not "deal with X" — <em>"Email X by 2pm Tuesday."</em><br>
+            For every <strong>HOLD</strong> item: assign a review date.<br>
+            For every <strong>RELEASE</strong> item: write one sentence explaining why you are releasing it.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <span class="step-timing">Immediate</span>
+            <h4>CLOSE</h4>
+            <p>Physically close the notebook or minimize the document. The loop trigger is now external, categorized, and handled. Your brain no longer needs to maintain it in active memory.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════ SECTION 4 ══════════════════════════════ -->
+  <div class="section-break">
+    <div class="section-header">
+      <span class="section-label">Section 4 · The 3-Constraint Decision Framework</span>
+      <h2>Cutting Through Analysis Paralysis</h2>
+      <p>The goal is not a perfect decision. It is a sufficient decision made before the loop consumes more time than the decision is worth.</p>
+    </div>
+    <div class="section-body">
+
+      <p>Most decisions that cause loops are not actually difficult. They feel risky because they involve uncertainty — and the brain, left unconstrained, will seek certainty indefinitely. The 3-Constraint Framework makes certainty irrelevant by constraining the decision process itself.</p>
+
+      <div class="constraint-grid">
+        <div class="constraint-card">
+          <div class="constraint-card-header">
+            <div class="c-num">Constraint 01</div>
+            <h4>Time Limit</h4>
+          </div>
+          <div class="constraint-card-body">
+            Set a non-negotiable decision deadline. When it arrives, decide with what you have. No extensions.
+          </div>
+        </div>
+        <div class="constraint-card">
+          <div class="constraint-card-header">
+            <div class="c-num">Constraint 02</div>
+            <h4>Information Limit</h4>
+          </div>
+          <div class="constraint-card-body">
+            Set a maximum number of sources before deciding. When you reach the limit, stop gathering. Decide with what you have.
+          </div>
+        </div>
+        <div class="constraint-card">
+          <div class="constraint-card-header">
+            <div class="c-num">Constraint 03</div>
+            <h4>Option Limit</h4>
+          </div>
+          <div class="constraint-card-body">
+            Reduce your option set to 3 maximum (2 for urgent, 5 absolute max). Decision quality does not improve beyond 3–5 options.
+          </div>
+        </div>
+      </div>
+
+      <h3>Reference Tables</h3>
+
+      <table>
+        <tr><th>Decision Type</th><th>Time Limit</th></tr>
+        <tr><td>Reversible, low stakes</td><td>2 minutes</td></tr>
+        <tr><td>Reversible, moderate stakes</td><td>24 hours</td></tr>
+        <tr><td>Partially reversible, high stakes</td><td>1 week</td></tr>
+        <tr><td>Largely irreversible</td><td>2–4 weeks (hard max)</td></tr>
+      </table>
+
+      <table>
+        <tr><th>Decision Complexity</th><th>Max Information Sources</th></tr>
+        <tr><td>Simple decisions</td><td>1–2 sources</td></tr>
+        <tr><td>Complex decisions</td><td>3–5 sources</td></tr>
+        <tr><td>Major decisions</td><td>5–7 sources (hard max)</td></tr>
+      </table>
+
+      <div class="callout">
+        <span class="callout-label">Framework in Practice</span>
+        <p><strong>Without constraints:</strong> Research 15 programs → Reddit threads → Ask 8 people → Spreadsheet → Add variables → Return to research → Loop.<br><br>
+        <strong>With 3-Constraint Framework:</strong> Time limit: 3 days research / decide day 4 · Info limit: 3 sources · Option limit: 3 programs.<br><br>
+        <strong>Result:</strong> Imperfect information. Sufficient decision quality. <strong>Action taken.</strong></p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════ SECTION 5 ══════════════════════════════ -->
+  <div class="section-break">
+    <div class="section-header">
+      <span class="section-label">Section 5 · The Loop Exit Protocol</span>
+      <h2>Real-Time Interruption Sequence</h2>
+      <p>When you notice a loop activating, you have 30–90 seconds to interrupt it before it becomes self-sustaining.</p>
+    </div>
+    <div class="section-body">
+
+      <div class="step-sequence">
+
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <span class="step-timing">10 seconds</span>
+            <h4>NAME IT</h4>
+            <p>Say aloud or in writing: <em>"I am currently in a [loop type] loop."</em></p>
+            <p>Naming is a cognitive interrupt — a pattern-break that forces the prefrontal cortex to observe the loop rather than participate in it. You cannot fully name something and remain completely lost inside it simultaneously.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <span class="step-timing">10 seconds</span>
+            <h4>LOCATE IT</h4>
+            <p>Notice where the loop lives physically. Loops almost always have a somatic component: chest tightness, jaw clenching, shallow breathing, stomach tension.</p>
+            <p>Place your hand on the location. Do not try to relax it. Simply locate it. This activates interoceptive awareness, introducing a competing input stream that interrupts automatic cognitive firing.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <span class="step-timing">90 seconds</span>
+            <h4>EXTERNALIZE</h4>
+            <p>Write — fast and unfiltered — the loop's core content: What is the loop about? What is the worst-case scenario it's generating? What is the core fear or question driving it?</p>
+            <p>Three to five sentences. Speed matters more than completeness. You are not solving anything — you are extracting.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <span class="step-timing">20 seconds</span>
+            <h4>CONSTRAIN</h4>
+            <p>Ask: <em>"Is there one action I can take in the next 10 minutes that would meaningfully address this?"</em></p>
+            <p><strong>If YES:</strong> Write it down. Do it immediately after completing this sequence.<br>
+            <strong>If NO:</strong> Write: <em>"There is no productive action here. I am releasing this from active processing."</em></p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <span class="step-timing">Immediate</span>
+            <h4>REDIRECT</h4>
+            <p>Assign your brain a concrete task to execute immediately. The DMN reactivates within minutes without directed work. Choose a task requiring focused attention: a single email to write, a physical task, a creative task, or a professional task with a defined output.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="protocol-card">
+        <div class="protocol-card-title">The Loop Exit Protocol — At a Glance</div>
+        <div class="protocol-steps">
+          <div class="proto-step"><div class="proto-num">1</div><div class="proto-action">Name It</div><div class="proto-time">10s</div></div>
+          <div class="proto-step"><div class="proto-num">2</div><div class="proto-action">Locate It</div><div class="proto-time">10s</div></div>
+          <div class="proto-step"><div class="proto-num">3</div><div class="proto-action">Externalize</div><div class="proto-time">90s</div></div>
+          <div class="proto-step"><div class="proto-num">4</div><div class="proto-action">Constrain</div><div class="proto-time">20s</div></div>
+          <div class="proto-step"><div class="proto-num">5</div><div class="proto-action">Redirect</div><div class="proto-time">Now</div></div>
+        </div>
+        <div class="protocol-total">Total: Under 3 minutes</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════ SECTION 6 ══════════════════════════════ -->
+  <div class="section-break">
+    <div class="section-header">
+      <span class="section-label">Section 6 · The Uncertainty Anchor</span>
+      <h2>Tolerating Not Knowing Without Spiraling</h2>
+      <p>The catastrophizing and analysis paralysis loops share a common engine: intolerance of uncertainty.</p>
+    </div>
+    <div class="section-body">
+
+      <p>The brain treats uncertainty as a problem to solve. When it cannot solve uncertainty — because uncertainty cannot be solved, only <em>tolerated</em> — it loops. The Uncertainty Anchor interrupts the core equation: <em>Uncertainty = Danger.</em></p>
+
+      <h3>The Anchor Statement</h3>
+      <p>Develop a personal anchor statement reflecting specific, evidence-based counter-evidence to your loop's catastrophizing.</p>
+
+      <div class="callout">
+        <span class="callout-label">Formula</span>
+        <p><em>"I have [handled/survived/navigated] [specific past uncertainty]. I can tolerate not knowing [current uncertainty]."</em><br><br>
+        <strong>Examples:</strong><br>
+        "I have made decisions without complete information before and survived the outcomes. I can tolerate not knowing how this turns out."<br><br>
+        "I have been rejected before and recovered. Not knowing whether this will work is uncomfortable, not dangerous."</p>
+      </div>
+
+      <div class="key-insight">
+        <span class="ki-label">Important Distinction</span>
+        <p>The Uncertainty Anchor is not positive thinking. It is <strong>evidence-based cognitive recalibration</strong> — using specific past experience to challenge the DMN's current threat assessment.</p>
+      </div>
+
+      <h3>The Scenario Bracket</h3>
+      <p>For catastrophizing loops, the Scenario Bracket collapses the cognitive space the loop occupies by forcing comparison between the scenario being simulated and the actual probability distribution:</p>
+
+      <div class="checklist-section">
+        <div class="checklist-title">Scenario Bracket Worksheet</div>
+
+        <span class="fill-label">1. Most catastrophic outcome (what the loop is simulating)</span>
+        <div class="fill-line"></div>
+
+        <span class="fill-label">2. Most realistic outcome (actual probability)</span>
+        <div class="fill-line"></div>
+
+        <span class="fill-label">3. Best realistic outcome</span>
+        <div class="fill-line"></div>
+
+        <div style="background:rgba(201,168,76,0.08); border:1px solid rgba(201,168,76,0.25); border-radius:4px; padding:14px 16px; margin:20px 0 10px; font-size:13px; color:var(--navy);">
+          <strong>Key insight:</strong> You are currently expending cognitive resources on the most catastrophic outcome, despite the most realistic outcome being far more probable.
+        </div>
+
+        <span class="fill-label">4. What would you do if the realistic outcome occurred? (The question that matters)</span>
+        <div class="fill-line"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════ SECTION 7 ══════════════════════════════ -->
+  <div class="section-break">
+    <div class="section-header">
+      <span class="section-label">Section 7 · Daily Cognitive Architecture</span>
+      <h2>Designing a Day That Removes Loop Conditions</h2>
+      <p>The Loop Exit Protocol is reactive. Daily Architecture is preventive — it removes the conditions loops require before they form.</p>
+    </div>
+    <div class="section-body">
+
+      <p>Loops require three conditions: unstructured cognitive space, accumulated cognitive load, and unresolved uncertainty. Daily architecture targets all three simultaneously.</p>
+
+      <h3>The Three-Zone Day</h3>
+
+      <div class="zone-card">
+        <div class="zone-header">
+          <span class="zone-num">Zone 1</span>
+          <span class="zone-title">Morning Cognitive Offload</span>
+          <span class="zone-duration">15–20 min</span>
+        </div>
+        <div class="zone-purpose">Purpose: Reduce accumulated cognitive load before the day begins</div>
+        <p style="font-size:14px; margin:0;">Execute the Cognitive Offload Protocol immediately after waking — before consuming any media, messages, or external input. The morning window is when previous-day residue is most accessible and most efficiently processed.</p>
+        <p style="font-size:13px; color:var(--silver); margin:8px 0 0; font-style:italic;">What this prevents: Bringing yesterday's unprocessed loops into today's cognitive space.</p>
+      </div>
+
+      <div class="zone-card">
+        <div class="zone-header">
+          <span class="zone-num">Zone 2</span>
+          <span class="zone-title">Deep Work Blocks</span>
+          <span class="zone-duration">90–120 min × 2</span>
+        </div>
+        <div class="zone-purpose">Purpose: Replace unstructured cognitive space with directed engagement</div>
+        <p style="font-size:14px; margin:0 0 10px;">The DMN cannot run during active, demanding cognitive work. Two deep work blocks — uninterrupted periods of focused, high-difficulty task engagement — are the most effective structural intervention against loop formation during the day.</p>
+        <div class="checklist-item" style="font-size:13px;"><div class="checkbox"></div><span>Single task only (no switching)</span></div>
+        <div class="checklist-item" style="font-size:13px;"><div class="checkbox"></div><span>All notifications off</span></div>
+        <div class="checklist-item" style="font-size:13px;"><div class="checkbox"></div><span>Clear output defined in advance: <em>"By end of this block, I will have..."</em></span></div>
+        <div class="checklist-item" style="font-size:13px;"><div class="checkbox"></div><span>No access to loop-feeding information sources</span></div>
+      </div>
+
+      <div class="zone-card">
+        <div class="zone-header">
+          <span class="zone-num">Zone 3</span>
+          <span class="zone-title">Evening Closure Ritual</span>
+          <span class="zone-duration">10–15 min</span>
+        </div>
+        <div class="zone-purpose">Purpose: Prevent loops from carrying into sleep</div>
+        <div class="step-sequence" style="margin-top:10px;">
+          <div class="step-item" style="margin-bottom:12px;">
+            <div class="step-num" style="width:36px;height:36px;font-size:14px;">1</div>
+            <div class="step-content"><h4 style="margin-top:8px;">Brain Dump</h4><p style="font-size:13px;">5 minutes. Write everything unresolved from the day.</p></div>
+          </div>
+          <div class="step-item" style="margin-bottom:12px;">
+            <div class="step-num" style="width:36px;height:36px;font-size:14px;">2</div>
+            <div class="step-content"><h4 style="margin-top:8px;">Categorize</h4><p style="font-size:13px;">ACT / HOLD / RELEASE — per the Externalization framework.</p></div>
+          </div>
+          <div class="step-item" style="margin-bottom:12px;">
+            <div class="step-num" style="width:36px;height:36px;font-size:14px;">3</div>
+            <div class="step-content"><h4 style="margin-top:8px;">Tomorrow's First Task</h4><p style="font-size:13px;">Write one specific task to execute first tomorrow. Gives the brain a "parking spot" for anxious tomorrow-planning.</p></div>
+          </div>
+          <div class="step-item">
+            <div class="step-num" style="width:36px;height:36px;font-size:14px;">4</div>
+            <div class="step-content"><h4 style="margin-top:8px;">Shutdown Phrase</h4><p style="font-size:13px;">Say aloud: <em>"Work is done for today. The rest will be handled."</em> — a ritual boundary signaling to the brain that active problem-solving is complete.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Additional Architecture Elements</h3>
+
+      <table>
+        <tr><th>Element</th><th>What It Does</th><th>How to Implement</th></tr>
+        <tr><td><strong>Decision Batching</strong></td><td>Prevents decision fatigue that increases loop vulnerability</td><td>Schedule all low-moderate decisions for one daily window (e.g., 1–2pm)</td></tr>
+        <tr><td><strong>Input Limits</strong></td><td>Reduces excessive input that generates more questions than it resolves</td><td>Hard limits on news sources, social media time, email check-ins</td></tr>
+        <tr><td><strong>Movement Breaks</strong></td><td>Reduces DMN activation — one of the fastest loop interrupts available</td><td>10-minute walk, minimum once per work session</td></tr>
+      </table>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════ SECTION 8 ══════════════════════════════ -->
+  <div class="section-break">
+    <div class="section-header">
+      <span class="section-label">Section 8 · 30-Day Implementation Plan</span>
+      <h2>Building the Full System Gradually</h2>
+      <p>A graduated implementation designed to build the complete cognitive architecture without overwhelming existing routines.</p>
+    </div>
+    <div class="section-body">
+
+      <div class="week-block">
+        <div class="week-header">
+          <span class="week-label">Week 1</span>
+          <span class="week-goal">Awareness and Baseline — identify before fixing</span>
+        </div>
+        <div class="week-body">
+          <div class="week-item"><span class="week-day">Day 1–3</span><span>Read and complete the Loop Taxonomy worksheet. Identify your primary and secondary loop types.</span></div>
+          <div class="week-item"><span class="week-day">Day 4–5</span><span>Begin the Cognitive Offload Protocol (morning only). Do not edit or judge — just extract until the internal monologue slows.</span></div>
+          <div class="week-item"><span class="week-day">Day 6–7</span><span>Complete your Overthinking Trigger Map (see Appendix). Identify environmental, emotional, temporal, and social conditions that reliably activate loops.</span></div>
+        </div>
+      </div>
+
+      <div class="week-block">
+        <div class="week-header">
+          <span class="week-label">Week 2</span>
+          <span class="week-goal">Real-Time Interruption — practice until reflexive</span>
+        </div>
+        <div class="week-body">
+          <div class="week-item"><span class="week-day">Daily</span><span>Keep the 5-Step Loop Exit card visible (phone screensaver, desk, or notebook).</span></div>
+          <div class="week-item"><span class="week-day">Daily</span><span>Each time you notice a loop activating, run the full 5-step sequence without shortcutting.</span></div>
+          <div class="week-item"><span class="week-day">Daily</span><span>Track: how many times per day deployed, and whether it successfully interrupted the loop.</span></div>
+          <div class="week-item"><span class="week-day">Daily</span><span>Continue morning Cognitive Offload Protocol.</span></div>
+        </div>
+      </div>
+
+      <div class="week-block">
+        <div class="week-header">
+          <span class="week-label">Week 3</span>
+          <span class="week-goal">Decision Architecture — implement the 3-Constraint Framework</span>
+        </div>
+        <div class="week-body">
+          <div class="week-item"><span class="week-day">Week start</span><span>List all pending decisions at the start of the week using the Decision Constraint Template.</span></div>
+          <div class="week-item"><span class="week-day">Daily</span><span>Apply time limit, information limit, and option limit to each decision. Make each decision by its assigned deadline.</span></div>
+          <div class="week-item"><span class="week-day">Daily</span><span>Continue morning offload and Loop Exit Protocol practice.</span></div>
+        </div>
+      </div>
+
+      <div class="week-block">
+        <div class="week-header">
+          <span class="week-label">Week 4</span>
+          <span class="week-goal">Full Daily Architecture — implement the complete Three-Zone Day</span>
+        </div>
+        <div class="week-body">
+          <div class="week-item"><span class="week-day">Morning</span><span>Cognitive Offload Protocol — before any media or messages.</span></div>
+          <div class="week-item"><span class="week-day">Day</span><span>Two deep work blocks with defined output, notifications off, and zero information consumption.</span></div>
+          <div class="week-item"><span class="week-day">Evening</span><span>Closure Ritual: brain dump → categorize → tomorrow's first task → shutdown phrase.</span></div>
+          <div class="week-item"><span class="week-day">Weekly</span><span><strong>Review checkpoint:</strong> What conditions reliably triggered loops this week? What architecture changes would remove those conditions?</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════ CLOSING ══════════════════════════════ -->
+  <div class="closing-page">
+    <div class="closing-eyebrow">Closing</div>
+    <h2>Your Cognitive<br>Operating System</h2>
+    <div class="closing-rule"></div>
+
+    <p>The loop is not your personality. It is not your intelligence failing you. It is a regulatory system running without a protocol.</p>
+    <p>You now have the protocol.</p>
+
+    <p style="color:rgba(255,255,255,0.55);">What you've built across this document is a cognitive operating system — a stack of interventions that work at every layer, from the biological conditions that create the loop to the daily design that prevents those conditions from forming.</p>
+
+    <table style="margin-top:24px; font-size:13px;">
+      <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
+        <th style="background:rgba(255,255,255,0.08); color:var(--gold); font-size:9px; letter-spacing:0.2em; padding:10px 14px;">Layer</th>
+        <th style="background:rgba(255,255,255,0.08); color:var(--gold); font-size:9px; letter-spacing:0.2em; padding:10px 14px;">Tool</th>
+      </tr>
+      <tr><td style="color:rgba(255,255,255,0.7); border-bottom:1px solid rgba(255,255,255,0.06); padding:10px 14px;">Biological understanding</td><td style="color:rgba(255,255,255,0.5); border-bottom:1px solid rgba(255,255,255,0.06); padding:10px 14px;">DMN explanation · movement breaks</td></tr>
+      <tr><td style="color:rgba(255,255,255,0.7); border-bottom:1px solid rgba(255,255,255,0.06); padding:10px 14px; background:rgba(255,255,255,0.03);">Pattern recognition</td><td style="color:rgba(255,255,255,0.5); border-bottom:1px solid rgba(255,255,255,0.06); padding:10px 14px; background:rgba(255,255,255,0.03);">Loop Taxonomy · Trigger Map</td></tr>
+      <tr><td style="color:rgba(255,255,255,0.7); border-bottom:1px solid rgba(255,255,255,0.06); padding:10px 14px;">Real-time interruption</td><td style="color:rgba(255,255,255,0.5); border-bottom:1px solid rgba(255,255,255,0.06); padding:10px 14px;">Loop Exit Protocol</td></tr>
+      <tr><td style="color:rgba(255,255,255,0.7); border-bottom:1px solid rgba(255,255,255,0.06); padding:10px 14px; background:rgba(255,255,255,0.03);">Decision architecture</td><td style="color:rgba(255,255,255,0.5); border-bottom:1px solid rgba(255,255,255,0.06); padding:10px 14px; background:rgba(255,255,255,0.03);">3-Constraint Framework</td></tr>
+      <tr><td style="color:rgba(255,255,255,0.7); border-bottom:1px solid rgba(255,255,255,0.06); padding:10px 14px;">Preventive daily design</td><td style="color:rgba(255,255,255,0.5); border-bottom:1px solid rgba(255,255,255,0.06); padding:10px 14px;">Three-Zone Day</td></tr>
+      <tr><td style="color:rgba(255,255,255,0.7); border-bottom:1px solid rgba(255,255,255,0.06); padding:10px 14px; background:rgba(255,255,255,0.03);">Uncertainty tolerance</td><td style="color:rgba(255,255,255,0.5); border-bottom:1px solid rgba(255,255,255,0.06); padding:10px 14px; background:rgba(255,255,255,0.03);">Uncertainty Anchor · Scenario Bracket</td></tr>
+      <tr><td style="color:rgba(255,255,255,0.7); padding:10px 14px;">Accumulated load reduction</td><td style="color:rgba(255,255,255,0.5); padding:10px 14px;">Cognitive Offload Protocol</td></tr>
+    </table>
+
+    <p style="margin-top:32px; color:rgba(255,255,255,0.6);">The work now is repetition. The first time you run the Loop Exit Protocol, it will feel mechanical. The tenth time, intentional. The thirtieth time, automatic.</p>
+    <p style="color:rgba(255,255,255,0.6);">You are building a new groove — one that runs toward clarity instead of away from it.</p>
+
+    <div class="closing-trilogy">
+      <div class="trilogy-item">
+        <div class="trilogy-num">Vol. I</div>
+        <div class="trilogy-name">Dopamine Architecture</div>
+      </div>
+      <div class="trilogy-item">
+        <div class="trilogy-num">Vol. II</div>
+        <div class="trilogy-name">Discipline Architecture</div>
+      </div>
+      <div class="trilogy-item active">
+        <div class="trilogy-num">Vol. III · This Guide</div>
+        <div class="trilogy-name">The Overthinking Protocol</div>
+      </div>
+    </div>
+
+    <div class="closing-brand">© Lazy Scholar PH · Cognitive Architecture Series · 2026</div>
+  </div>
+
+  <!-- ══════════════════════════════ APPENDIX ══════════════════════════════ -->
+  <div class="section-break">
+    <div class="section-header">
+      <span class="section-label">Appendix</span>
+      <h2>Tools &amp; Worksheets</h2>
+      <p>Print, fill, and use. These tools are the applied layer of everything in this guide.</p>
+    </div>
+    <div class="section-body">
+
+      <!-- Tool 1 -->
+      <div class="appendix-tool">
+        <div class="appendix-tool-header">
+          <span class="tool-badge">Tool 1</span>
+          <h3>Loop Audit Worksheet</h3>
+        </div>
+        <div class="appendix-tool-body">
+          <p style="font-size:13px; color:var(--slate); margin-bottom:16px;">Complete once per week for the first month. Identifies your trigger contexts, loop types, and whether your exit strategies are working.</p>
+          <table class="audit-table">
+            <tr>
+              <th>Trigger Context</th>
+              <th>Loop Type</th>
+              <th>Avg. Duration</th>
+              <th>Exit Used</th>
+              <th>Effective?</th>
+            </tr>
+            <tr><td style="height:36px;"></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td style="height:36px;"></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td style="height:36px;"></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td style="height:36px;"></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td style="height:36px;"></td><td></td><td></td><td></td><td></td></tr>
+          </table>
+          <span class="fill-label" style="margin-top:20px;">Patterns noticed this week</span>
+          <div class="fill-line"></div>
+          <span class="fill-label">Architecture adjustment for next week</span>
+          <div class="fill-line"></div>
+        </div>
+      </div>
+
+      <!-- Tool 2 -->
+      <div class="appendix-tool">
+        <div class="appendix-tool-header">
+          <span class="tool-badge">Tool 2</span>
+          <h3>Decision Constraint Template</h3>
+        </div>
+        <div class="appendix-tool-body">
+          <span class="fill-label">Decision</span>
+          <div class="fill-line"></div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+            <div>
+              <span class="fill-label">Time limit / Deadline</span>
+              <div class="fill-line"></div>
+            </div>
+            <div>
+              <span class="fill-label">Max information sources</span>
+              <div class="fill-line"></div>
+            </div>
+          </div>
+          <span class="fill-label">Option 1</span><div class="fill-line"></div>
+          <span class="fill-label">Option 2</span><div class="fill-line"></div>
+          <span class="fill-label">Option 3 (max)</span><div class="fill-line"></div>
+          <span class="fill-label">Chosen option</span><div class="fill-line"></div>
+          <span class="fill-label">Rationale (1–2 sentences)</span><div class="fill-line"></div>
+          <div class="fill-line" style="margin-top:0;"></div>
+        </div>
+      </div>
+
+      <!-- Tool 3 -->
+      <div class="appendix-tool">
+        <div class="appendix-tool-header">
+          <span class="tool-badge">Tool 3</span>
+          <h3>Overthinking Trigger Map</h3>
+        </div>
+        <div class="appendix-tool-body">
+          <p style="font-size:13px; color:var(--slate); margin-bottom:16px;">Identify the conditions that reliably activate your loops. Complete after Week 1 of the 30-day plan.</p>
+          <span class="fill-label">Environmental triggers (places, settings)</span><div class="fill-line"></div>
+          <span class="fill-label">Emotional triggers (states that precede loops)</span><div class="fill-line"></div>
+          <span class="fill-label">Time-of-day triggers (when loops are most likely)</span><div class="fill-line"></div>
+          <span class="fill-label">Social triggers (interactions that activate loops)</span><div class="fill-line"></div>
+          <span class="fill-label">Information triggers (content that activates loops)</span><div class="fill-line"></div>
+          <span class="fill-label">Highest-risk conditions (when multiple triggers converge)</span><div class="fill-line"></div>
+        </div>
+      </div>
+
+      <!-- Tool 4 -->
+      <div class="appendix-tool">
+        <div class="appendix-tool-header">
+          <span class="tool-badge">Tool 4</span>
+          <h3>5-Step Loop Exit Card</h3>
+        </div>
+        <div class="appendix-tool-body">
+          <p style="font-size:13px; color:var(--slate); margin-bottom:16px;">Print, cut, and keep visible. Phone screensaver, desk, or notebook inside cover.</p>
+          <div class="exit-card">
+            <div class="exit-card-title">The Loop Exit Protocol</div>
+            <div class="exit-card-subtitle">Lazy Scholar PH · Under 3 Minutes</div>
+            <div class="exit-step-row">
+              <span class="exit-step-num">1</span>
+              <span class="exit-step-action">NAME IT</span>
+              <span class="exit-step-desc">"I am in a ___ loop."</span>
+              <span class="exit-step-t">10s</span>
+            </div>
+            <div class="exit-step-row">
+              <span class="exit-step-num">2</span>
+              <span class="exit-step-action">LOCATE IT</span>
+              <span class="exit-step-desc">Find it physically in your body.</span>
+              <span class="exit-step-t">10s</span>
+            </div>
+            <div class="exit-step-row">
+              <span class="exit-step-num">3</span>
+              <span class="exit-step-action">EXTERNALIZE</span>
+              <span class="exit-step-desc">Write the core content. No edits.</span>
+              <span class="exit-step-t">90s</span>
+            </div>
+            <div class="exit-step-row">
+              <span class="exit-step-num">4</span>
+              <span class="exit-step-action">CONSTRAIN</span>
+              <span class="exit-step-desc">One action, or write a release.</span>
+              <span class="exit-step-t">20s</span>
+            </div>
+            <div class="exit-step-row">
+              <span class="exit-step-num">5</span>
+              <span class="exit-step-action">REDIRECT</span>
+              <span class="exit-step-desc">Give the brain a concrete task.</span>
+              <span class="exit-step-t">Now</span>
+            </div>
+            <div class="exit-card-footer">Total: Under 3 minutes · Use at first sign of loop activation</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tool 5 -->
+      <div class="appendix-tool">
+        <div class="appendix-tool-header">
+          <span class="tool-badge">Tool 5</span>
+          <h3>Daily Architecture Checklist</h3>
+        </div>
+        <div class="appendix-tool-body">
+          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px;">
+            <div>
+              <div class="checklist-group-label">Morning</div>
+              <div class="checklist-item" style="font-size:13px;"><div class="checkbox"></div><span>Cognitive Offload Protocol (before media)</span></div>
+              <div class="checklist-item" style="font-size:13px;"><div class="checkbox"></div><span>ACT / HOLD / RELEASE sort complete</span></div>
+              <div class="checklist-item" style="font-size:13px;"><div class="checkbox"></div><span>Today's first task identified</span></div>
+            </div>
+            <div>
+              <div class="checklist-group-label">Day</div>
+              <div class="checklist-item" style="font-size:13px;"><div class="checkbox"></div><span>Deep Work Block 1 — output defined</span></div>
+              <div class="checklist-item" style="font-size:13px;"><div class="checkbox"></div><span>Deep Work Block 2 — output defined</span></div>
+              <div class="checklist-item" style="font-size:13px;"><div class="checkbox"></div><span>Decisions batched to window</span></div>
+              <div class="checklist-item" style="font-size:13px;"><div class="checkbox"></div><span>Input within set limits</span></div>
+            </div>
+            <div>
+              <div class="checklist-group-label">Evening</div>
+              <div class="checklist-item" style="font-size:13px;"><div class="checkbox"></div><span>Brain dump complete</span></div>
+              <div class="checklist-item" style="font-size:13px;"><div class="checkbox"></div><span>Tomorrow's first task written</span></div>
+              <div class="checklist-item" style="font-size:13px;"><div class="checkbox"></div><span>Shutdown phrase spoken</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
