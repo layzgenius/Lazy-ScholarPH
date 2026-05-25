@@ -1,29 +1,28 @@
 Status: READY_FOR_WRITING
 
-Title: The Dopamine Detox Protocol: A 14-Day System to Reset Your Brain's Reward Circuit
+Title: The Dopamine Reset Protocol
 
-Core Problem: Chronic overstimulation from phones, social media, and junk content has rewired people's dopamine systems so that ordinary tasks feel unbearable and focus feels impossible.
+Core Problem: Modern life has miscalibrated the brain's reward system through constant micro-stimulation — scrolling, notifications, snacking, entertainment — leaving people unable to concentrate on anything that requires sustained effort. Nothing important feels rewarding enough to start, and nothing started feels possible to finish.
 
-Psychological Insight: Dopamine is about anticipation and seeking, not pleasure. When the baseline is inflated by constant novelty, real life feels grey. The fix is strategic deprivation and structured re-sensitization — not willpower. The nervous system can be recalibrated, but only through deliberate reduction of high-stimulation inputs over a sufficient duration.
+Psychological Insight: Dopamine is not a pleasure chemical — it is a prediction and motivation signal. When low-effort stimuli flood the system repeatedly, high-effort activities stop triggering reward anticipation. The brain learns that deep work, meaningful goals, and difficult tasks are not worth the energy they cost. The solution is not restriction or willpower — it is systematic recalibration of the reward architecture from the bottom up.
 
-Reader Transformation: From restless, distracted, and chronically understimulated by real work — to a calm baseline, restored focus, and genuine enjoyment of ordinary life.
+Reader Transformation: From chronically under-motivated and overstimulated — unable to sit with difficulty, addicted to novelty, and quietly losing confidence in their own capacity — to someone who has rebuilt their reward system to generate genuine energy from depth, focus, and sustained effort.
 
-Why People Would Buy It: The problem is viscerally felt every day. The 14-day framing makes it finite and actionable. "Protocol" signals structure over fluff. Dopamine is a culturally familiar concept that reduces sales friction. Buyers have already tried willpower and failed — they want a system.
+Why People Would Buy It: Digital addiction and low motivation are the dominant complaints of this era. People already know the phone is the problem — what they lack is a structured, biologically grounded protocol that gives them a real sequence to follow rather than vague advice to "use your phone less." The protocol framing positions this as a system with defined stages and measurable outcomes, commanding premium pricing and strong word-of-mouth through specificity and results.
 
 Suggested Sections/Frameworks:
-- Dopamine Science in Plain Language: How the reward circuit works and why modern life broke it
-- The Stimulation Audit: Mapping current high-stimulation inputs and their tier level
-- The 3-Tier Deprivation Ladder: Categorizing inputs by dopamine load (high / medium / low) and systematic reduction sequence
-- Daily Reset Schedules: Three tracks — Beginner (social media reduction), Intermediate (digital minimalism), Hard Mode (full detox)
-- The Re-entry Protocol: Sustainable re-introduction of stimulation after the 14-day reset to prevent relapse
-- Emergency Reset Toolkit: What to do when the reset breaks and how to recover without starting over
+- Dopamine Mechanics — The Signal System Explained Without Oversimplification
+- The Stimulation Audit — Mapping Your Current Reward Landscape
+- The 14-Day Recalibration Protocol — A Staged Sequence for Resetting Baseline Sensitivity
+- The Substitution Hierarchy — Replacing Low-Effort Rewards Strategically, Not Abruptly
+- Reward Architecture for Deep Work — How to Make Hard Things Feel Worth Starting
+- Long-Cycle vs Short-Cycle Reward Mapping — Building a Sustainable Internal Reward Economy
 
 Practical Applications:
-- Daily structured screen-free blocks organized by tier and time of day
-- Replacement activity menus categorized by dopamine intensity level
-- Journaling prompts for craving awareness and pattern recognition
-- Weekly recalibration check-ins with a self-scoring baseline tracker
-- Emergency reset drill for relapse days — a same-day recovery sequence
-- Morning and evening anchor rituals to stabilize the new dopamine baseline
+- Daily stimulation logs to track input sources and intensity across contexts
+- Scheduled tech abstinence windows calibrated by environment and task type
+- Analog reward substitution library for common high-stimulation triggers
+- Progressive challenge exposure ladder for rebuilding tolerance for difficulty
+- Weekly reward system review to track recalibration progress and adjust protocol
 
-Score: 92/100
+Score: 96/100
