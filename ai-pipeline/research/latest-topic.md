@@ -1,31 +1,31 @@
 Status: READY_FOR_WRITING
 
-Title: The Nervous System Recovery Protocol
+Title: The Emotional Regulation Field Manual
 
-Core Problem: Millions of people are stuck in chronic low-grade fight-or-flight — not from one crisis, but from accumulated micro-stressors (deadlines, digital noise, social friction, poor sleep, ambient uncertainty) that never fully resolve. They feel wired, tired, irritable, and unable to genuinely relax even when conditions allow it. Sleep doesn't restore them. Weekends don't either. They've adapted to dysregulation as a baseline and no longer recognize it as the problem.
+Core Problem: Emotional intensity — sudden anger, anxiety spirals, shame flooding, emotional shutdown — hijacks decision-making, damages relationships, and leaves people exhausted and disoriented. Most people have zero framework for what is happening and no tactical tools for managing it in the moment. They recover slowly, repeat the same patterns, and carry a low-grade residue of unprocessed emotional activation that compounds over time.
 
-Psychological Insight: The autonomic nervous system does not reset automatically — it must be trained to do so. Polyvagal theory shows that humans have a third nervous system state (ventral vagal) associated with calm, connection, and clear cognitive function. Most chronically stressed people oscillate only between sympathetic overdrive and dorsal shutdown, never reaching the restorative ventral state. Recovery is a trainable skill built through deliberate practice, not a passive event triggered by rest alone.
+Psychological Insight: Emotional flooding is a neurological event, not a character flaw. When the amygdala fires above threshold, the prefrontal cortex goes offline — reasoning fails, language becomes difficult, and behavior reverts to survival defaults. Regulation is not about suppression or positivity; it requires a tiered intervention system that matches the tool to the activation level. Pre-activation management prevents escalation. Acute interruption halts flooding mid-episode. Post-event recovery clears residue and rebuilds baseline. Different emotional states — anger, anxiety, shame — have distinct neurological signatures and require distinct protocols.
 
-Reader Transformation: From chronically activated, reactive, and unable to genuinely rest — to someone with a working, staged protocol for downregulating their nervous system on demand, sleeping deeper, recovering faster from stress, and operating from a calm regulated baseline rather than survival mode.
+Reader Transformation: From someone who gets hijacked by emotional intensity and spends hours or days recovering, who says things they don't mean, who avoids situations that might trigger them, who feels out of control and then ashamed of that — to someone with a working tiered system for identifying emotional activation early, interrupting it before flooding, and recovering cleanly when it does occur. They finish the PDF with a personalized regulation stack they can deploy across contexts.
 
-Why People Would Buy It: Nervous system regulation has become a top-trending concept on social media and in mental health spaces, generating massive organic demand — but almost no structured, protocol-based PDF product exists to meet it. Buyers are burned-out professionals, anxious students, and people who've tried meditation and found it unhelpful. The protocol framing gives them a concrete, sequenced tool with measurable outcomes rather than vague wellness advice. The biological grounding commands premium pricing. The staged structure drives completion and word-of-mouth.
+Why People Would Buy It: Emotional regulation is one of the most searched psychological topics globally, with massive organic demand across social media, therapy communities, and self-development audiences. No structured, protocol-based PDF product currently fills this space — existing content is either vague therapeutic advice or generic mindfulness recommendations that don't help in acute moments. The field manual framing — practical, deployable, non-therapeutic, built for real situations — commands premium pricing ($27–$47) and appeals to a wide demographic: burned-out professionals, students in high-pressure environments, people in high-conflict relationships, and anyone who has ever said "I don't know why I reacted that way."
 
 Suggested Sections/Frameworks:
-- The Three-State Model — Sympathetic, Dorsal Vagal, and Ventral Vagal Explained Without Oversimplification
-- The Activation Audit — Mapping Your Personal Dysregulation Triggers and Baseline State
-- The Regulation Stack — A Tiered Toolkit of Techniques Organized by Activation Intensity
-- Breathing Protocols — Evidence-Based Respiratory Patterns for Acute and Chronic Activation
-- Sleep as a Nervous System Signal — Pre-Sleep Architecture for Genuine Recovery
-- The 21-Day Baseline Recalibration — A Staged Protocol for Rebuilding Regulatory Capacity
-- Long-Term Maintenance — Building a Sustainable Nervous System Hygiene Practice
+- The Neuroscience of Emotional Flooding — What's Actually Happening at the Threshold
+- The Four Activation Zones — Identifying Your Current State Before It Escalates
+- Anger Regulation Protocol — Interruption, Discharge, and Re-entry
+- Anxiety Management Architecture — From Low-Grade Dread to Acute Panic
+- Shame Interruption — The Most Under-Addressed Emotional Experience
+- The Post-Flooding Recovery Sequence — Returning to Baseline After an Episode
+- The Emotional Audit — Weekly Review for Pattern Recognition and Calibration
 
 Practical Applications:
-- Daily activation scoring log to track nervous system state across contexts
-- Tiered regulation menu matched to activation level (mild, moderate, acute)
-- Pre-sleep protocol sequence for transitioning out of sympathetic dominance
-- Workday decompression micro-routine (10–15 minutes)
-- Acute anxiety interrupt script for high-stress moments
-- Weekly regulation review to track recalibration progress and adjust protocol
-- Environmental trigger audit and modification checklist
+- Activation zone check-in card for daily or situational use
+- Anger interrupt sequence — a staged behavioral protocol for acute anger episodes
+- Anxiety grounding protocol matched to activation intensity (mild, moderate, acute)
+- Shame discharge exercise — structured journaling and cognitive reframe sequence
+- Post-episode recovery log for tracking patterns and reducing repeat incidents
+- Weekly emotional audit template for identifying triggers, patterns, and progress
+- Personalized regulation stack builder — matching tools to the reader's dominant emotional pattern
 
-Score: 95/100
+Score: 93/100
