@@ -1,27 +1,28 @@
 Status: READY_FOR_WRITING
 
-Title: The Overthinker's Operating System
+Title: The Dopamine Reset Protocol
 
-Core Problem: Chronic overthinking traps people in analysis loops, creating decision fatigue, inaction, and low self-trust — without them understanding why.
+Core Problem: Modern life has miscalibrated the brain's reward system through constant micro-stimulation — scrolling, notifications, snacking, entertainment — leaving people unable to concentrate on anything that requires sustained effort. Nothing important feels rewarding enough to start, and nothing started feels possible to finish.
 
-Psychological Insight: Overthinking is a nervous system response masquerading as rational thinking. The brain perceives ambiguity as threat. The cure isn't "think less" — it's installing a decision architecture that reduces cognitive load at the source.
+Psychological Insight: Dopamine is not a pleasure chemical — it is a prediction and motivation signal. When low-effort stimuli flood the system repeatedly, high-effort activities stop triggering reward anticipation. The brain learns that deep work, meaningful goals, and difficult tasks are not worth the energy they cost. The solution is not restriction or willpower — it is systematic recalibration of the reward architecture from the bottom up.
 
-Reader Transformation: From paralyzed ruminator to someone with a reliable mental operating system for decisions, interruptions, and uncertainty.
+Reader Transformation: From chronically under-motivated and overstimulated — unable to sit with difficulty, addicted to novelty, and quietly losing confidence in their own capacity — to someone who has rebuilt their reward system to generate genuine energy from depth, focus, and sustained effort.
 
-Why People Would Buy It: Overthinking is a near-universal pain point with high urgency and shame. People desperately want a structured, framework-first solution — not generic advice to "calm down" or "just decide." This product installs cognitive architecture in place of the loop, commanding higher prices and stronger word-of-mouth through specificity.
+Why People Would Buy It: Digital addiction and low motivation are the dominant complaints of this era. People already know the phone is the problem — what they lack is a structured, biologically grounded protocol that gives them a real sequence to follow rather than vague advice to "use your phone less." The protocol framing positions this as a system with defined stages and measurable outcomes, commanding premium pricing and strong word-of-mouth through specificity and results.
 
 Suggested Sections/Frameworks:
-- The Overthinking Taxonomy — 5 types of overthinking loops and how to identify yours
-- The Interrupt Protocol — pattern-breaking at the neurological level before the loop escalates
-- The 3-Layer Decision Filter — a triage system for decisions by reversibility, stakes, and time cost
-- Ambient Uncertainty Management — how to hold open loops without activating rumination
-- The Certainty Replacement System — building internal reference points that reduce dependence on external validation
+- Dopamine Mechanics — The Signal System Explained Without Oversimplification
+- The Stimulation Audit — Mapping Your Current Reward Landscape
+- The 14-Day Recalibration Protocol — A Staged Sequence for Resetting Baseline Sensitivity
+- The Substitution Hierarchy — Replacing Low-Effort Rewards Strategically, Not Abruptly
+- Reward Architecture for Deep Work — How to Make Hard Things Feel Worth Starting
+- Long-Cycle vs Short-Cycle Reward Mapping — Building a Sustainable Internal Reward Economy
 
 Practical Applications:
-- Daily decision logs to track deliberation time and outcomes
-- Timed deliberation windows with hard cutoffs by decision category
-- Pre-commitment scripts for recurring decision types
-- Uncertainty anchoring routines to close open cognitive loops
-- Weekly overthinking audit to identify trigger patterns
+- Daily stimulation logs to track input sources and intensity across contexts
+- Scheduled tech abstinence windows calibrated by environment and task type
+- Analog reward substitution library for common high-stimulation triggers
+- Progressive challenge exposure ladder for rebuilding tolerance for difficulty
+- Weekly reward system review to track recalibration progress and adjust protocol
 
-Score: 91/100
+Score: 96/100
