@@ -1,32 +1,28 @@
 Status: READY_FOR_WRITING
 
-Title: The Dopamine Reset Protocol: A 21-Day System to Rebuild Focus and Motivation
+Title: The Dopamine Reset Protocol
 
-Core Problem: Chronic overstimulation from digital inputs desensitizes the reward system, destroying baseline motivation and making deep work feel impossible. People know something is wrong — they just can't name it.
+Core Problem: Modern life has miscalibrated the brain's reward system through constant micro-stimulation — scrolling, notifications, snacking, entertainment — leaving people unable to concentrate on anything that requires sustained effort. Nothing important feels rewarding enough to start, and nothing started feels possible to finish.
 
-Psychological Insight: Repeated dopamine spikes from low-effort, high-stimulation inputs (social media, notifications, short-form content) raise the motivational threshold over time. The reward circuit becomes desensitized, so normal tasks — reading, writing, focused work — no longer register as rewarding. The system requires structured deprivation and deliberate re-sensitization to return to baseline.
+Psychological Insight: Dopamine is not a pleasure chemical — it is a prediction and motivation signal. When low-effort stimuli flood the system repeatedly, high-effort activities stop triggering reward anticipation. The brain learns that deep work, meaningful goals, and difficult tasks are not worth the energy they cost. The solution is not restriction or willpower — it is systematic recalibration of the reward architecture from the bottom up.
 
-Reader Transformation: From scattered, chronically low-motivation, and scroll-addicted to capable of sustained focus, restored natural drive, and genuine resistance to compulsive digital behavior — without relying on willpower.
+Reader Transformation: From chronically under-motivated and overstimulated — unable to sit with difficulty, addicted to novelty, and quietly losing confidence in their own capacity — to someone who has rebuilt their reward system to generate genuine energy from depth, focus, and sustained effort.
 
-Why People Would Buy It: It provides the first accurate explanation for a pain millions of people feel but cannot name. Instead of vague "digital detox" advice, it offers a mechanistic 21-day protocol with clear phases, a daily structure, and a maintenance system. The neuroscience is plain, not academic. The format is structured, not inspirational.
+Why People Would Buy It: Digital addiction and low motivation are the dominant complaints of this era. People already know the phone is the problem — what they lack is a structured, biologically grounded protocol that gives them a real sequence to follow rather than vague advice to "use your phone less." The protocol framing positions this as a system with defined stages and measurable outcomes, commanding premium pricing and strong word-of-mouth through specificity and results.
 
 Suggested Sections/Frameworks:
-- What Dopamine Actually Does (and Doesn't Do) — clearing common misconceptions, establishing the real mechanism
-- The Desensitization Spiral — how overstimulation accumulates and what it does to baseline motivation
-- Phase 1: Deprive — reducing high-dopamine inputs systematically, not cold turkey
-- Phase 2: Stabilize — managing the discomfort window, what to expect neurologically
-- Phase 3: Recalibrate — reintroducing inputs deliberately, testing new baseline
-- Trigger Audit System — identifying personal high-stimulation inputs and their replacement alternatives
-- Environment Redesign Protocol — restructuring physical and digital spaces to reduce default stimulation
-- Maintenance Protocol — long-term system for sustaining the reset without strict rules
+- Dopamine Mechanics — The Signal System Explained Without Oversimplification
+- The Stimulation Audit — Mapping Your Current Reward Landscape
+- The 14-Day Recalibration Protocol — A Staged Sequence for Resetting Baseline Sensitivity
+- The Substitution Hierarchy — Replacing Low-Effort Rewards Strategically, Not Abruptly
+- Reward Architecture for Deep Work — How to Make Hard Things Feel Worth Starting
+- Long-Cycle vs Short-Cycle Reward Mapping — Building a Sustainable Internal Reward Economy
 
 Practical Applications:
-- Daily input restriction schedule tiered by stimulation level
-- Dopamine fasting protocol with structured phase transitions
-- Reward-delay training exercises to rebuild tolerance for slow-burn tasks
-- Environment redesign checklist for phone, desktop, and physical workspace
-- Trigger audit worksheet for mapping personal stimulation patterns
-- Weekly recalibration audit to monitor drift and correct early
-- Replacement activity library for low-dopamine, high-meaning alternatives
+- Daily stimulation logs to track input sources and intensity across contexts
+- Scheduled tech abstinence windows calibrated by environment and task type
+- Analog reward substitution library for common high-stimulation triggers
+- Progressive challenge exposure ladder for rebuilding tolerance for difficulty
+- Weekly reward system review to track recalibration progress and adjust protocol
 
-Score: 95/100
+Score: 96/100
