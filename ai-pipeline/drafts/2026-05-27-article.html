@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Invisible Manual — Lazy Scholar PH</title>
+<style>
+  /* ============================================
+     LAZY SCHOLAR PH — PREMIUM PDF STYLESHEET
+     The Invisible Manual
+  ============================================ */
+
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --ink:         #0f0f0f;
+    --ink-soft:    #2c2c2c;
+    --ink-muted:   #5a5a5a;
+    --accent:      #1a1a2e;
+    --gold:        #b8963e;
+    --gold-light:  #d4af5a;
+    --cream:       #faf8f4;
+    --paper:       #ffffff;
+    --border:      #e2ddd6;
+    --border-dark: #c8c0b6;
+    --highlight:   #f5f0e8;
+
+    --serif:  'Playfair Display', Georgia, serif;
+    --sans:   'Inter', -apple-system, sans-serif;
+    --mono:   'JetBrains Mono', 'Courier New', monospace;
+
+    --page-width: 816px;
+    --page-pad:   72px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { background: #e8e4de; }
+
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--paper);
+    max-width: var(--page-width);
+    margin: 48px auto;
+    box-shadow: 0 8px 48px rgba(0,0,0,0.18), 0 2px 12px rgba(0,0,0,0.1);
+  }
+
+  /* ─── PAGE CONTAINERS ─── */
+  .page {
+    padding: var(--page-pad);
+    min-height: 1056px;
+    position: relative;
+    page-break-after: always;
+    background: var(--paper);
+  }
+  .page-full {
+    padding: 0;
+    min-height: 1056px;
+    position: relative;
+    page-break-after: always;
+    overflow: hidden;
+  }
+
+  /* ─── COVER PAGE ─── */
+  .cover {
+    background: var(--accent);
+    color: var(--paper);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: var(--page-pad);
+  }
+  .cover-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 80px;
+  }
+  .brand-badge {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 7px 14px;
+    border-radius: 2px;
+  }
+  .premium-badge {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+  .cover-main { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  .cover-label {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+  .cover-title {
+    font-family: var(--serif);
+    font-size: 72px;
+    font-weight: 700;
+    line-height: 1.05;
+    color: var(--paper);
+    margin-bottom: 24px;
+    letter-spacing: -1px;
+  }
+  .cover-rule {
+    width: 72px;
+    height: 3px;
+    background: var(--gold);
+    margin-bottom: 28px;
+  }
+  .cover-subtitle {
+    font-family: var(--sans);
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.75);
+    max-width: 480px;
+  }
+  .cover-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding-top: 28px;
+    margin-top: 60px;
+  }
+  .cover-author {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+  }
+  .cover-author strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 2px;
+  }
+  .cover-accent-bar {
+    width: 3px;
+    height: 60px;
+    background: var(--gold);
+  }
+  .cover-tagline {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    max-width: 300px;
+    text-align: right;
+    line-height: 1.5;
+  }
+
+  /* ─── INTRO QUOTE PAGE ─── */
+  .quote-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--cream);
+    text-align: center;
+  }
+  .opening-quote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 28px;
+    line-height: 1.5;
+    color: var(--accent);
+    max-width: 560px;
+    margin-bottom: 32px;
+    font-weight: 400;
+  }
+  .opening-quote::before { content: '\201C'; font-size: 80px; color: var(--gold); line-height: 0; vertical-align: -0.4em; margin-right: 4px; }
+  .opening-attribution {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .quote-ornament {
+    width: 48px;
+    height: 2px;
+    background: var(--gold);
+    margin: 32px auto;
+  }
+
+  /* ─── TYPOGRAPHY ─── */
+  h1, h2, h3, h4 { font-family: var(--serif); color: var(--accent); }
+
+  h1 {
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+  }
+  h2 {
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+  h3 {
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 12px;
+    color: var(--ink);
+  }
+  h4 {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+    font-family: var(--sans);
+  }
+
+  p {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin-bottom: 16px;
+  }
+
+  strong { color: var(--ink); font-weight: 600; }
+  em { font-style: italic; }
+
+  /* ─── SECTION HEADER ─── */
+  .section-header {
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 2px solid var(--border);
+  }
+  .section-number {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    display: block;
+  }
+  .section-rule {
+    width: 48px;
+    height: 3px;
+    background: var(--gold);
+    margin-top: 16px;
+  }
+  .section-subhead {
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--ink-muted);
+    margin-top: 8px;
+    font-style: italic;
+  }
+
+  /* ─── TABLE OF CONTENTS ─── */
+  .toc-page { background: var(--cream); }
+  .toc-title {
+    font-family: var(--serif);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 40px;
+  }
+  .toc-item {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .toc-num {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 1px;
+    min-width: 32px;
+  }
+  .toc-text {
+    flex: 1;
+  }
+  .toc-text-title {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 2px;
+  }
+  .toc-text-sub {
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--ink-muted);
+  }
+  .toc-dots {
+    flex: 1;
+    border-bottom: 1px dotted var(--border-dark);
+    margin-bottom: 3px;
+    max-width: 120px;
+  }
+
+  /* ─── CALLOUT BOXES ─── */
+  .callout {
+    background: var(--highlight);
+    border-left: 4px solid var(--gold);
+    padding: 22px 24px;
+    margin: 28px 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .callout p { margin-bottom: 0; font-size: 15px; }
+  .callout-label {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .callout-dark {
+    background: var(--accent);
+    border-left: 4px solid var(--gold);
+    padding: 22px 24px;
+    margin: 28px 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .callout-dark p, .callout-dark li {
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 0;
+  }
+  .callout-dark .callout-label { color: var(--gold); }
+
+  .pull-quote {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--accent);
+    border-top: 2px solid var(--gold);
+    border-bottom: 2px solid var(--gold);
+    padding: 24px 0;
+    margin: 36px 0;
+    text-align: center;
+  }
+
+  /* ─── TABLES ─── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 14px;
+  }
+  th {
+    background: var(--accent);
+    color: rgba(255,255,255,0.9);
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 1px;
+    padding: 12px 16px;
+    text-align: left;
+  }
+  td {
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--ink-soft);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:nth-child(even) td { background: var(--cream); }
+  tr:last-child td { border-bottom: none; }
+
+  /* ─── AUDIT TABLES ─── */
+  .audit-table th { background: var(--accent); }
+  .audit-table td:first-child { color: var(--ink-muted); font-size: 12px; font-weight: 600; width: 32px; }
+  .audit-table td:last-child { width: 120px; background: var(--highlight); font-family: var(--mono); color: var(--ink-muted); font-size: 13px; }
+
+  /* ─── RULE BLOCKS ─── */
+  .rule-block {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 28px;
+    margin-bottom: 32px;
+    position: relative;
+  }
+  .rule-block::before {
+    content: attr(data-rule);
+    position: absolute;
+    top: -14px;
+    left: 24px;
+    background: var(--gold);
+    color: var(--paper);
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 2px;
+  }
+  .rule-block h3 { margin-bottom: 12px; margin-top: 4px; }
+
+  /* ─── DIVIDER ─── */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 40px 0;
+  }
+  .section-divider-line { flex: 1; height: 1px; background: var(--border); }
+  .section-divider-diamond {
+    width: 8px;
+    height: 8px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  /* ─── FRAMEWORK BOX ─── */
+  .framework {
+    background: var(--accent);
+    color: var(--paper);
+    border-radius: 4px;
+    padding: 32px;
+    margin: 32px 0;
+  }
+  .framework h3 { color: var(--gold); margin-bottom: 16px; font-size: 16px; letter-spacing: 1px; font-family: var(--sans); text-transform: uppercase; font-weight: 700; }
+  .framework p { color: rgba(255,255,255,0.8); margin-bottom: 8px; font-size: 14px; }
+  .framework ul { padding-left: 20px; }
+  .framework li { color: rgba(255,255,255,0.8); font-size: 14px; margin-bottom: 8px; line-height: 1.6; }
+
+  /* ─── CHECKLIST ─── */
+  .checklist { list-style: none; padding: 0; margin: 20px 0; }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .check-box {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--gold);
+    border-radius: 3px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* ─── GRID CARDS ─── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 28px 0;
+  }
+  .card {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px;
+    background: var(--cream);
+  }
+  .card-icon { font-size: 20px; margin-bottom: 10px; }
+  .card h4 { font-family: var(--serif); font-size: 15px; font-weight: 600; color: var(--accent); text-transform: none; letter-spacing: 0; margin-bottom: 8px; }
+  .card p { font-size: 13px; line-height: 1.6; color: var(--ink-muted); margin: 0; }
+
+  /* ─── SCORE TABLE ─── */
+  .score-table { margin: 24px 0; }
+  .score-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .score-row:nth-child(even) { background: var(--cream); }
+  .score-range {
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gold);
+    min-width: 80px;
+  }
+  .score-label { font-size: 14px; font-weight: 600; color: var(--accent); min-width: 120px; }
+  .score-action { font-size: 13px; color: var(--ink-muted); flex: 1; line-height: 1.5; }
+
+  /* ─── NUMBERED RULES ─── */
+  .numbered-rules { counter-reset: rule; }
+  .numbered-rule {
+    counter-increment: rule;
+    display: flex;
+    gap: 20px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .numbered-rule:last-child { border-bottom: none; }
+  .rule-num {
+    font-family: var(--mono);
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--gold);
+    opacity: 0.6;
+    min-width: 32px;
+    line-height: 1.4;
+  }
+  .rule-content { flex: 1; }
+  .rule-content strong { font-size: 15px; color: var(--accent); display: block; margin-bottom: 4px; }
+  .rule-content span { font-size: 13px; color: var(--ink-muted); line-height: 1.6; }
+
+  /* ─── CLOSING PAGE ─── */
+  .closing {
+    background: var(--accent);
+    color: var(--paper);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 96px var(--page-pad);
+  }
+  .closing h2 { color: var(--paper); font-size: 38px; margin-bottom: 24px; }
+  .closing p { color: rgba(255,255,255,0.7); font-size: 16px; max-width: 480px; line-height: 1.75; }
+  .closing .gold-rule { width: 60px; height: 3px; background: var(--gold); margin: 32px auto; }
+  .closing-brand { font-family: var(--sans); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-top: 48px; }
+  .closing-copy { font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 12px; }
+
+  /* ─── PAGE HEADER / FOOTER ─── */
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--border);
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .page-header-brand { color: var(--gold); }
+
+  .page-footer {
+    position: absolute;
+    bottom: 36px;
+    left: var(--page-pad);
+    right: var(--page-pad);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--sans);
+    font-size: 10px;
+    color: var(--ink-muted);
+    letter-spacing: 1px;
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+  }
+
+  /* ─── INTRO SECTION ─── */
+  .intro-banner {
+    background: var(--highlight);
+    border-radius: 4px;
+    padding: 28px 32px;
+    margin-bottom: 32px;
+    border: 1px solid var(--border);
+  }
+  .intro-banner h3 { font-size: 17px; margin-bottom: 10px; }
+  .intro-banner p { margin-bottom: 0; font-size: 14px; }
+
+  /* ─── UTILITY ─── */
+  .mb-0 { margin-bottom: 0 !important; }
+  .mb-8 { margin-bottom: 8px; }
+  .mb-16 { margin-bottom: 16px; }
+  .mb-24 { margin-bottom: 24px; }
+  .mb-40 { margin-bottom: 40px; }
+  .mt-32 { margin-top: 32px; }
+
+  .text-gold { color: var(--gold); }
+  .text-muted { color: var(--ink-muted); }
+  .text-center { text-align: center; }
+
+  ul.body-list { padding-left: 20px; margin-bottom: 16px; }
+  ul.body-list li { font-size: 14px; line-height: 1.7; color: var(--ink-soft); margin-bottom: 6px; }
+
+  @media print {
+    html { background: white; }
+    body { margin: 0; box-shadow: none; }
+    .page, .page-full { page-break-after: always; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     COVER PAGE
+══════════════════════════════════════ -->
+<div class="page page-full cover">
+  <div class="cover-top">
+    <span class="brand-badge">Lazy Scholar PH</span>
+    <span class="premium-badge">Premium Digital Resource</span>
+  </div>
+
+  <div class="cover-main">
+    <div class="cover-label">The Complete Guide</div>
+    <h1 class="cover-title">The Invisible<br>Manual</h1>
+    <div class="cover-rule"></div>
+    <p class="cover-subtitle">Hidden Rules of Modern Adult Life — The structured map to the unwritten knowledge that separates people who thrive from people who wonder why they keep losing.</p>
+  </div>
+
+  <div class="cover-bottom">
+    <div class="cover-author">
+      <strong>Lazy Scholar PH</strong>
+      Structured Knowledge for Modern Adults
+    </div>
+    <div class="cover-accent-bar"></div>
+    <div class="cover-tagline">Six domains. Twelve rules. One complete behavior audit.</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     OPENING QUOTE PAGE
+══════════════════════════════════════ -->
+<div class="page page-full quote-page">
+  <div style="padding: var(--page-pad);">
+    <p class="opening-quote">The most expensive education is the one that comes from not knowing what you didn't know.</p>
+    <div class="quote-ornament"></div>
+    <div class="opening-attribution">The Invisible Manual — Lazy Scholar PH</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TABLE OF CONTENTS
+══════════════════════════════════════ -->
+<div class="page toc-page">
+  <div class="page-header">
+    <span class="page-header-brand">Lazy Scholar PH</span>
+    <span>The Invisible Manual</span>
+  </div>
+
+  <h4 class="toc-title">Table of Contents</h4>
+
+  <div class="toc-item">
+    <div class="toc-num">00</div>
+    <div class="toc-text">
+      <span class="toc-text-title">Introduction: The Map You Were Never Given</span>
+      <span class="toc-text-sub">Why this gap exists — and what it costs</span>
+    </div>
+  </div>
+
+  <div class="toc-item">
+    <div class="toc-num">01</div>
+    <div class="toc-text">
+      <span class="toc-text-title">The Knowledge Gap Model</span>
+      <span class="toc-text-sub">Why formal education leaves you socially blind</span>
+    </div>
+  </div>
+
+  <div class="toc-item">
+    <div class="toc-num">02</div>
+    <div class="toc-text">
+      <span class="toc-text-title">Professional Environment Rules</span>
+      <span class="toc-text-sub">Unspoken workplace dynamics nobody explains</span>
+    </div>
+  </div>
+
+  <div class="toc-item">
+    <div class="toc-num">03</div>
+    <div class="toc-text">
+      <span class="toc-text-title">Status Signal Awareness</span>
+      <span class="toc-text-sub">How people read you without telling you</span>
+    </div>
+  </div>
+
+  <div class="toc-item">
+    <div class="toc-num">04</div>
+    <div class="toc-text">
+      <span class="toc-text-title">Communication Rules</span>
+      <span class="toc-text-sub">What you're signaling that you don't know you're signaling</span>
+    </div>
+  </div>
+
+  <div class="toc-item">
+    <div class="toc-num">05</div>
+    <div class="toc-text">
+      <span class="toc-text-title">Money Behavior Rules</span>
+      <span class="toc-text-sub">How financial behavior shapes social perception</span>
+    </div>
+  </div>
+
+  <div class="toc-item">
+    <div class="toc-num">06</div>
+    <div class="toc-text">
+      <span class="toc-text-title">Relationship Rules</span>
+      <span class="toc-text-sub">The invisible contracts governing trust, respect, and loyalty</span>
+    </div>
+  </div>
+
+  <div class="toc-item">
+    <div class="toc-num">07</div>
+    <div class="toc-text">
+      <span class="toc-text-title">The Behavior Audit</span>
+      <span class="toc-text-sub">Your full self-assessment across all six domains</span>
+    </div>
+  </div>
+
+  <div class="toc-item">
+    <div class="toc-num">+</div>
+    <div class="toc-text">
+      <span class="toc-text-title">The Twelve Highest-Leverage Rules</span>
+      <span class="toc-text-sub">Summary reference you can return to</span>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-header-brand">Lazy Scholar PH</span>
+    <span>© 2026 · All Rights Reserved</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     INTRODUCTION
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-brand">Lazy Scholar PH</span>
+    <span>The Invisible Manual</span>
+  </div>
+
+  <div class="section-header">
+    <span class="section-number">Introduction</span>
+    <h1>The Map You Were<br>Never Given</h1>
+    <div class="section-rule"></div>
+  </div>
+
+  <p>You graduated. You showed up. You followed the instructions.</p>
+  <p>And still — things kept going sideways.</p>
+  <p>A colleague you respected suddenly turned cold. A job opportunity vanished without explanation. A friendship quietly dissolved. A first impression that cost you more than you realized. You tried harder, worked longer, and wondered what you were missing.</p>
+
+  <div class="pull-quote">
+    Here is what you were missing: the map.
+  </div>
+
+  <p>Functional adult life runs on two parallel systems. The first is the <strong>visible system</strong> — rules written in handbooks, syllabi, and social contracts. The second is the <strong>invisible system</strong> — rules embedded in behavior, signal, and unspoken expectation that nobody writes down and almost nobody explains.</p>
+  <p>School gave you the first system. Nobody gave you the second.</p>
+  <p>This is not a minor gap. It is a structural failure in how adults are prepared to operate in professional environments, social hierarchies, financial contexts, and close relationships.</p>
+
+  <div class="intro-banner">
+    <h3>What You Will Have When You Finish</h3>
+    <ul class="body-list">
+      <li>A domain-by-domain map of the unwritten rules governing modern adult life</li>
+      <li>Frameworks for reading professional and social environments accurately</li>
+      <li>Immediate behavior audits you can run before your next conversation, meeting, or decision</li>
+      <li>The diagnostic vocabulary to identify which rules you have been unknowingly breaking</li>
+    </ul>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-header-brand">Lazy Scholar PH</span>
+    <span>Introduction</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SECTION 1: KNOWLEDGE GAP
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-brand">Lazy Scholar PH</span>
+    <span>Section 01 — The Knowledge Gap Model</span>
+  </div>
+
+  <div class="section-header">
+    <span class="section-number">Section 01</span>
+    <h1>The Knowledge<br>Gap Model</h1>
+    <p class="section-subhead">Why Formal Education Leaves You Socially Blind</p>
+    <div class="section-rule"></div>
+  </div>
+
+  <h3>The Two Curricula</h3>
+  <p>Every functioning adult operates on two knowledge systems simultaneously:</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Explicit Curriculum</th>
+        <th>Implicit Curriculum</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Math, science, writing</td><td>How to read a room</td></tr>
+      <tr><td>Job application skills</td><td>How to be taken seriously</td></tr>
+      <tr><td>Technical competence</td><td>How status is actually assigned</td></tr>
+      <tr><td>Verbal communication</td><td>What silence communicates</td></tr>
+      <tr><td>Time management systems</td><td>What lateness actually signals</td></tr>
+    </tbody>
+  </table>
+
+  <p>Formal education is extraordinarily thorough about the first column. It is almost entirely silent about the second.</p>
+
+  <div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-diamond"></div><div class="section-divider-line"></div></div>
+
+  <h3>The Punishment Without Explanation Problem</h3>
+  <p>Here is what makes the invisible curriculum genuinely dangerous:</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4>When You Break an Explicit Rule</h4>
+      <p>"That report format is wrong." "You missed the deadline." "That's not how we handle this here." — Someone tells you.</p>
+    </div>
+    <div class="card">
+      <h4>When You Break an Invisible Rule</h4>
+      <p>The meeting invite stops coming. The warm intro never materializes. The opportunity goes to someone else. — Nobody tells you anything.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="callout-label">Key Insight</span>
+    <p><strong>The invisible curriculum is learnable.</strong> It is not a fixed personality trait. It is a body of knowledge — and like all knowledge, it can be acquired deliberately. This manual gives you that acquisition.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-header-brand">Lazy Scholar PH</span>
+    <span>Section 01 — Knowledge Gap</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SECTION 2: PROFESSIONAL RULES
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-brand">Lazy Scholar PH</span>
+    <span>Section 02 — Professional Environment Rules</span>
+  </div>
+
+  <div class="section-header">
+    <span class="section-number">Section 02</span>
+    <h1>Professional<br>Environment Rules</h1>
+    <p class="section-subhead">Unspoken Workplace Dynamics Nobody Explains</p>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="rule-block" data-rule="Rule 01">
+    <h3>Visibility Matters More Than Output</h3>
+    <p>In most professional environments, <strong>being seen doing excellent work</strong> produces more career advancement than doing excellent work invisibly. Careers are built on perception. Perception is built on what decision-makers observe.</p>
+    <div class="callout" style="margin: 16px 0 0 0;">
+      <span class="callout-label">The Framework</span>
+      <p>Results are the foundation. Visibility is the distribution channel. Neither works without the other. Treat your professional narrative as a product you are actively managing.</p>
+    </div>
+  </div>
+
+  <div class="rule-block" data-rule="Rule 02">
+    <h3>You Are Always in an Unannounced Audition</h3>
+    <p>Every interaction with a person who holds influence over your career is an audition. The audition is never announced. What is being assessed, without your knowledge:</p>
+    <ul class="body-list">
+      <li>How you handle ambiguity ("I'm not sure, let me find out" vs. a rambling non-answer)</li>
+      <li>Whether you own your mistakes cleanly or diffuse blame</li>
+      <li>How you treat people below you in the hierarchy</li>
+      <li>Whether your energy is a drain or an asset in a room</li>
+    </ul>
+  </div>
+
+  <div class="rule-block" data-rule="Rule 03">
+    <h3>The Unspoken Hierarchy of Problems</h3>
+    <p>There is an invisible tiering of how problems should arrive at your manager's desk. This is almost never explained — and immediately detectable.</p>
+    <table>
+      <thead><tr><th>Tier</th><th>What You Bring</th><th>How You're Perceived</th></tr></thead>
+      <tbody>
+        <tr><td><strong>1</strong></td><td>Problem + solution + your recommendation</td><td>Senior</td></tr>
+        <tr><td>2</td><td>Problem + solution options, asking for direction</td><td>Capable</td></tr>
+        <tr><td>3</td><td>Problem + diagnosis, no solution yet</td><td>Developing</td></tr>
+        <tr><td>4</td><td>Raw problem, undiagnosed, no options</td><td>Junior</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="rule-block" data-rule="Rule 04">
+    <h3>Early Reputation Sets Slowly but Sticks Hard</h3>
+    <p>The first six months in any professional environment are <strong>reputation formation windows.</strong> Impressions formed in this period are treated as baseline truth.</p>
+    <div class="callout" style="margin: 16px 0 0 0;">
+      <span class="callout-label">Tactical Action</span>
+      <p>Front-load your best work, your highest initiative, and your sharpest presence in new environments. A strong start produces better long-term outcomes even when average performance is identical.</p>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-header-brand">Lazy Scholar PH</span>
+    <span>Section 02 — Professional Rules</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SECTION 3: STATUS SIGNALS
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-brand">Lazy Scholar PH</span>
+    <span>Section 03 — Status Signal Awareness</span>
+  </div>
+
+  <div class="section-header">
+    <span class="section-number">Section 03</span>
+    <h1>Status Signal<br>Awareness</h1>
+    <p class="section-subhead">How People Read You Without Telling You</p>
+    <div class="section-rule"></div>
+  </div>
+
+  <p>Humans continuously read status from environmental cues. This is not a conscious choice — it is a neurological default. The brain performs social status assessments automatically, before conscious analysis begins.</p>
+
+  <table>
+    <thead><tr><th>Signal Category</th><th>What It Includes</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Temporal</strong></td><td>Response time, punctuality, how long you make others wait</td></tr>
+      <tr><td><strong>Physical</strong></td><td>Posture, spatial occupation, grooming, quality of materials</td></tr>
+      <tr><td><strong>Linguistic</strong></td><td>Vocabulary precision, hedging frequency, decisiveness of language</td></tr>
+      <tr><td><strong>Behavioral</strong></td><td>Whether you chase or are chased, who accommodates whom</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-diamond"></div><div class="section-divider-line"></div></div>
+
+  <div class="rule-block" data-rule="Signal 01">
+    <h3>Temporal Status</h3>
+    <p>Time is the most precise status signal most people never consciously manage.</p>
+    <div class="card-grid">
+      <div class="card">
+        <h4>High-Status Temporal Behaviors</h4>
+        <p>Responding at your own pace. Being the person others wait for. Scheduling at your convenience.</p>
+      </div>
+      <div class="card">
+        <h4>Low-Status Temporal Behaviors</h4>
+        <p>Immediate anxiety-driven responses. Extreme scheduling flexibility. Rushing to fill silences.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="rule-block" data-rule="Signal 02">
+    <h3>Language-Based Status</h3>
+    <p>How you construct sentences is constantly broadcasting social position. <strong>Hedging destroys credibility.</strong></p>
+    <table>
+      <thead><tr><th>Weak (Hedged)</th><th>Strong (Decisive)</th></tr></thead>
+      <tbody>
+        <tr><td>"I might be wrong, but..."</td><td>"Here's what I'm seeing."</td></tr>
+        <tr><td>"Sorry to bother you, but..."</td><td>"I have a quick question."</td></tr>
+        <tr><td>"I'm not available then, maybe I can try to..."</td><td>"I'm not available then."</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="rule-block" data-rule="Signal 03">
+    <h3>The Chase Dynamic</h3>
+    <p>Who chases whom is the master status signal. People chase what they perceive as <strong>valuable and scarce.</strong> If you are always initiating, always following up, always available — the signal is that you are neither.</p>
+    <div class="callout" style="margin-top: 16px; margin-bottom: 0;">
+      <span class="callout-label">The Rule</span>
+      <p>Let reciprocation come to you before you re-initiate. Reciprocation is the real signal; without it, persistence reads as neediness.</p>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-header-brand">Lazy Scholar PH</span>
+    <span>Section 03 — Status Signals</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SECTION 4: COMMUNICATION RULES
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-brand">Lazy Scholar PH</span>
+    <span>Section 04 — Communication Rules</span>
+  </div>
+
+  <div class="section-header">
+    <span class="section-number">Section 04</span>
+    <h1>Communication<br>Rules</h1>
+    <p class="section-subhead">What You're Signaling That You Don't Know You're Signaling</p>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="framework">
+    <h3>The Three Channels of Every Communication</h3>
+    <p><strong style="color: var(--gold-light);">Channel 1:</strong> What you say (explicit content)</p>
+    <p><strong style="color: var(--gold-light);">Channel 2:</strong> How you say it (tonal and linguistic framing)</p>
+    <p><strong style="color: var(--gold-light);">Channel 3:</strong> What you signal by saying it at all (meta-message)</p>
+    <p style="margin-top: 16px; color: rgba(255,255,255,0.6); font-size: 13px;">Most communication training focuses entirely on Channel 1. Professional and social outcomes are primarily determined by Channels 2 and 3.</p>
+  </div>
+
+  <div class="rule-block" data-rule="Rule 01">
+    <h3>Over-Explaining Is a Submission Signal</h3>
+    <p>When you over-explain a decision to someone who didn't ask — you are signaling that you require their approval. <strong>Offer explanation when asked. State decisions cleanly when not.</strong></p>
+  </div>
+
+  <div class="rule-block" data-rule="Rule 02">
+    <h3>Apology Inflation Destroys Credibility</h3>
+    <p>"Sorry" is a potent social tool when used rarely. It is credibility-destroying when habitual. Reserve apology for actual fault. When you didn't err, state your contribution cleanly.</p>
+  </div>
+
+  <div class="rule-block" data-rule="Rule 03">
+    <h3>The Power of Strategic Silence</h3>
+    <p>Silence is the most underused communication tool. The first person to speak after an offer is made has often already conceded leverage. Silence invites the other party to fill the space — frequently with a better offer.</p>
+  </div>
+
+  <div class="rule-block" data-rule="Rule 04">
+    <h3>The Listening Paradox</h3>
+    <p>The person who listens best is <strong>perceived as the most intelligent in the room.</strong> Most rooms are full of people waiting to speak, not listening. The person who asks questions demonstrating precise attention is perceived as unusually sharp.</p>
+  </div>
+
+  <div class="rule-block" data-rule="Rule 05">
+    <h3>Frame First, Fill Second</h3>
+    <table>
+      <thead><tr><th>Weak Framing</th><th>Strong Framing</th></tr></thead>
+      <tbody>
+        <tr><td>"I wanted to talk about the project timeline."</td><td>"I want to give you a two-minute update and flag one risk that needs a decision."</td></tr>
+        <tr><td>"Do you have a second?"</td><td>"Do you have two minutes? I have a quick yes/no question on the budget."</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-header-brand">Lazy Scholar PH</span>
+    <span>Section 04 — Communication Rules</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SECTION 5: MONEY BEHAVIOR
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-brand">Lazy Scholar PH</span>
+    <span>Section 05 — Money Behavior Rules</span>
+  </div>
+
+  <div class="section-header">
+    <span class="section-number">Section 05</span>
+    <h1>Money Behavior<br>Rules</h1>
+    <p class="section-subhead">How Financial Behavior Shapes Social Perception</p>
+    <div class="section-rule"></div>
+  </div>
+
+  <p>Money is not just a financial phenomenon — it is a <strong>social signal system.</strong> How you handle money in visible contexts communicates your relationship with resources, security, and self-worth. These signals are factored into how people assess your judgment, stability, and professional credibility.</p>
+
+  <div class="rule-block" data-rule="Rule 01">
+    <h3>Scarcity Signaling Is Costly</h3>
+    <p>Constant references to financial constraint — even when genuine — produce costs most people don't calculate:</p>
+    <ul class="body-list">
+      <li><strong>Credibility reduction:</strong> People with chronic scarcity language are perceived as poor financial managers</li>
+      <li><strong>Social liability perception:</strong> Others filter opportunities through an assumption you can't participate</li>
+      <li><strong>Status compression:</strong> Scarcity language positions you below your actual level in social hierarchies</li>
+    </ul>
+  </div>
+
+  <div class="rule-block" data-rule="Rule 02">
+    <h3>Group Settings Are Social Auditions</h3>
+    <p>The person who calculates their exact share down to the cent is perceived as either financially strained or socially unaware — both carry costs. The person who handles shared expenses smoothly is perceived as calibrated and secure.</p>
+  </div>
+
+  <div class="rule-block" data-rule="Rule 03">
+    <h3>The Investment Vocabulary Signals Identity</h3>
+    <div class="card-grid">
+      <div class="card">
+        <h4 style="color: var(--gold);">Investment Signals</h4>
+        <p>Books, courses, conferences. Health infrastructure. Tools for skill-building. Signals: forward-thinking, rising trajectory.</p>
+      </div>
+      <div class="card">
+        <h4 style="color: var(--ink-muted);">Consumption Signals</h4>
+        <p>Status purchases outpacing apparent income. Entertainment as primary investment. Conspicuous luxury without professional signal.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="rule-block" data-rule="Rule 04">
+    <h3>Money Negotiation Is Always About Anchoring</h3>
+    <div class="callout" style="margin-top: 0;">
+      <span class="callout-label">The Anchor Rule</span>
+      <p>The first number stated sets the psychological reference point for the entire negotiation. The person who anchors first typically wins the frame. <strong>Don't ask "what's the budget?" before you've stated your range.</strong></p>
+    </div>
+    <p style="margin-top: 12px; font-size: 14px; color: var(--ink-muted);">What you charge for your time teaches people how to value it. Consistently undercharging trains clients and employers to expect low pricing as your standard.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-header-brand">Lazy Scholar PH</span>
+    <span>Section 05 — Money Behavior</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SECTION 6: RELATIONSHIP RULES
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-brand">Lazy Scholar PH</span>
+    <span>Section 06 — Relationship Rules</span>
+  </div>
+
+  <div class="section-header">
+    <span class="section-number">Section 06</span>
+    <h1>Relationship<br>Rules</h1>
+    <p class="section-subhead">The Invisible Contracts Governing Trust, Respect, and Loyalty</p>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="framework">
+    <h3>The Invisible Contract Framework</h3>
+    <p>Every relationship operates on implicit contracts: mutual expectations, exchange patterns, and unspoken agreements. These contracts are:</p>
+    <ul>
+      <li>Never written</li>
+      <li>Rarely discussed</li>
+      <li>Enforced invisibly</li>
+      <li>Consequential when violated</li>
+    </ul>
+  </div>
+
+  <div class="rule-block" data-rule="Rule 01">
+    <h3>Trust Is Built in Small Moments, Not Grand Gestures</h3>
+    <p>Trust accumulates through small, reliable acts of consistency — following through on minor commitments without being reminded, maintaining confidences absolutely, being the same person in public and in private.</p>
+  </div>
+
+  <div class="rule-block" data-rule="Rule 02">
+    <h3>Reciprocity Is the Architecture of Social Capital</h3>
+    <p>Every social relationship involves an exchange economy. When exchange becomes sufficiently one-directional, the relationship either renegotiates or dissolves.</p>
+    <div class="callout" style="margin-top: 12px; margin-bottom: 0;">
+      <span class="callout-label">Reciprocity Audit</span>
+      <p>For your five closest relationships, honestly assess: are you net positive or net negative in the exchange? Relationships where you are consistently negative will reflect that truth eventually.</p>
+    </div>
+  </div>
+
+  <div class="rule-block" data-rule="Rule 03">
+    <h3>Respect Is Maintained, Not Assumed</h3>
+    <p>Respect is a real-time assessment — updated continuously based on behavior. Changing your position under social pressure (without new information), accepting poor treatment without response, or needing to be liked by everyone in the room all erode respect consistently.</p>
+  </div>
+
+  <div class="rule-block" data-rule="Rule 04">
+    <h3>The Loyalty Test Is Always Conducted in Absence</h3>
+    <p>How you speak about people when they are not present is the real measure of your loyalty — and it is always discovered eventually. Speak about absent people only in ways you would be comfortable saying directly to them.</p>
+    <p style="font-size: 13px; color: var(--ink-muted); margin-top: 8px; margin-bottom: 0;">This is not politeness — it is strategic self-protection and a genuine quality marker.</p>
+  </div>
+
+  <div class="rule-block" data-rule="Rule 05">
+    <h3>The Invisible Tier System</h3>
+    <p>Every social group operates a tier system that is never acknowledged but consistently enforced. Movement upward is slow and trust-based. Movement downward is rapid and triggered by specific violations — particularly confidentiality breaches or visible status-seeking behavior.</p>
+    <p style="font-size: 14px; color: var(--ink-muted); margin-bottom: 0; margin-top: 8px;">If you are invited to large-group events but never to spontaneous smaller gatherings — you are in the outer tier. The path inward is consistent trustworthy behavior over time, not increased social effort.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-header-brand">Lazy Scholar PH</span>
+    <span>Section 06 — Relationship Rules</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SECTION 7: THE BEHAVIOR AUDIT
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-brand">Lazy Scholar PH</span>
+    <span>Section 07 — The Behavior Audit</span>
+  </div>
+
+  <div class="section-header">
+    <span class="section-number">Section 07</span>
+    <h1>The Behavior<br>Audit</h1>
+    <p class="section-subhead">Your Full Self-Assessment Across All Six Domains</p>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="callout">
+    <span class="callout-label">Instructions</span>
+    <p>Rate yourself honestly on each item. Scale: <strong>1 = Rarely/Never</strong> · <strong>2 = Sometimes</strong> · <strong>3 = Consistently</strong>. Items where you score lowest are your highest-leverage development areas.</p>
+  </div>
+
+  <h3 style="margin-top: 28px; margin-bottom: 12px;">Domain 1: Professional Environment</h3>
+  <table class="audit-table">
+    <thead><tr><th>#</th><th>Behavior</th><th>Score (1–3)</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>I narrate my results to relevant stakeholders, not just deliver them silently</td><td>___</td></tr>
+      <tr><td>2</td><td>I bring problems with solutions, not just problems</td><td>___</td></tr>
+      <tr><td>3</td><td>I treat every professional interaction as consequential</td><td>___</td></tr>
+      <tr><td>4</td><td>I communicate in terms of outcomes, not just activities</td><td>___</td></tr>
+      <tr><td>5</td><td>I invested my highest effort in the first weeks of this role</td><td>___</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size: 12px; color: var(--ink-muted); margin-bottom: 24px; font-family: var(--mono);">Domain 1 Score: ___ / 15</p>
+
+  <h3 style="margin-bottom: 12px;">Domain 2: Status Signals</h3>
+  <table class="audit-table">
+    <thead><tr><th>#</th><th>Behavior</th><th>Score (1–3)</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>I manage response timing rather than responding instantly to every message</td><td>___</td></tr>
+      <tr><td>2</td><td>My language is decisive — I hedge only when genuinely uncertain</td><td>___</td></tr>
+      <tr><td>3</td><td>I am the one being chased at least as often as I am the one chasing</td><td>___</td></tr>
+      <tr><td>4</td><td>My physical presence is open, grounded, and unhurried</td><td>___</td></tr>
+      <tr><td>5</td><td>I am comfortable with silence in conversations</td><td>___</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size: 12px; color: var(--ink-muted); margin-bottom: 24px; font-family: var(--mono);">Domain 2 Score: ___ / 15</p>
+
+  <h3 style="margin-bottom: 12px;">Domain 3: Communication</h3>
+  <table class="audit-table">
+    <thead><tr><th>#</th><th>Behavior</th><th>Score (1–3)</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>I frame communications with purpose and scope before delivering content</td><td>___</td></tr>
+      <tr><td>2</td><td>I reserve apology for actual fault, not as a conversational habit</td><td>___</td></tr>
+      <tr><td>3</td><td>I use silence as a tool rather than rushing to fill it</td><td>___</td></tr>
+      <tr><td>4</td><td>I listen to respond accurately, not just to wait for my turn</td><td>___</td></tr>
+      <tr><td>5</td><td>I state positions cleanly without over-explaining or pre-apologizing</td><td>___</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size: 12px; color: var(--ink-muted); margin-bottom: 24px; font-family: var(--mono);">Domain 3 Score: ___ / 15</p>
+
+  <div class="page-footer">
+    <span class="page-header-brand">Lazy Scholar PH</span>
+    <span>Section 07 — The Behavior Audit</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     AUDIT PAGE 2
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-brand">Lazy Scholar PH</span>
+    <span>Section 07 — The Behavior Audit (continued)</span>
+  </div>
+
+  <h3 style="margin-bottom: 12px;">Domain 4: Money Behavior</h3>
+  <table class="audit-table">
+    <thead><tr><th>#</th><th>Behavior</th><th>Score (1–3)</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>I avoid scarcity signaling in social and professional contexts</td><td>___</td></tr>
+      <tr><td>2</td><td>I handle shared group expenses smoothly without penny-calculating</td><td>___</td></tr>
+      <tr><td>3</td><td>My visible spending prioritizes investment signals over pure consumption</td><td>___</td></tr>
+      <tr><td>4</td><td>I anchor first in negotiations and pricing discussions</td><td>___</td></tr>
+      <tr><td>5</td><td>I charge for my time in a way that reflects the value I deliver</td><td>___</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size: 12px; color: var(--ink-muted); margin-bottom: 24px; font-family: var(--mono);">Domain 4 Score: ___ / 15</p>
+
+  <h3 style="margin-bottom: 12px;">Domain 5: Relationships</h3>
+  <table class="audit-table">
+    <thead><tr><th>#</th><th>Behavior</th><th>Score (1–3)</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>I follow through on small commitments without being reminded</td><td>___</td></tr>
+      <tr><td>2</td><td>I am net positive in the exchange economy of my key relationships</td><td>___</td></tr>
+      <tr><td>3</td><td>I hold my positions calmly rather than capitulating under social pressure</td><td>___</td></tr>
+      <tr><td>4</td><td>I speak about absent people only in ways I'd say directly to them</td><td>___</td></tr>
+      <tr><td>5</td><td>I maintain my standards for how I'm treated without aggression</td><td>___</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size: 12px; color: var(--ink-muted); margin-bottom: 24px; font-family: var(--mono);">Domain 5 Score: ___ / 15</p>
+
+  <h3 style="margin-bottom: 12px;">Domain 6: Self-Awareness Meta-Check</h3>
+  <table class="audit-table">
+    <thead><tr><th>#</th><th>Behavior</th><th>Score (1–3)</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>I know which rooms I'm perceived as high-status in and why</td><td>___</td></tr>
+      <tr><td>2</td><td>I have received feedback on areas where I unknowingly signal weakness</td><td>___</td></tr>
+      <tr><td>3</td><td>I can identify the implicit contract of my three most important relationships</td><td>___</td></tr>
+      <tr><td>4</td><td>I regularly audit whether I'm operating on explicit or implicit rules</td><td>___</td></tr>
+      <tr><td>5</td><td>I treat social/professional setbacks as diagnostic data, not personal failures</td><td>___</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size: 12px; color: var(--ink-muted); margin-bottom: 32px; font-family: var(--mono);">Domain 6 Score: ___ / 15 &nbsp;&nbsp;&nbsp; <strong>TOTAL: ___ / 90</strong></p>
+
+  <div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-diamond"></div><div class="section-divider-line"></div></div>
+
+  <h3 style="margin-bottom: 16px;">Audit Interpretation</h3>
+  <div class="score-table">
+    <div class="score-row">
+      <span class="score-range">75–90</span>
+      <span class="score-label">Advanced</span>
+      <span class="score-action">Highly calibrated across most domains. Identify the 1–2 lowest-scoring items and sharpen those specifically.</span>
+    </div>
+    <div class="score-row">
+      <span class="score-range">55–74</span>
+      <span class="score-label">Developing</span>
+      <span class="score-action">Strong in some domains, inconsistent in others. Focus entirely on the lowest-scoring domain this month.</span>
+    </div>
+    <div class="score-row">
+      <span class="score-range">35–54</span>
+      <span class="score-label">Foundational</span>
+      <span class="score-action">Significant gaps in the invisible curriculum. Begin with Sections 2 (Professional) and 4 (Communication) — highest ROI.</span>
+    </div>
+    <div class="score-row">
+      <span class="score-range">Below 35</span>
+      <span class="score-label">Starting Point</span>
+      <span class="score-action">Major calibration opportunity. Pick one rule per domain to implement this week — consistency compounds.</span>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-header-brand">Lazy Scholar PH</span>
+    <span>Section 07 — Audit</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SUMMARY: 12 RULES
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-brand">Lazy Scholar PH</span>
+    <span>Summary Reference</span>
+  </div>
+
+  <div class="section-header">
+    <span class="section-number">Summary Reference</span>
+    <h1>The Twelve Highest-<br>Leverage Rules</h1>
+    <p class="section-subhead">If you internalize nothing else, internalize these</p>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="numbered-rules">
+    <div class="numbered-rule">
+      <span class="rule-num">01</span>
+      <div class="rule-content">
+        <strong>Visibility is a career skill.</strong>
+        <span>Results without narration are invisible. Manage your professional narrative actively.</span>
+      </div>
+    </div>
+    <div class="numbered-rule">
+      <span class="rule-num">02</span>
+      <div class="rule-content">
+        <strong>Every interaction is an unannounced audition.</strong>
+        <span>Behave accordingly — energy, ownership, how you treat others below you in hierarchy.</span>
+      </div>
+    </div>
+    <div class="numbered-rule">
+      <span class="rule-num">03</span>
+      <div class="rule-content">
+        <strong>Bring problems with solutions.</strong>
+        <span>The tier of your thinking determines the tier of your career.</span>
+      </div>
+    </div>
+    <div class="numbered-rule">
+      <span class="rule-num">04</span>
+      <div class="rule-content">
+        <strong>Manage time signals deliberately.</strong>
+        <span>Hyper-availability signals low value. Stop performing urgency as a substitute for importance.</span>
+      </div>
+    </div>
+    <div class="numbered-rule">
+      <span class="rule-num">05</span>
+      <div class="rule-content">
+        <strong>Eliminate hedging language.</strong>
+        <span>State positions. Hedge only on genuine uncertainty. Your language is broadcasting your status.</span>
+      </div>
+    </div>
+    <div class="numbered-rule">
+      <span class="rule-num">06</span>
+      <div class="rule-content">
+        <strong>Let reciprocation come to you before re-initiating.</strong>
+        <span>Chasing destroys perceived value in professional and social contexts equally.</span>
+      </div>
+    </div>
+    <div class="numbered-rule">
+      <span class="rule-num">07</span>
+      <div class="rule-content">
+        <strong>Silence is leverage.</strong>
+        <span>Use it in negotiations, conflicts, and in response to disrespect. The urge to fill silence is almost always a mistake.</span>
+      </div>
+    </div>
+    <div class="numbered-rule">
+      <span class="rule-num">08</span>
+      <div class="rule-content">
+        <strong>Listening is the fastest path to perceived intelligence.</strong>
+        <span>Most rooms are full of speakers. The listener is almost always the most trusted person in it.</span>
+      </div>
+    </div>
+    <div class="numbered-rule">
+      <span class="rule-num">09</span>
+      <div class="rule-content">
+        <strong>Scarcity signaling is socially expensive.</strong>
+        <span>Financial stress is private. Keep it out of professional and social communication.</span>
+      </div>
+    </div>
+    <div class="numbered-rule">
+      <span class="rule-num">10</span>
+      <div class="rule-content">
+        <strong>Trust is built in small moments.</strong>
+        <span>Grand gestures don't compensate for daily inconsistency. Follow through on the small things.</span>
+      </div>
+    </div>
+    <div class="numbered-rule">
+      <span class="rule-num">11</span>
+      <div class="rule-content">
+        <strong>Speak about absent people as if they're present.</strong>
+        <span>It will always reach them. And everyone in the room is recalibrating how much they trust you.</span>
+      </div>
+    </div>
+    <div class="numbered-rule">
+      <span class="rule-num">12</span>
+      <div class="rule-content">
+        <strong>Treat setbacks as diagnostic data.</strong>
+        <span>Something specific happened. An invisible rule was violated. Find it — don't globalize the failure.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-header-brand">Lazy Scholar PH</span>
+    <span>Summary Reference</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     CLOSING PAGE
+══════════════════════════════════════ -->
+<div class="page page-full closing">
+  <h2>The Manual Is Now Yours</h2>
+  <div class="gold-rule"></div>
+  <p>The invisible system was always there. You were operating inside it without a map, and the costs were real — in missed opportunities, unexplained rejections, and the slow accumulation of social confusion.</p>
+  <p style="margin-top: 20px;">You have the map now. Run the audit. Pick one rule per domain. Watch what changes.</p>
+  <div class="pull-quote" style="border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.8); max-width: 500px; margin: 40px auto; font-size: 18px;">
+    The most expensive education is the one that comes from not knowing what you didn't know. You know now.
+  </div>
+  <div class="closing-brand">Lazy Scholar PH</div>
+  <p style="margin-top: 12px; font-size: 14px;">Structured Knowledge for Modern Adults</p>
+  <div class="closing-copy">© 2026 Lazy Scholar PH · All Rights Reserved · Digital Product · Unauthorized reproduction prohibited</div>
+</div>
+
+</body>
+</html>

@@ -1,4 +1,4 @@
-Status: READY_FOR_WRITING
+Status: COMPLETED
 
 Title: The Invisible Manual: Hidden Rules of Modern Adult Life
 
