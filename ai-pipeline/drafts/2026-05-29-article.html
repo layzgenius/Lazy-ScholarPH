@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Quiet Power: The Behavioral Architecture of Calm Authority — Lazy Scholar PH</title>
+<style>
+/* ─── BASE ─── */
+@page { size: A4; margin: 18mm 18mm 16mm 18mm; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 11pt; }
+body { font-family: Georgia, "Times New Roman", serif; background: #FFFFFF; color: #2D2D2D; line-height: 1.75; }
+
+/* ─── COLOURS ─── */
+/* --navy #1A1A2E  --gold #C9A84C  --coral #C84B31  --cream #FAF8F3 */
+
+/* ════════════════════════════
+   TITLE PAGE
+════════════════════════════ */
+.title-page {
+  page-break-after: always;
+  background: #1A1A2E;
+  margin: -18mm -18mm 0 -18mm;
+  padding: 35mm 22mm 30mm;
+  text-align: center;
+  min-height: 100vh;
+}
+.brand-badge {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 8pt;
+  font-weight: bold;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #C9A84C;
+  border: 1px solid #C9A84C;
+  display: inline-block;
+  padding: 5px 14px;
+  margin-bottom: 18mm;
+}
+.title-ornament {
+  width: 50px;
+  height: 3px;
+  background: #C9A84C;
+  margin: 0 auto 10mm;
+}
+.main-title {
+  font-family: Georgia, serif;
+  font-size: 38pt;
+  font-weight: bold;
+  color: #FFFFFF;
+  line-height: 1.1;
+  margin-bottom: 8mm;
+}
+.main-title .gold { color: #C9A84C; }
+.subtitle {
+  font-family: Georgia, serif;
+  font-size: 12pt;
+  font-style: italic;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 16mm;
+}
+.title-rule { width: 70px; height: 1px; background: rgba(201,168,76,0.5); margin: 0 auto 10mm; }
+.title-descriptor {
+  font-family: Arial, sans-serif;
+  font-size: 7.5pt;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
+.title-tagline {
+  font-family: Georgia, serif;
+  font-size: 11pt;
+  font-style: italic;
+  color: rgba(255,255,255,0.45);
+  margin-top: 10mm;
+  margin-bottom: 6mm;
+}
+.title-footer {
+  margin-top: 28mm;
+  font-family: Arial, sans-serif;
+  font-size: 7.5pt;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 1px;
+}
+
+/* ════════════════════════════
+   TABLE OF CONTENTS
+════════════════════════════ */
+.toc-page { page-break-after: always; }
+.toc-header {
+  text-align: center;
+  border-bottom: 2px solid #1A1A2E;
+  padding-bottom: 5mm;
+  margin-bottom: 8mm;
+}
+.toc-header h2 {
+  font-family: Georgia, serif;
+  font-size: 20pt;
+  font-weight: bold;
+  color: #1A1A2E;
+}
+.toc-row {
+  border-bottom: 1px solid #DDD5C8;
+  padding: 4px 0;
+  overflow: hidden;
+}
+.toc-num { font-family: Arial, sans-serif; font-size: 7.5pt; font-weight: bold; color: #C9A84C; float: left; width: 28px; padding-top: 2px; }
+.toc-title { font-family: Georgia, serif; font-size: 11pt; color: #1A1A2E; float: left; }
+.toc-title.sub { color: #5A6B7B; font-size: 10pt; padding-left: 22px; }
+.toc-pg { font-family: Arial, sans-serif; font-size: 8pt; color: #5A6B7B; float: right; }
+.toc-clear { clear: both; }
+
+/* ════════════════════════════
+   SECTION OPENER
+════════════════════════════ */
+.section-opener {
+  page-break-before: always;
+  background: #1A1A2E;
+  margin: -18mm -18mm 10mm -18mm;
+  padding: 12mm 18mm 10mm;
+}
+.section-label {
+  font-family: Arial, sans-serif;
+  font-size: 7pt;
+  font-weight: bold;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #C9A84C;
+  margin-bottom: 4mm;
+}
+.section-title {
+  font-family: Georgia, serif;
+  font-size: 26pt;
+  font-weight: bold;
+  color: #FFFFFF;
+  line-height: 1.2;
+  margin-bottom: 4mm;
+}
+.section-subtitle {
+  font-family: Georgia, serif;
+  font-size: 10.5pt;
+  font-style: italic;
+  color: rgba(255,255,255,0.55);
+}
+
+/* ════════════════════════════
+   HEADINGS
+════════════════════════════ */
+h2 {
+  font-family: Georgia, serif;
+  font-size: 17pt;
+  font-weight: bold;
+  color: #1A1A2E;
+  line-height: 1.3;
+  margin-top: 10mm;
+  margin-bottom: 3mm;
+  padding-bottom: 2mm;
+  border-bottom: 2px solid #1A1A2E;
+}
+h3 {
+  font-family: Arial, sans-serif;
+  font-size: 8.5pt;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #C84B31;
+  margin-top: 7mm;
+  margin-bottom: 3mm;
+}
+h4 {
+  font-family: Georgia, serif;
+  font-size: 12pt;
+  font-weight: bold;
+  color: #1A1A2E;
+  margin-top: 5mm;
+  margin-bottom: 2mm;
+}
+
+/* ─── BODY TEXT ─── */
+p { font-family: Georgia, serif; font-size: 11pt; line-height: 1.8; color: #2D2D2D; margin-bottom: 3.5mm; }
+strong { font-weight: bold; color: #1A1A2E; }
+em { font-style: italic; color: #2C3E50; }
+ul, ol { padding-left: 7mm; margin-bottom: 4mm; }
+li { font-family: Georgia, serif; font-size: 11pt; line-height: 1.7; color: #2D2D2D; margin-bottom: 2mm; }
+
+/* ════════════════════════════
+   PULL QUOTE
+════════════════════════════ */
+.pull-quote {
+  background: #1A1A2E;
+  border-left: 5px solid #C9A84C;
+  padding: 7mm 9mm;
+  margin: 8mm 0;
+}
+.pull-quote p {
+  font-family: Georgia, serif;
+  font-size: 12.5pt;
+  font-style: italic;
+  color: #FFFFFF;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ════════════════════════════
+   CALLOUT BOX
+════════════════════════════ */
+.callout {
+  background: #F3EDE0;
+  border: 1.5px solid #E8D5A3;
+  border-left: 5px solid #C9A84C;
+  padding: 5mm 7mm;
+  margin: 6mm 0;
+}
+.callout-label {
+  font-family: Arial, sans-serif;
+  font-size: 7pt;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #C9A84C;
+  margin-bottom: 3mm;
+}
+.callout p { font-size: 11pt; color: #2C3E50; margin: 0; }
+
+/* ════════════════════════════
+   INSIGHT BOX
+════════════════════════════ */
+.insight-box { background: #EEF2F7; border-left: 5px solid #1A1A2E; padding: 4mm 7mm; margin: 4mm 0; }
+.insight-box p { color: #1A1A2E; font-size: 10.5pt; margin: 0; }
+
+/* ════════════════════════════
+   DOMAIN CARD
+════════════════════════════ */
+.domain-card {
+  border: 1.5px solid #DDD5C8;
+  border-top: 4px solid #1A1A2E;
+  padding: 5mm 6mm;
+  margin: 6mm 0;
+  background: #FFFFFF;
+  page-break-inside: avoid;
+}
+.domain-num {
+  display: inline-block;
+  background: #1A1A2E;
+  color: #C9A84C;
+  font-family: Arial, sans-serif;
+  font-size: 7pt;
+  font-weight: bold;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 26px;
+  margin-right: 7px;
+  vertical-align: middle;
+  letter-spacing: 0;
+}
+.domain-name {
+  font-family: Georgia, serif;
+  font-size: 13.5pt;
+  font-weight: bold;
+  color: #1A1A2E;
+  vertical-align: middle;
+}
+.domain-subtitle {
+  font-family: Arial, sans-serif;
+  font-size: 7pt;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #C84B31;
+  margin: 3mm 0 2mm;
+}
+.domain-card p { font-size: 10.5pt; margin-bottom: 2mm; }
+.domain-signal {
+  background: #FAF8F3;
+  border-left: 3px solid #C9A84C;
+  padding: 3mm 5mm;
+  margin-top: 3mm;
+}
+.domain-signal-label {
+  font-family: Arial, sans-serif;
+  font-size: 6.5pt;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #C9A84C;
+  margin-bottom: 1.5mm;
+}
+.domain-signal p { font-size: 9.5pt; font-style: italic; color: #5A6B7B; margin: 0; }
+
+/* ════════════════════════════
+   TABLES
+════════════════════════════ */
+table { width: 100%; border-collapse: collapse; margin: 6mm 0; font-size: 9.5pt; page-break-inside: avoid; }
+thead { background: #1A1A2E; }
+thead th {
+  font-family: Arial, sans-serif;
+  font-size: 7.5pt;
+  font-weight: bold;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  padding: 3.5mm 4.5mm;
+  text-align: left;
+}
+tbody tr:nth-child(even) { background: #FAF8F3; }
+tbody tr:nth-child(odd)  { background: #FFFFFF; }
+tbody td {
+  font-family: Georgia, serif;
+  font-size: 10pt;
+  padding: 3mm 4.5mm;
+  border-bottom: 1px solid #DDD5C8;
+  color: #2D2D2D;
+  vertical-align: top;
+}
+tbody td:first-child { font-weight: bold; color: #1A1A2E; }
+
+/* ════════════════════════════
+   STEPS
+════════════════════════════ */
+.step { overflow: hidden; margin-bottom: 4mm; page-break-inside: avoid; }
+.step-num {
+  background: #C9A84C;
+  color: #1A1A2E;
+  font-family: Arial, sans-serif;
+  font-size: 7.5pt;
+  font-weight: bold;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 22px;
+  float: left;
+  margin-right: 8px;
+  margin-top: 2px;
+}
+.step-body { overflow: hidden; }
+.step-body p { margin: 0; font-size: 10.5pt; }
+.step-clear { clear: both; }
+
+/* ════════════════════════════
+   CHECKLIST
+════════════════════════════ */
+.checklist { background: #FAF8F3; border: 1px solid #DDD5C8; padding: 4mm 5mm; margin: 4mm 0; }
+.check-item { overflow: hidden; padding: 2.5mm 0; border-bottom: 1px solid #E8E0D5; page-break-inside: avoid; }
+.check-item:last-child { border-bottom: none; }
+.check-box {
+  width: 14px;
+  height: 14px;
+  border: 2px solid #1A1A2E;
+  float: left;
+  margin-right: 8px;
+  margin-top: 2px;
+}
+.check-text { font-family: Georgia, serif; font-size: 10.5pt; color: #2D2D2D; overflow: hidden; line-height: 1.55; }
+
+/* ════════════════════════════
+   TEMPLATE BOX
+════════════════════════════ */
+.template-box {
+  background: #1A1A2E;
+  color: #E8D5A3;
+  padding: 5mm 7mm;
+  margin: 5mm 0;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 9pt;
+  line-height: 1.7;
+  page-break-inside: avoid;
+}
+.template-label {
+  font-family: Arial, sans-serif;
+  font-size: 6.5pt;
+  font-weight: bold;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #C9A84C;
+  margin-bottom: 4mm;
+  font-style: normal;
+}
+
+/* ════════════════════════════
+   SCRIPT BOX
+════════════════════════════ */
+.script-box {
+  border-left: 4px solid #C84B31;
+  background: #FDF6F4;
+  padding: 4mm 7mm;
+  margin: 4mm 0;
+}
+.script-label {
+  font-family: Arial, sans-serif;
+  font-size: 6.5pt;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #C84B31;
+  margin-bottom: 2mm;
+}
+.script-box p { font-family: Georgia, serif; font-size: 10.5pt; font-style: italic; color: #2C3E50; margin: 0; }
+
+/* ════════════════════════════
+   TWO COLUMN (table-based)
+════════════════════════════ */
+.two-col-table { width: 100%; border-collapse: separate; border-spacing: 4mm 0; margin: 4mm 0; }
+.two-col-table td { vertical-align: top; width: 50%; padding: 0; }
+
+/* ════════════════════════════
+   THREE CELL GRID
+════════════════════════════ */
+.three-col { width: 100%; border-collapse: separate; border-spacing: 3mm 0; margin: 6mm 0; }
+.three-col td { vertical-align: top; width: 33.33%; padding: 0; }
+.fcell {
+  border: 1.5px solid #DDD5C8;
+  border-top: 3px solid #C9A84C;
+  padding: 5mm;
+  background: #FFFFFF;
+}
+.fcell-dark {
+  border: 1.5px solid #DDD5C8;
+  border-top: 3px solid #C9A84C;
+  padding: 5mm;
+  background: #1A1A2E;
+}
+.fcell-title { font-family: Arial, sans-serif; font-size: 7pt; font-weight: bold; letter-spacing: 1.5px; text-transform: uppercase; color: #1A1A2E; margin-bottom: 2mm; }
+.fcell-title-light { color: #C9A84C; font-family: Arial, sans-serif; font-size: 7pt; font-weight: bold; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 2mm; }
+.fcell p { font-size: 9.5pt; color: #5A6B7B; margin: 0; line-height: 1.5; }
+.fcell-dark p { font-size: 9.5pt; color: rgba(255,255,255,0.6); margin: 0; line-height: 1.5; }
+
+/* ════════════════════════════
+   STAT ROW
+════════════════════════════ */
+.stat-table { width: 100%; border-collapse: separate; border-spacing: 4mm 0; margin: 6mm 0; }
+.stat-table td { vertical-align: middle; width: 33.33%; }
+.stat-box { background: #1A1A2E; padding: 5mm 4mm; text-align: center; }
+.stat-num { font-family: Georgia, serif; font-size: 28pt; font-weight: bold; color: #C9A84C; display: block; line-height: 1; margin-bottom: 2mm; }
+.stat-label { font-family: Arial, sans-serif; font-size: 7pt; font-weight: normal; color: rgba(255,255,255,0.55); line-height: 1.4; display: block; }
+
+/* ════════════════════════════
+   DIVIDER
+════════════════════════════ */
+.divider { text-align: center; margin: 8mm 0; color: #DDD5C8; font-size: 9pt; letter-spacing: 4px; }
+.divider-rule { border: none; border-top: 1px solid #DDD5C8; margin: 8mm 0; }
+
+/* ════════════════════════════
+   DAY ROW (21-day protocol)
+════════════════════════════ */
+.day-row { overflow: hidden; border-bottom: 1px solid #E8E0D5; padding: 3mm 0; page-break-inside: avoid; }
+.day-badge {
+  background: #C9A84C;
+  color: #1A1A2E;
+  font-family: Arial, sans-serif;
+  font-size: 6.5pt;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 2px 6px;
+  float: left;
+  margin-right: 8px;
+  margin-top: 2px;
+  min-width: 42px;
+  text-align: center;
+}
+.day-body { overflow: hidden; }
+.day-body p { font-size: 10pt; margin: 0; line-height: 1.6; }
+
+/* ════════════════════════════
+   CLOSING PAGE
+════════════════════════════ */
+.closing-page {
+  page-break-before: always;
+  background: #1A1A2E;
+  margin: 8mm -18mm -16mm;
+  padding: 22mm 18mm 18mm;
+  text-align: center;
+}
+.closing-brand {
+  font-family: Arial, sans-serif;
+  font-size: 7.5pt;
+  font-weight: bold;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #C9A84C;
+  margin-bottom: 8mm;
+}
+.closing-page h2 {
+  font-family: Georgia, serif;
+  font-size: 22pt;
+  font-weight: bold;
+  color: #FFFFFF;
+  border: none;
+  margin-bottom: 5mm;
+  padding: 0;
+}
+.closing-page p { color: rgba(255,255,255,0.6); font-size: 11pt; max-width: 120mm; margin: 0 auto 3.5mm; }
+.closing-line { width: 60px; height: 2px; background: #C9A84C; margin: 7mm auto; }
+.copyright { font-family: Arial, sans-serif; font-size: 7pt; color: rgba(255,255,255,0.28); letter-spacing: 0.5px; margin-top: 9mm; }
+
+/* ─── PAGE BREAK ─── */
+.page-break { page-break-before: always; }
+.avoid-break { page-break-inside: avoid; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     TITLE PAGE
+══════════════════════════════════════════ -->
+<div class="title-page">
+  <div class="brand-badge">Lazy Scholar PH &nbsp;·&nbsp; Premium Resource Series</div>
+  <div class="title-ornament"></div>
+  <div class="main-title"><span class="gold">Quiet</span><br>Power</div>
+  <div class="subtitle">The Behavioral Architecture of Calm Authority</div>
+  <div class="title-rule"></div>
+  <div class="title-tagline">"Stop performing authority. Start building it."</div>
+  <div class="title-descriptor">7 Domains &nbsp;·&nbsp; Actionable Frameworks &nbsp;·&nbsp; 21-Day Protocol</div>
+  <div class="title-footer">© 2026 Lazy Scholar PH &nbsp;·&nbsp; All rights reserved</div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     TABLE OF CONTENTS
+══════════════════════════════════════════ -->
+<div class="toc-page">
+  <div class="toc-header"><h2>Table of Contents</h2></div>
+
+  <div class="toc-row"><span class="toc-num">00</span><span class="toc-title">Introduction: The Performance Trap</span><span class="toc-pg">3</span><div class="toc-clear"></div></div>
+  <div class="toc-row"><span class="toc-num">01</span><span class="toc-title">Part I — The 7-Domain Behavioral Architecture</span><span class="toc-pg">5</span><div class="toc-clear"></div></div>
+  <div class="toc-row"><span class="toc-num"></span><span class="toc-title sub">Domain 1: Presence — Spatial Stillness and Physical Composure</span><span class="toc-pg">6</span><div class="toc-clear"></div></div>
+  <div class="toc-row"><span class="toc-num"></span><span class="toc-title sub">Domain 2: Speech — Economy, Pacing, and Precision</span><span class="toc-pg">7</span><div class="toc-clear"></div></div>
+  <div class="toc-row"><span class="toc-num"></span><span class="toc-title sub">Domain 3: Reactions — Controlled Response vs. Automatic Reaction</span><span class="toc-pg">8</span><div class="toc-clear"></div></div>
+  <div class="toc-row"><span class="toc-num"></span><span class="toc-title sub">Domain 4: Silence — Strategic Use of the Unsaid</span><span class="toc-pg">9</span><div class="toc-clear"></div></div>
+  <div class="toc-row"><span class="toc-num"></span><span class="toc-title sub">Domain 5: Movement — Measured, Unhurried, Intentional</span><span class="toc-pg">10</span><div class="toc-clear"></div></div>
+  <div class="toc-row"><span class="toc-num"></span><span class="toc-title sub">Domain 6: Attention — Directing, Not Chasing</span><span class="toc-pg">11</span><div class="toc-clear"></div></div>
+  <div class="toc-row"><span class="toc-num"></span><span class="toc-title sub">Domain 7: Consistency — The Authority Compounding Mechanism</span><span class="toc-pg">12</span><div class="toc-clear"></div></div>
+  <div class="toc-row"><span class="toc-num">02</span><span class="toc-title">Part II — Restraint as Signal: Why Doing Less Communicates More</span><span class="toc-pg">13</span><div class="toc-clear"></div></div>
+  <div class="toc-row"><span class="toc-num">03</span><span class="toc-title">Part III — Response Calibration: The Precise Gap</span><span class="toc-pg">15</span><div class="toc-clear"></div></div>
+  <div class="toc-row"><span class="toc-num">04</span><span class="toc-title">Part IV — Presence Without Performance</span><span class="toc-pg">17</span><div class="toc-clear"></div></div>
+  <div class="toc-row"><span class="toc-num">05</span><span class="toc-title">Part V — The Authority Compounds</span><span class="toc-pg">19</span><div class="toc-clear"></div></div>
+  <div class="toc-row"><span class="toc-num">06</span><span class="toc-title">Part VI — Pressure Protocols</span><span class="toc-pg">21</span><div class="toc-clear"></div></div>
+  <div class="toc-row"><span class="toc-num">07</span><span class="toc-title">Part VII — The Quiet Power Audit: 7-Domain Self-Assessment</span><span class="toc-pg">24</span><div class="toc-clear"></div></div>
+  <div class="toc-row"><span class="toc-num">08</span><span class="toc-title">Part VIII — 21-Day Implementation Protocol</span><span class="toc-pg">27</span><div class="toc-clear"></div></div>
+  <div class="toc-row"><span class="toc-num">09</span><span class="toc-title">Summary: The Five Core Principles of Quiet Power</span><span class="toc-pg">31</span><div class="toc-clear"></div></div>
+
+  <div class="divider">— ◆ —</div>
+
+  <div class="pull-quote">
+    <p>"The person who doesn't need to prove anything activates a prestige-recognition response in others. The person who does signals fragility. Quiet is not the absence of power. It is its most efficient and sustainable delivery mechanism."</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     INTRODUCTION
+══════════════════════════════════════════ -->
+<div class="section-opener">
+  <div class="section-label">Introduction</div>
+  <div class="section-title">The Performance<br>Trap</div>
+  <div class="section-subtitle">Why visible effort signals low status — and what to build instead</div>
+</div>
+
+<p>Most people believe influence requires visible effort — speaking louder, asserting harder, performing competence. They operate under a <strong>performance-based authority model</strong> that exhausts them and produces diminishing returns.</p>
+
+<p>The harder they push, the more resistance they generate. The more they perform strength, the less authority they actually earn. This is not a strategy problem. It is a physics problem.</p>
+
+<div class="pull-quote">
+  <p>Authority cannot be performed into existence. It is built through behavioral architecture and maintained through consistency. The audience is not the goal. The behavior is.</p>
+</div>
+
+<h3>Why Performance Always Fails</h3>
+
+<table class="three-col">
+  <tr>
+    <td><div class="fcell"><div class="fcell-title">Scarcity Signal</div><p>High-effort signaling indicates resource scarcity, not abundance. Striving communicates need.</p></div></td>
+    <td><div class="fcell"><div class="fcell-title">Resistance Response</div><p>Visible assertion activates resistance rather than deference in other people's nervous systems.</p></div></td>
+    <td><div class="fcell"><div class="fcell-title">Maintenance Trap</div><p>Performance requires constant maintenance. The moment you stop, the authority it created collapses.</p></div></td>
+  </tr>
+</table>
+
+<p>Calm, unhurried behavior registers as high-status because most people <em>cannot sustain it under pressure.</em> Restraint reads as resource abundance. Measured responses signal expertise. The nervous system of every person in a room is continuously scanning for stability signals — and stillness triggers a fundamentally different neurological response than performance.</p>
+
+<h3>The Two Models of Authority</h3>
+
+<table>
+  <thead><tr><th>Factor</th><th>Performance Model</th><th>Quiet Authority Model</th></tr></thead>
+  <tbody>
+    <tr><td>Source</td><td>Visible effort, assertion</td><td>Behavioral architecture</td></tr>
+    <tr><td>Maintenance</td><td>Constant effort required</td><td>Compounds over time</td></tr>
+    <tr><td>Energy cost</td><td>High — depleting</td><td>Low — sustainable</td></tr>
+    <tr><td>Others' response</td><td>Compliance or resistance</td><td>Genuine deference</td></tr>
+    <tr><td>Under pressure</td><td>Escalates; becomes obvious</td><td>Holds steady; deepens</td></tr>
+    <tr><td>Long-term trajectory</td><td>Diminishing returns</td><td>Compounding returns</td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <div class="callout-label">The Central Insight</div>
+  <p>Every human nervous system continuously scans for stability signals. The person whose behavior stays constant regardless of social pressure is automatically coded as a higher-status entity than the person whose behavior changes to match or respond to pressure. This is not a social strategy. It is biology.</p>
+</div>
+
+<h3>What This Guide Builds</h3>
+
+<p>Quiet Power is not a communication technique, a personality hack, or a confidence-building exercise. It is a <strong>behavioral architecture</strong> — seven specific, trainable domains that, operating together, produce the consistent experience of calm authority in every person who interacts with you.</p>
+
+<table class="stat-table">
+  <tr>
+    <td><div class="stat-box"><span class="stat-num">7</span><span class="stat-label">Behavioral domains that together produce genuine authority</span></div></td>
+    <td><div class="stat-box"><span class="stat-num">21</span><span class="stat-label">Days to install new behavioral defaults with the implementation protocol</span></div></td>
+    <td><div class="stat-box"><span class="stat-num">0</span><span class="stat-label">Personality changes required — only behavioral ones</span></div></td>
+  </tr>
+</table>
+
+<!-- ══════════════════════════════════════════
+     PART I — 7 DOMAINS
+══════════════════════════════════════════ -->
+<div class="section-opener">
+  <div class="section-label">Part I</div>
+  <div class="section-title">The 7-Domain Behavioral<br>Architecture</div>
+  <div class="section-subtitle">The complete system of calm authority — domain by domain</div>
+</div>
+
+<p>Quiet authority is not a mood, a personality type, or a communication style. It is a <strong>behavioral architecture</strong> — a set of specific, trainable defaults across seven distinct domains that operate together to produce the consistent experience of calm authority in every interaction.</p>
+
+<p>Each domain is independent enough to improve in isolation. But each domain also amplifies the others. The full architecture is worth more than the sum of its parts.</p>
+
+<div class="callout">
+  <div class="callout-label">How to Read This Section</div>
+  <p>For each domain: read the signal it sends, the contrast between low-authority and high-authority defaults, and the core practice. As you read, identify which domains are currently compounding your authority and which are leaking it. You'll formalize this in Part VII.</p>
+</div>
+
+<div class="divider">— ◆ —</div>
+
+<!-- DOMAIN 1 -->
+<div class="domain-card">
+  <div><span class="domain-num">01</span> <span class="domain-name">Presence</span></div>
+  <div class="domain-subtitle">Spatial Stillness and Physical Composure</div>
+  <p><strong>The Signal:</strong> Calm takes up space without claiming it. High-authority individuals occupy their physical environment without fidgeting, self-touching, or unnecessary movement. This is not rigidity — it is ease.</p>
+  <p><strong>Low Presence:</strong> Fidgeting, self-touching, shifting weight, shrinking posture under social pressure, excessive nodding as approval-seeking.</p>
+  <p><strong>High Presence:</strong> Grounded stillness — the body simply occupies its position. Minimal unnecessary movement. Unhurried orientation toward whoever is speaking. Physical composure maintained regardless of what is said.</p>
+  <div class="domain-signal">
+    <div class="domain-signal-label">Core Principle</div>
+    <p>Stillness signals that nothing happening in this environment is threatening enough to activate your nervous system. That signal — unconsciously read by everyone around you — is the foundation of perceived authority.</p>
+  </div>
+</div>
+
+<!-- DOMAIN 2 -->
+<div class="domain-card">
+  <div><span class="domain-num">02</span> <span class="domain-name">Speech</span></div>
+  <div class="domain-subtitle">Economy, Pacing, and Precision</div>
+  <p><strong>The Signal:</strong> People who need to be heard speak at length. People who know they will be heard speak precisely.</p>
+  <p><strong>Economy:</strong> Say exactly what needs to be said, then stop. The addendum, the qualification, the filler that follows the actual point is the sound of a person who doesn't trust their own statement.</p>
+  <p><strong>Pacing:</strong> Slow down. The brain encodes slower speech as higher-status. A pause before responding signals confidence. A pause after speaking signals completeness.</p>
+  <p><strong>Precision:</strong> Choose specific words. "I disagree with the premise of that question" is more authoritative than "I'm not sure that's quite right."</p>
+  <div class="domain-signal">
+    <div class="domain-signal-label">The Silence Rule</div>
+    <p>Never speak to fill silence. Silence is not empty — it is pressure you can use. The person who speaks first to relieve tension is the person who found the silence uncomfortable.</p>
+  </div>
+</div>
+
+<!-- DOMAIN 3 -->
+<div class="domain-card">
+  <div><span class="domain-num">03</span> <span class="domain-name">Reactions</span></div>
+  <div class="domain-subtitle">Controlled Response vs. Automatic Reaction</div>
+  <p><strong>The Signal:</strong> Every automatic reaction is a window into your internal state. Calm authority means that window is closed — not because nothing is happening inside, but because internal states do not dictate external behavior.</p>
+  <p><strong>The Reaction Gap:</strong> Between stimulus (what happens) and response (what you do) there is a gap. Low-authority behavior collapses that gap to zero — reaction is instant, visible, driven by the stimulus. High-authority behavior expands the gap — the response is <em>chosen,</em> not triggered.</p>
+  <div class="domain-signal">
+    <div class="domain-signal-label">Core Principle</div>
+    <p>The person who can be provoked is the person who can be controlled. Composure is not suppressing emotion. It is choosing the channel through which it — if any — gets expressed.</p>
+  </div>
+</div>
+
+<!-- DOMAIN 4 -->
+<div class="domain-card">
+  <div><span class="domain-num">04</span> <span class="domain-name">Silence</span></div>
+  <div class="domain-subtitle">Strategic Use of the Unsaid</div>
+  <p><strong>The Signal:</strong> Most people are terrified of silence — they treat it as a vacuum that must be filled. High-authority individuals experience silence as space they are comfortable occupying, as pressure they can direct rather than relieve.</p>
+  <p><strong>Post-Statement Silence:</strong> After making a point, stop. The silence after a statement is what gives the statement weight.</p>
+  <p><strong>Pre-Response Silence:</strong> When challenged, pause 2–3 seconds before responding. This signals deliberation rather than defensiveness.</p>
+  <p><strong>Non-Reactive Silence:</strong> When someone says something provocative or inappropriate, silence can be more powerful than any rebuttal.</p>
+  <div class="domain-signal">
+    <div class="domain-signal-label">The Discomfort Test</div>
+    <p>If you feel compelled to speak to relieve social discomfort, you are using speech as anxiety management rather than communication. Notice this. Then don't.</p>
+  </div>
+</div>
+
+<!-- DOMAIN 5 -->
+<div class="domain-card">
+  <div><span class="domain-num">05</span> <span class="domain-name">Movement</span></div>
+  <div class="domain-subtitle">Measured, Unhurried, Intentional</div>
+  <p><strong>The Signal:</strong> Urgency in movement signals that external events are setting your pace. Measured, unhurried movement signals that <em>you</em> are setting your own pace — that nothing occurring outside you is sufficiently important to accelerate your rhythm.</p>
+  <p><strong>High-Authority Movement:</strong> Enter rooms without rushing. Turn toward people deliberately rather than reactively. Sit and stand fully (no half-sitting, no hovering). Walk at your pace, not the pace set by social anxiety.</p>
+  <div class="domain-signal">
+    <div class="domain-signal-label">Practice</div>
+    <p>For one week, consciously slow every transition by 20%. Entering doors, sitting down, turning to respond to your name. Note what changes in how others interact with you.</p>
+  </div>
+</div>
+
+<!-- DOMAIN 6 -->
+<div class="domain-card">
+  <div><span class="domain-num">06</span> <span class="domain-name">Attention</span></div>
+  <div class="domain-subtitle">Directing, Not Chasing</div>
+  <p><strong>The Signal:</strong> Low-authority individuals chase attention — they position themselves to be noticed, perform for observers, monitor whether they are being watched. High-authority individuals direct attention — they decide what receives their focus, and that focus becomes magnetic.</p>
+  <p><strong>The Inversion:</strong> Most people try to <em>get</em> attention. Quiet authority is about <em>giving</em> attention — deeply, selectively, and without performance. The person who gives complete attention becomes the most important person in every room they enter.</p>
+  <div class="domain-signal">
+    <div class="domain-signal-label">Key Practice</div>
+    <p>Full presence when someone speaks — no response preparation mid-sentence, no phone-checking. Selective response is curation. Not every bid for attention requires acknowledgment.</p>
+  </div>
+</div>
+
+<!-- DOMAIN 7 -->
+<div class="domain-card">
+  <div><span class="domain-num">07</span> <span class="domain-name">Consistency</span></div>
+  <div class="domain-subtitle">The Authority Compounding Mechanism</div>
+  <p><strong>The Signal:</strong> Single high-authority behaviors impress. Consistent high-authority behaviors over time generate something qualitatively different: <strong>genuine respect</strong> — the kind that persists when you're not in the room.</p>
+  <p><strong>Why it matters:</strong> Behavioral consistency signals low anxiety about social outcomes. It demonstrates that your behavior is driven by internal values, not external pressure. It builds a reputation that operates independently of your presence.</p>
+  <div class="domain-signal">
+    <div class="domain-signal-label">Core Principle</div>
+    <p>Authority borrowed from a single impressive performance is rented. Authority built by consistent behavioral standards is owned.</p>
+  </div>
+</div>
+
+<div class="divider">— ◆ —</div>
+
+<h2>The 7-Domain Architecture at a Glance</h2>
+
+<table>
+  <thead><tr><th>Domain</th><th>Core Practice</th><th>Authority Signal It Sends</th></tr></thead>
+  <tbody>
+    <tr><td>Presence</td><td>Physical stillness</td><td>Nothing here threatens me</td></tr>
+    <tr><td>Speech</td><td>Economy and precision</td><td>I know exactly what I mean</td></tr>
+    <tr><td>Reactions</td><td>Expand the response gap</td><td>I choose my responses</td></tr>
+    <tr><td>Silence</td><td>Hold it; use it</td><td>I'm completely comfortable here</td></tr>
+    <tr><td>Movement</td><td>Set your own pace</td><td>I'm not anxious</td></tr>
+    <tr><td>Attention</td><td>Give it; don't chase it</td><td>I don't need approval</td></tr>
+    <tr><td>Consistency</td><td>Maintain standards under pressure</td><td>I can be trusted</td></tr>
+  </tbody>
+</table>
+
+<!-- ══════════════════════════════════════════
+     PART II — RESTRAINT AS SIGNAL
+══════════════════════════════════════════ -->
+<div class="section-opener">
+  <div class="section-label">Part II</div>
+  <div class="section-title">Restraint as Signal</div>
+  <div class="section-subtitle">Why doing less communicates more</div>
+</div>
+
+<p>The restraint-resource hypothesis: the ability to refrain from action, speech, or reaction when provoked signals that you have abundant internal resources. <strong>Scarcity produces urgency. Abundance produces restraint.</strong></p>
+
+<p>This is why a measured, minimal response to a direct challenge lands harder than an elaborate defensive explanation. The elaboration signals that the challenge found its mark. The measured response signals that it didn't.</p>
+
+<div class="pull-quote">
+  <p>"Restraint is not passivity. It is the visible evidence of internal resources. The person who can refrain demonstrates they have something most people don't — the capacity to act and the choice not to."</p>
+</div>
+
+<h2>The Behavioral Contrast Map</h2>
+<h3>Performance anxiety vs. quiet authority — side by side</h3>
+
+<table>
+  <thead><tr><th>Domain</th><th>Performance Anxiety Pattern</th><th>Quiet Authority Pattern</th></tr></thead>
+  <tbody>
+    <tr><td>Speech volume</td><td>Louder under pressure</td><td>Same volume — always</td></tr>
+    <tr><td>Response speed</td><td>Faster when anxious</td><td>Consistent deliberate pacing</td></tr>
+    <tr><td>Explanation length</td><td>More elaborate when doubted</td><td>Same precision regardless</td></tr>
+    <tr><td>Eye contact</td><td>Breaks under discomfort</td><td>Holds steadily</td></tr>
+    <tr><td>Posture</td><td>Collapses under pressure</td><td>Grounded throughout</td></tr>
+    <tr><td>Silence tolerance</td><td>Fills gaps immediately</td><td>Holds silence with ease</td></tr>
+    <tr><td>Challenge response</td><td>Defensive elaboration</td><td>Calm acknowledgment</td></tr>
+    <tr><td>Approval monitoring</td><td>Constant</td><td>Absent</td></tr>
+    <tr><td>After criticism</td><td>Over-explains or deflects</td><td>Acknowledges, moves forward</td></tr>
+  </tbody>
+</table>
+
+<h3>Restraint in Three Contexts</h3>
+
+<div class="callout">
+  <div class="callout-label">In Conversation</div>
+  <p>Let the other person finish completely before you begin. Not just their sentence — their thought. Most people prepare their response while the other person speaks. Quiet authority waits until the response is actually needed.</p>
+</div>
+
+<div class="callout">
+  <div class="callout-label">In Disagreement</div>
+  <p>State your position once, clearly. Then allow the disagreement to exist without feeling compelled to resolve it through volume, repetition, or elaboration. Positions held calmly are more credible than positions defended urgently.</p>
+</div>
+
+<div class="callout">
+  <div class="callout-label">In Success</div>
+  <p>Don't announce accomplishments. Let them surface through others' observation. The person who describes their own competence has not yet earned the right to have others describe it for them.</p>
+</div>
+
+<div class="pull-quote">
+  <p>Every word beyond the essential is a withdrawal from your authority account. Economy of expression is not terseness — it is respect for the signal-to-noise ratio of your communication.</p>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PART III — RESPONSE CALIBRATION
+══════════════════════════════════════════ -->
+<div class="section-opener">
+  <div class="section-label">Part III</div>
+  <div class="section-title">Response Calibration</div>
+  <div class="section-subtitle">The precise gap between reaction and decision</div>
+</div>
+
+<p>The gap between stimulus and response is the control room of calm authority. Everything that happens in that gap determines whether you lead the interaction or are led by it. Most people have almost no gap — stimulus arrives, response fires. This makes behavior entirely predictable and therefore entirely controllable by others.</p>
+
+<div class="pull-quote">
+  <p>Expand the gap. The gap is not hesitation. It is the evidence that your behavior is chosen, not triggered. It is the most visible signal of internal authority you can give.</p>
+</div>
+
+<h2>The Five-Second Protocol</h2>
+<h3>A structured pause for every high-stakes response</h3>
+
+<div class="step"><div class="step-num">1</div><div class="step-body"><p><strong>Receive</strong> — Let the stimulus register fully. Don't begin processing until you have heard or read it completely.</p></div><div class="step-clear"></div></div>
+<div class="step"><div class="step-num">2</div><div class="step-body"><p><strong>Pause</strong> — 3–5 seconds of genuine cognitive stillness. Not thinking. Not preparing. Stillness.</p></div><div class="step-clear"></div></div>
+<div class="step"><div class="step-num">3</div><div class="step-body"><p><strong>Assess</strong> — What does this situation actually require? Not what does my anxiety want to say, but what is actually needed here?</p></div><div class="step-clear"></div></div>
+<div class="step"><div class="step-num">4</div><div class="step-body"><p><strong>Choose</strong> — Select the response that serves your objectives, not the one that relieves your discomfort.</p></div><div class="step-clear"></div></div>
+<div class="step"><div class="step-num">5</div><div class="step-body"><p><strong>Deliver</strong> — In your normal tone and pace. Not quieter, not slower than usual — just normal.</p></div><div class="step-clear"></div></div>
+
+<div class="insight-box">
+  <p><strong>The five-second pause will feel long to you. It is not long to anyone watching.</strong> It is the visible signal of a person who thinks before speaking — which is the minimum requirement for being taken seriously in any high-stakes environment.</p>
+</div>
+
+<div class="divider">— ◆ —</div>
+
+<h2>High-Stakes Calibration Matrix</h2>
+<h3>How to respond to the most common authority-testing situations</h3>
+
+<table>
+  <thead><tr><th>Situation</th><th>Automatic Reaction</th><th>Calibrated Response</th></tr></thead>
+  <tbody>
+    <tr><td>Direct challenge to your position</td><td>Defend immediately</td><td>"That's worth considering." (pause, then address)</td></tr>
+    <tr><td>Public criticism</td><td>Explain or deflect</td><td>Acknowledge what's accurate, release what isn't</td></tr>
+    <tr><td>Unexpected bad news</td><td>Visible emotional response</td><td>"Let me think about that." (then pause)</td></tr>
+    <tr><td>Deliberate provocation</td><td>React to the provocation</td><td>Non-reaction — or a single measured sentence</td></tr>
+    <tr><td>Aggressive negotiation</td><td>Match aggression</td><td>Maintain pace; let them exhaust themselves</td></tr>
+    <tr><td>Someone talking over you</td><td>Stop and yield</td><td>Pause, then continue from exactly where you stopped</td></tr>
+    <tr><td>Being dismissed</td><td>Protest; seek reinstatement</td><td>"Understood." (then hold the silence)</td></tr>
+    <tr><td>Flattery or excessive praise</td><td>Respond with warmth and relief</td><td>Receive calmly, respond proportionately</td></tr>
+  </tbody>
+</table>
+
+<div class="divider">— ◆ —</div>
+
+<h2>The 24-Hour Written Response Rule</h2>
+
+<p>For written communication — email, messages, responses to criticism — impose a minimum delay before responding when you feel the pull toward urgency.</p>
+
+<div class="template-box">
+  <div class="template-label">Written Response Protocol</div>
+TRIGGER: You feel the pull to respond immediately to a challenging email or message.
+
+RULE: Wait a minimum of:
+  — 1 hour for low-stakes communications
+  — 24 hours for high-stakes or emotionally charged ones
+
+BEFORE SENDING, ASK:
+  1. Does this response serve my objectives?
+  2. Is this what I would write if the urgency was gone?
+  3. Am I responding to the message, or to my reaction to it?
+
+─────────────────────────────────────────
+THE RULE SERVES ONE PURPOSE:
+Urgency in response signals the stimulus got under your skin.
+A deliberate response signals you consider communication
+an intentional act — not a reflex.
+</div>
+
+<!-- ══════════════════════════════════════════
+     PART IV — PRESENCE WITHOUT PERFORMANCE
+══════════════════════════════════════════ -->
+<div class="section-opener">
+  <div class="section-label">Part IV</div>
+  <div class="section-title">Presence Without<br>Performance</div>
+  <div class="section-subtitle">How stillness creates social weight</div>
+</div>
+
+<p>Presence is not the same as performance. Performance is output — something you produce for an audience. Presence is state — something you inhabit regardless of whether there is an audience.</p>
+
+<p>Most people try to create presence through action: speaking more, gesturing more, positioning themselves more visibly. This is the performance model, and it produces the opposite of what they want — because effort is visible, and visible effort signals need.</p>
+
+<div class="pull-quote">
+  <p>True presence is not something you produce. It is something you stop preventing. Remove the self-monitoring, the approval-seeking, the performance of confidence — and what remains is genuine presence.</p>
+</div>
+
+<h2>The Three Presence Principles</h2>
+
+<div class="step"><div class="step-num">1</div><div class="step-body"><p><strong>Fullness, Not Expansion</strong> — High-status presence is not about taking up more space. It is about fully inhabiting the space you already occupy. A person who is completely, quietly present is more commanding than a person actively gesturing for attention.</p></div><div class="step-clear"></div></div>
+<div class="step"><div class="step-num">2</div><div class="step-body"><p><strong>Availability Without Seeking</strong> — Be available to the conversation — attentive, responsive — without seeking approval for that availability. Eye contact held without asking to be seen. Attention given without announcing it.</p></div><div class="step-clear"></div></div>
+<div class="step"><div class="step-num">3</div><div class="step-body"><p><strong>Continuity Under Pressure</strong> — Presence is not a performance you turn on for important moments. It is a consistent behavioral state. The person who is present when it matters is the person who is present all the time.</p></div><div class="step-clear"></div></div>
+
+<div class="divider">— ◆ —</div>
+
+<h2>Physical Composure Reference</h2>
+<h3>The body language of quiet authority — domain by domain</h3>
+
+<table>
+  <thead><tr><th>Body Area</th><th>Low-Presence Behavior</th><th>High-Presence Default</th></tr></thead>
+  <tbody>
+    <tr><td>Hands</td><td>Fidgeting, self-touching, object manipulation</td><td>Still, resting, or deliberate</td></tr>
+    <tr><td>Jaw / face</td><td>Visible tension, nervous micro-expressions</td><td>Relaxed, neutral baseline</td></tr>
+    <tr><td>Eye contact</td><td>Darting, avoidant, or performance-seeking</td><td>Calm, sustained, natural breaks</td></tr>
+    <tr><td>Shoulders</td><td>Raised, forward, or collapsed</td><td>Dropped, back, open</td></tr>
+    <tr><td>Breathing</td><td>Shallow, rapid, visible under stress</td><td>Slow, deep, consistent</td></tr>
+    <tr><td>Legs / feet</td><td>Restless, crossed, pointing toward exits</td><td>Grounded, stable</td></tr>
+    <tr><td>Head position</td><td>Nodding excessively as approval-signal</td><td>Deliberate, minimal movement</td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <div class="callout-label">The Most Underrated Practice</div>
+  <p>Sit in chairs fully. Most people half-sit — perched at the edge, body oriented toward the exit, physically signaling that they might leave at any moment. Sit all the way back. Own the chair completely. This single behavioral change signals more confidence than most people generate in an entire conversation.</p>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PART V — THE AUTHORITY COMPOUNDS
+══════════════════════════════════════════ -->
+<div class="section-opener">
+  <div class="section-label">Part V</div>
+  <div class="section-title">The Authority<br>Compounds</div>
+  <div class="section-subtitle">Behavioral patterns that build respect over time</div>
+</div>
+
+<p>Respect is not demanded or performed into existence. It is accumulated through behavioral evidence — specific patterns maintained under conditions that would cause others to deviate. The compound interest of behavioral consistency is the most powerful authority-building mechanism available to any person.</p>
+
+<h2>The Six Compounding Patterns</h2>
+
+<div class="domain-card">
+  <div><span class="domain-num" style="background:#C9A84C;color:#1A1A2E;">1</span> <span class="domain-name">Position Consistency</span></div>
+  <div class="domain-subtitle">Hold Your Ground Under Social Friction</div>
+  <p>Hold your positions under social pressure. Not rigidity — genuine openness to new information is different from capitulating under social friction. Others notice who changes their view when challenged versus who changes it when given actual evidence.</p>
+  <div class="domain-signal">
+    <div class="domain-signal-label">The Test</div>
+    <p>If your position changes because of new facts, that is intellectual integrity. If your position changes because someone pushes harder, that is not agreeableness — it is submission, and others read it that way.</p>
+  </div>
+</div>
+
+<div class="domain-card">
+  <div><span class="domain-num" style="background:#C9A84C;color:#1A1A2E;">2</span> <span class="domain-name">Response Symmetry</span></div>
+  <div class="domain-subtitle">Same Composure for Praise and Criticism</div>
+  <p>Respond to criticism with the same composure as you respond to praise. Most people are visibly happier when praised and visibly uncomfortable when criticized. This makes them easy to manage via flattery. Response symmetry removes that lever entirely.</p>
+</div>
+
+<div class="domain-card">
+  <div><span class="domain-num" style="background:#C9A84C;color:#1A1A2E;">3</span> <span class="domain-name">Word Economy</span></div>
+  <div class="domain-subtitle">Consistent Restraint in Communication</div>
+  <p>Consistently say less than you could. The person who speaks precisely, then stops, creates anticipation. Each word carries more weight when the norm is restraint. This is not about brevity for its own sake — it is about the signal that every word is chosen rather than produced by anxiety.</p>
+</div>
+
+<div class="domain-card">
+  <div><span class="domain-num" style="background:#C9A84C;color:#1A1A2E;">4</span> <span class="domain-name">Follow-Through</span></div>
+  <div class="domain-subtitle">Do Exactly What You Said</div>
+  <p>Do what you said you would do. Every time. This is the least glamorous of the authority compounds, but it may be the most powerful. Reliability at a behavioral level creates trust at an intuitive level — and trust is the substrate on which authority grows.</p>
+</div>
+
+<div class="domain-card">
+  <div><span class="domain-num" style="background:#C9A84C;color:#1A1A2E;">5</span> <span class="domain-name">Equanimity Under Pressure</span></div>
+  <div class="domain-subtitle">Steady When Others Aren't</div>
+  <p>Remain consistently composed when things go wrong, when you are challenged publicly, or when the environment becomes chaotic. The person who doesn't lose their composure becomes the person others orient toward when stability is needed. This is leadership in its most fundamental form.</p>
+</div>
+
+<div class="domain-card">
+  <div><span class="domain-num" style="background:#C9A84C;color:#1A1A2E;">6</span> <span class="domain-name">Standards Maintenance</span></div>
+  <div class="domain-subtitle">The Same Person When No One Is Watching</div>
+  <p>Hold your behavioral standards even when no one is watching, even when you are tired, even when deviation would be excused. Consistency under inconvenience is what separates behavioral architecture from performance.</p>
+</div>
+
+<div class="divider">— ◆ —</div>
+
+<h2>Compound vs. Borrowed Authority</h2>
+
+<table>
+  <thead><tr><th>Factor</th><th>Compound Authority</th><th>Borrowed Authority</th></tr></thead>
+  <tbody>
+    <tr><td>Built by</td><td>Consistent behavioral patterns over time</td><td>Impressive moments, titles, associations</td></tr>
+    <tr><td>Maintained by</td><td>Continuing the patterns</td><td>Continuing to perform</td></tr>
+    <tr><td>Under pressure</td><td>Intensifies — patterns hold</td><td>Collapses — performance breaks</td></tr>
+    <tr><td>When absent from room</td><td>Persists as reputation</td><td>Disappears with presence</td></tr>
+    <tr><td>Energy required over time</td><td>Decreases — becomes default</td><td>Constant or increasing</td></tr>
+    <tr><td>Others' relationship to it</td><td>Trust, deference, genuine respect</td><td>Compliance, wariness, testing</td></tr>
+  </tbody>
+</table>
+
+<!-- ══════════════════════════════════════════
+     PART VI — PRESSURE PROTOCOLS
+══════════════════════════════════════════ -->
+<div class="section-opener">
+  <div class="section-label">Part VI</div>
+  <div class="section-title">Pressure Protocols</div>
+  <div class="section-subtitle">Maintaining composure when it is designed to break</div>
+</div>
+
+<p>Pressure is information. When someone attempts to disrupt your composure — through provocation, dismissal, aggressive questioning, or social manipulation — they are probing for a pressure point. The absence of one is the most powerful response you can offer.</p>
+
+<p>The goal is not to never feel the pressure. The goal is to have practiced responses that operate regardless of what you feel.</p>
+
+<h2>Reading the Five Pressure Tactics</h2>
+
+<div class="step"><div class="step-num">1</div><div class="step-body"><p><strong>Aggressive Questioning</strong> — Designed to produce defensive responses. Protocol: answer the question, not the aggression. The tone is not the question. Address the content only.</p></div><div class="step-clear"></div></div>
+
+<div class="step"><div class="step-num">2</div><div class="step-body"><p><strong>Dismissal</strong> — Designed to produce protest and justification. Protocol: acknowledge without amplifying. <em>"That's your call"</em> is a complete response. Don't audition for their approval.</p></div><div class="step-clear"></div></div>
+
+<div class="step"><div class="step-num">3</div><div class="step-body"><p><strong>Social Proof Pressure</strong> — "Everyone agrees that..." Designed to isolate your position. Protocol: <em>"What the majority believes doesn't change what the evidence supports."</em> State once. Hold.</p></div><div class="step-clear"></div></div>
+
+<div class="step"><div class="step-num">4</div><div class="step-body"><p><strong>Artificial Urgency</strong> — Designed to force premature decisions. Protocol: <em>"I'll need time to give this the consideration it deserves."</em> Sets your timeline, not theirs.</p></div><div class="step-clear"></div></div>
+
+<div class="step"><div class="step-num">5</div><div class="step-body"><p><strong>Provocative Framing</strong> — Questions designed so that any answer looks bad. Protocol: reframe before answering: <em>"The question I think you're actually asking is..."</em> then answer your version.</p></div><div class="step-clear"></div></div>
+
+<div class="divider">— ◆ —</div>
+
+<h2>The Composure Maintenance Protocol</h2>
+<h3>Five-step sequence when composure begins to slip</h3>
+
+<table>
+  <thead><tr><th>Step</th><th>Action</th><th>Purpose</th></tr></thead>
+  <tbody>
+    <tr><td>1. Breathe first</td><td>One slow, full breath — not visible, not dramatic</td><td>Physiological stabilization</td></tr>
+    <tr><td>2. Slow your pace</td><td>Slow all movement and speech by 20%</td><td>Urgency compounds under pressure; deliberateness counteracts</td></tr>
+    <tr><td>3. Lower your register</td><td>Speak slightly lower and slower than normal</td><td>High-pitched fast speech signals stress; low signals control</td></tr>
+    <tr><td>4. Reduce your footprint</td><td>Fewer words, not more</td><td>Composure is demonstrated by what you don't say</td></tr>
+    <tr><td>5. Hold the silence</td><td>If you need a moment, take it fully</td><td>Silence is not weakness — it is self-possession</td></tr>
+  </tbody>
+</table>
+
+<div class="divider">— ◆ —</div>
+
+<h2>Recovery Protocol</h2>
+<h3>When composure has already broken</h3>
+
+<p>It will break sometimes. The quality of your recovery is itself an authority signal.</p>
+
+<div class="step"><div class="step-num">1</div><div class="step-body"><p>Don't apologize for the reaction immediately — drawing more attention to it amplifies the break.</p></div><div class="step-clear"></div></div>
+<div class="step"><div class="step-num">2</div><div class="step-body"><p>Resume normal tone and pace as quickly as possible. The goal is to narrow the gap between break and recovery.</p></div><div class="step-clear"></div></div>
+<div class="step"><div class="step-num">3</div><div class="step-body"><p>If appropriate, address it briefly: "Let me restate that more clearly." One sentence. Move on.</p></div><div class="step-clear"></div></div>
+<div class="step"><div class="step-num">4</div><div class="step-body"><p>Do not punish yourself for the break in the moment or afterward. Note it. Extract the specific trigger. Practice the protocol for that trigger. Forward.</p></div><div class="step-clear"></div></div>
+
+<div class="script-box">
+  <div class="script-label">Pressure Response Scripts — Memorize These</div>
+  <p>"I hear you. Let me think about that before I respond."</p>
+</div>
+<div class="script-box">
+  <div class="script-label">&nbsp;</div>
+  <p>"I understand the concern. My position is [X]. That doesn't change based on how strongly it's challenged."</p>
+</div>
+<div class="script-box">
+  <div class="script-label">&nbsp;</div>
+  <p>"I'll give this the time it deserves. I'll get back to you by [specific time]."</p>
+</div>
+<div class="script-box">
+  <div class="script-label">&nbsp;</div>
+  <p>"I appreciate the feedback." (Full stop. Nothing else.)</p>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PART VII — THE QUIET POWER AUDIT
+══════════════════════════════════════════ -->
+<div class="section-opener">
+  <div class="section-label">Part VII</div>
+  <div class="section-title">The Quiet Power<br>Audit</div>
+  <div class="section-subtitle">A 7-domain self-assessment and implementation map</div>
+</div>
+
+<p>The Quiet Power Audit is your starting point and your ongoing calibration tool. Complete it honestly. Return to it after your 21-day protocol. The delta between your first and second score is your primary authority-building metric.</p>
+
+<div class="callout">
+  <div class="callout-label">Scoring Scale</div>
+  <p><strong>1</strong> = Never / not my behavior at all &nbsp;&nbsp; <strong>2</strong> = Rarely / only when consciously trying &nbsp;&nbsp; <strong>3</strong> = Sometimes / inconsistent &nbsp;&nbsp; <strong>4</strong> = Usually / default unless under stress &nbsp;&nbsp; <strong>5</strong> = Consistently / maintained even under pressure</p>
+</div>
+
+<div class="divider">— ◆ —</div>
+
+<h2>Domain Self-Assessment</h2>
+
+<div class="template-box">
+  <div class="template-label">7-Domain Audit — Complete Honestly</div>
+DOMAIN 1: PRESENCE
+  I maintain physical stillness in social and professional settings.
+  I do not fidget, self-touch, or shift weight when under observation.
+  Score: ___ / 5
+
+──────────────────────────────────────────
+
+DOMAIN 2: SPEECH
+  I speak with economy — I say what I mean and stop.
+  I don't seek approval after statements ("does that make sense?")
+  I speak at a consistent, unhurried pace under pressure.
+  Score: ___ / 5
+
+──────────────────────────────────────────
+
+DOMAIN 3: REACTIONS
+  I have a visible gap between stimulus and response.
+  I don't visibly react to provocations or challenges.
+  I choose my responses rather than having them triggered.
+  Score: ___ / 5
+
+──────────────────────────────────────────
+
+DOMAIN 4: SILENCE
+  I am comfortable with social silence — I don't rush to fill it.
+  I use silence as punctuation and as pressure.
+  I don't speak to relieve my own discomfort.
+  Score: ___ / 5
+
+──────────────────────────────────────────
+
+DOMAIN 5: MOVEMENT
+  I move at my own pace — unhurried, deliberate.
+  I don't rush when called upon or when under pressure.
+  My transitions (sitting, standing, entering) are unhurried.
+  Score: ___ / 5
+
+──────────────────────────────────────────
+
+DOMAIN 6: ATTENTION
+  I give complete, undivided attention when someone speaks.
+  I don't monitor others' reactions to my performance.
+  I don't seek approval signals from the room.
+  Score: ___ / 5
+
+──────────────────────────────────────────
+
+DOMAIN 7: CONSISTENCY
+  My behavioral standards hold under pressure and inconvenience.
+  I am the same person when things are good and when they aren't.
+  I follow through on what I say I'll do.
+  Score: ___ / 5
+
+──────────────────────────────────────────
+TOTAL SCORE: ___ / 35
+DATE: _______________
+</div>
+
+<div class="divider">— ◆ —</div>
+
+<h2>Interpreting Your Audit Score</h2>
+
+<table>
+  <thead><tr><th>Score Range</th><th>Interpretation</th><th>Starting Focus</th></tr></thead>
+  <tbody>
+    <tr><td>7–14</td><td>Primarily reactive behavioral architecture</td><td>Domain 1 (Presence) and Domain 3 (Reactions) — fastest visible change</td></tr>
+    <tr><td>15–21</td><td>Instinctive authority in some domains; leaking in others</td><td>Your two lowest scores — these are leverage points</td></tr>
+    <tr><td>22–28</td><td>Strong foundation with specific gaps</td><td>Identify your two lowest; focus protocol there exclusively</td></tr>
+    <tr><td>29–35</td><td>Architecture functioning well</td><td>Pressure-testing — maintain defaults under increasingly difficult conditions</td></tr>
+  </tbody>
+</table>
+
+<div class="divider">— ◆ —</div>
+
+<h2>Authority Signal Inventory: Compound vs. Leak</h2>
+<h3>For each domain, identify where you are building and where you are bleeding</h3>
+
+<div class="template-box">
+  <div class="template-label">Signal Inventory — Complete After Scoring</div>
+DOMAIN              STATUS             PRIMARY LEAK (if any)
+
+Presence        [ ] Compounding  [ ] Leaking
+                Leak behavior: _________________________
+
+Speech          [ ] Compounding  [ ] Leaking
+                Leak behavior: _________________________
+
+Reactions       [ ] Compounding  [ ] Leaking
+                Leak behavior: _________________________
+
+Silence         [ ] Compounding  [ ] Leaking
+                Leak behavior: _________________________
+
+Movement        [ ] Compounding  [ ] Leaking
+                Leak behavior: _________________________
+
+Attention       [ ] Compounding  [ ] Leaking
+                Leak behavior: _________________________
+
+Consistency     [ ] Compounding  [ ] Leaking
+                Leak behavior: _________________________
+
+──────────────────────────────────────────
+MY TWO HIGHEST-LEVERAGE DOMAINS:
+  1. ___________________________
+  2. ___________________________
+
+MY 21-DAY PRIMARY FOCUS:
+  ___________________________
+</div>
+
+<!-- ══════════════════════════════════════════
+     PART VIII — 21-DAY PROTOCOL
+══════════════════════════════════════════ -->
+<div class="section-opener">
+  <div class="section-label">Part VIII</div>
+  <div class="section-title">The 21-Day Quiet<br>Authority Protocol</div>
+  <div class="section-subtitle">Daily behavioral micro-targets for immediate field application</div>
+</div>
+
+<p>This protocol is designed for behavioral installation — not motivation, not inspiration, but the deliberate construction of new behavioral defaults through focused, progressive practice. Each day has a single, specific micro-target. Do it in real interactions, not in practice scenarios.</p>
+
+<div class="callout">
+  <div class="callout-label">How to Use This Protocol</div>
+  <p>Read each day's target in the morning. During the day, watch for opportunities to apply it in real situations. In the evening, note one specific instance where you applied it successfully — and one where you didn't. The gap between those two is your learning edge.</p>
+</div>
+
+<div class="divider">— ◆ —</div>
+
+<h2>Week 1 — Foundation: Presence and Stillness</h2>
+<h3>Days 1–7 · Building the physical platform</h3>
+
+<div class="day-row"><div class="day-badge">DAY 1</div><div class="day-body"><p><strong>Identify one fidgeting behavior</strong> — self-touching, shifting weight, playing with objects. Eliminate it from every professional interaction today. Just one. Be specific.</p></div><div style="clear:both"></div></div>
+
+<div class="day-row"><div class="day-badge">DAY 2</div><div class="day-body"><p><strong>Practice post-statement silence.</strong> After making any substantive point today, stop completely. No qualifiers, no "you know what I mean?" Let the silence exist for at least 3 seconds.</p></div><div style="clear:both"></div></div>
+
+<div class="day-row"><div class="day-badge">DAY 3</div><div class="day-body"><p><strong>Slow all movement by 20%.</strong> Every transition — sitting down, standing up, turning to respond, entering rooms. Note any changes in how others respond to you.</p></div><div style="clear:both"></div></div>
+
+<div class="day-row"><div class="day-badge">DAY 4</div><div class="day-body"><p><strong>Practice sustained eye contact.</strong> In three conversations today, hold calm eye contact throughout. Don't break it to relieve social discomfort. Let the comfort come from you, not the avoidance.</p></div><div style="clear:both"></div></div>
+
+<div class="day-row"><div class="day-badge">DAY 5</div><div class="day-body"><p><strong>Apply the five-second pause.</strong> Before every response to a question today, pause for a genuine 3–5 seconds. This will feel long. Do it anyway. Every time.</p></div><div style="clear:both"></div></div>
+
+<div class="day-row"><div class="day-badge">DAY 6</div><div class="day-body"><p><strong>Sit in chairs completely.</strong> All the way back. Both feet on the floor. Own every seat you occupy today. No hovering, no perching at the edge.</p></div><div style="clear:both"></div></div>
+
+<div class="day-row"><div class="day-badge">DAY 7</div><div class="day-body"><p><strong>Review Week 1.</strong> Which presence behavior felt most unnatural — most charged, most uncomfortable? That is your highest-leverage domain. Deliberately repeat it twice today.</p></div><div style="clear:both"></div></div>
+
+<div class="divider">— ◆ —</div>
+
+<h2>Week 2 — Calibration: Speech and Reactions</h2>
+<h3>Days 8–14 · Installing the response gap</h3>
+
+<div class="day-row"><div class="day-badge">DAY 8</div><div class="day-body"><p><strong>Remove approval checks from speech.</strong> Eliminate "does that make sense?", "right?", "you know?" from every sentence today. State your point. Full stop.</p></div><div style="clear:both"></div></div>
+
+<div class="day-row"><div class="day-badge">DAY 9</div><div class="day-body"><p><strong>Hold silence in one conversation.</strong> Find a moment where you'd normally speak to fill space and hold the silence instead. Note what happens in the other person — and in you.</p></div><div style="clear:both"></div></div>
+
+<div class="day-row"><div class="day-badge">DAY 10</div><div class="day-body"><p><strong>Apply the five-second pause to a challenge.</strong> When someone disagrees with you or challenges your position today, pause 5 full seconds before responding. Then respond to the content, not the tone.</p></div><div style="clear:both"></div></div>
+
+<div class="day-row"><div class="day-badge">DAY 11</div><div class="day-body"><p><strong>State three positions without elaborating.</strong> In three distinct moments today, make a clear statement and stop — even if met with silence, skepticism, or a request for more. Let the statement stand.</p></div><div style="clear:both"></div></div>
+
+<div class="day-row"><div class="day-badge">DAY 12</div><div class="day-body"><p><strong>Apply the 24-hour written rule.</strong> Identify one email or message you feel pulled to answer urgently. Wait at least one hour before responding. Note what changes in your response.</p></div><div style="clear:both"></div></div>
+
+<div class="day-row"><div class="day-badge">DAY 13</div><div class="day-body"><p><strong>Observe your speech patterns.</strong> At the end of the day, identify three moments you spoke from anxiety (to fill silence, to seek approval, to defend) vs. three moments you spoke from intention. Write what you notice.</p></div><div style="clear:both"></div></div>
+
+<div class="day-row"><div class="day-badge">DAY 14</div><div class="day-body"><p><strong>Review Week 2.</strong> What does the 5-second pause feel like now compared to Day 5? What has changed in others' responses to you? Record one specific behavioral shift you've noticed in yourself.</p></div><div style="clear:both"></div></div>
+
+<div class="divider">— ◆ —</div>
+
+<h2>Week 3 — Application: Silence, Attention, and Consistency</h2>
+<h3>Days 15–21 · Field deployment under real conditions</h3>
+
+<div class="day-row"><div class="day-badge">DAY 15</div><div class="day-body"><p><strong>Speak only when substantive.</strong> In one meeting or interaction today, contribute only when you have something genuinely useful to say. Count your contributions. Quality over volume.</p></div><div style="clear:both"></div></div>
+
+<div class="day-row"><div class="day-badge">DAY 16</div><div class="day-body"><p><strong>Practice deep listening in one full conversation.</strong> No response preparation mid-sentence. No phone. Complete presence until the other person finishes — not their sentence, their entire thought.</p></div><div style="clear:both"></div></div>
+
+<div class="day-row"><div class="day-badge">DAY 17</div><div class="day-body"><p><strong>Apply non-reactive silence once.</strong> When someone says something provocative or challenging today, respond with silence or a single measured sentence only. No elaboration.</p></div><div style="clear:both"></div></div>
+
+<div class="day-row"><div class="day-badge">DAY 18</div><div class="day-body"><p><strong>Hold a position under social pressure.</strong> Find one moment where you feel the pressure to agree or concede because of social friction — not new evidence. Hold your position. Note what happens.</p></div><div style="clear:both"></div></div>
+
+<div class="day-row"><div class="day-badge">DAY 19</div><div class="day-body"><p><strong>Apply the composure maintenance protocol.</strong> Identify one stressful situation today and deliberately run the five-step protocol: breathe, slow pace, lower register, reduce footprint, hold silence if needed.</p></div><div style="clear:both"></div></div>
+
+<div class="day-row"><div class="day-badge">DAY 20</div><div class="day-body"><p><strong>Complete the Quiet Power Audit again.</strong> Score all seven domains. Compare to Day 1. Note every domain where your score increased. Identify the one domain still leaking most.</p></div><div style="clear:both"></div></div>
+
+<div class="day-row"><div class="day-badge">DAY 21</div><div class="day-body"><p><strong>Commit to your ongoing practice.</strong> Identify the one domain with the greatest remaining gap. Write a specific daily practice for it. Commit to 30 more days on that domain alone.</p></div><div style="clear:both"></div></div>
+
+<div class="divider">— ◆ —</div>
+
+<h2>Post-Protocol: The 90-Day Commitment</h2>
+
+<div class="callout">
+  <div class="callout-label">The Compound Timeline</div>
+  <p>The 21-day protocol installs awareness and initial defaults. The real architecture takes shape over 60–90 days of consistent application. Behavioral authority is not a sprint — it is a compounding return. The daily micro-targets stop after 21 days. The behavioral standards do not.</p>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SUMMARY
+══════════════════════════════════════════ -->
+<div class="section-opener">
+  <div class="section-label">Summary</div>
+  <div class="section-title">The Five Core<br>Principles of Quiet Power</div>
+  <div class="section-subtitle">The architecture in five sentences</div>
+</div>
+
+<p>Everything in this guide reduces to five principles. If you understand these principles deeply enough, you can derive the frameworks. If you apply them consistently enough, you will build the architecture.</p>
+
+<div class="divider">— ◆ —</div>
+
+<h2>The Five Principles</h2>
+
+<div class="domain-card">
+  <div><span class="domain-num">01</span> <span class="domain-name">Restraint Is Signal</span></div>
+  <p>The ability to refrain — from speaking, from reacting, from asserting — communicates internal resources. Urgency communicates scarcity. The most authoritative response is frequently the most restrained one.</p>
+</div>
+
+<div class="domain-card">
+  <div><span class="domain-num">02</span> <span class="domain-name">The Gap Is the Control Room</span></div>
+  <p>Everything that matters happens in the space between stimulus and response. Expand it. The gap is not hesitation — it is the evidence that your behavior is chosen, not triggered. It is the most visible signal of internal authority you can offer.</p>
+</div>
+
+<div class="domain-card">
+  <div><span class="domain-num">03</span> <span class="domain-name">Consistency Compounds</span></div>
+  <p>A single impressive performance creates a moment. A behavioral standard maintained over time creates a reputation. Every consistent high-authority behavior adds to a behavioral account that eventually becomes self-sustaining.</p>
+</div>
+
+<div class="domain-card">
+  <div><span class="domain-num">04</span> <span class="domain-name">Stillness Is Not Passivity</span></div>
+  <p>Active presence expressed through attention, composure, and deliberate response is the most powerful form of engagement available. Quiet authority is not withdrawal. It is presence without the noise of self-promotion.</p>
+</div>
+
+<div class="domain-card">
+  <div><span class="domain-num">05</span> <span class="domain-name">Authority Is Not Performed</span></div>
+  <p>It is installed through behavioral architecture and maintained through consistency. The audience is not the goal. The behavior is the goal. Everything else is a byproduct of that.</p>
+</div>
+
+<div class="divider">— ◆ —</div>
+
+<h2>The Complete 7-Domain Quick Reference</h2>
+
+<table>
+  <thead><tr><th>Domain</th><th>Core Practice</th><th>Authority Signal</th><th>Primary Leak to Avoid</th></tr></thead>
+  <tbody>
+    <tr><td>Presence</td><td>Physical stillness</td><td>Nothing threatens me</td><td>Fidgeting under observation</td></tr>
+    <tr><td>Speech</td><td>Economy and precision</td><td>I know what I mean</td><td>Approval checks and qualifiers</td></tr>
+    <tr><td>Reactions</td><td>Expand the response gap</td><td>I choose my responses</td><td>Instant visible reactions</td></tr>
+    <tr><td>Silence</td><td>Hold it; use it</td><td>I'm comfortable here</td><td>Speaking to relieve discomfort</td></tr>
+    <tr><td>Movement</td><td>Set your own pace</td><td>I'm not anxious</td><td>Rushing when called upon</td></tr>
+    <tr><td>Attention</td><td>Give it; don't chase it</td><td>I need no approval</td><td>Monitoring room reactions</td></tr>
+    <tr><td>Consistency</td><td>Maintain under pressure</td><td>I can be trusted</td><td>Different under stress</td></tr>
+  </tbody>
+</table>
+
+<div class="pull-quote">
+  <p>"The architecture you've built over 21 days is not a technique to switch on. It is a way of being that you have chosen to install through deliberate practice. The loops will still try to pull you back toward performance. But now you have a system that meets them at the door — and the behavioral evidence that you don't need what you were performing in order to get."</p>
+</div>
+
+<div class="checklist">
+  <div class="check-item"><div class="check-box"></div><div class="check-text">Complete the Quiet Power Audit (Day 1 baseline)</div><div style="clear:both"></div></div>
+  <div class="check-item"><div class="check-box"></div><div class="check-text">Identify my two primary leaking domains</div><div style="clear:both"></div></div>
+  <div class="check-item"><div class="check-box"></div><div class="check-text">Complete Days 1–7 (Foundation: Presence)</div><div style="clear:both"></div></div>
+  <div class="check-item"><div class="check-box"></div><div class="check-text">Complete Days 8–14 (Calibration: Speech and Reactions)</div><div style="clear:both"></div></div>
+  <div class="check-item"><div class="check-box"></div><div class="check-text">Complete Days 15–21 (Application: Field Deployment)</div><div style="clear:both"></div></div>
+  <div class="check-item"><div class="check-box"></div><div class="check-text">Re-score the Quiet Power Audit (Day 20)</div><div style="clear:both"></div></div>
+  <div class="check-item"><div class="check-box"></div><div class="check-text">Commit to a 30-day extension on my primary domain</div><div style="clear:both"></div></div>
+  <div class="check-item"><div class="check-box"></div><div class="check-text">At 90 days: audit again and identify next architecture layer</div><div style="clear:both"></div></div>
+</div>
+
+<!-- CLOSING PAGE -->
+<div class="closing-page">
+  <div class="closing-brand">Lazy Scholar PH &nbsp;·&nbsp; Premium Resource Series</div>
+  <h2>The Architecture Is Built.<br>Now Let It Work.</h2>
+  <div class="closing-line"></div>
+  <p>Quiet authority is not a destination. It is a standard you choose to maintain — and then find, over time, that it maintains itself.</p>
+  <p>The behavioral defaults you've installed are now in the system. They will be tested, interrupted, and temporarily forgotten. When that happens, return to the audit. Run the protocol. Hold the silence.</p>
+  <p>The compound returns on behavioral consistency are real, measurable, and available to anyone willing to stop performing and start building.</p>
+  <div class="closing-line"></div>
+  <p class="copyright">© 2026 Lazy Scholar PH · All rights reserved<br>
+  For personal use only · Not for redistribution or resale without written permission</p>
+</div>
+
+</body>
+</html>
