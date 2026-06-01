@@ -1,0 +1,2066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Invisible Curriculum — Lazy Scholar PH</title>
+<style>
+  /* ===== TYPOGRAPHY & VARIABLES ===== */
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --navy: #0F1B2D;
+    --navy-mid: #1A2E48;
+    --navy-light: #243A5A;
+    --gold: #C9A84C;
+    --gold-light: #E8CC7A;
+    --gold-pale: #F5E9C8;
+    --cream: #F8F4ED;
+    --cream-dark: #EDE7D9;
+    --white: #FFFFFF;
+    --text-dark: #1A1A2E;
+    --text-mid: #3D3D5C;
+    --text-light: #6B6B8A;
+    --border: #D4C9B0;
+    --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 16px; }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--text-dark);
+    background: var(--white);
+    line-height: 1.7;
+    font-weight: 400;
+  }
+
+  /* ===== PRINT ===== */
+  @media print {
+    body { font-size: 11pt; }
+    .page-break { page-break-after: always; }
+    .no-break { page-break-inside: avoid; }
+    .toc-page, .cover-page { page-break-after: always; }
+  }
+
+  @page {
+    size: A4;
+    margin: 2cm 2.5cm;
+  }
+
+  /* ===== COVER PAGE ===== */
+  .cover-page {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+
+  .cover-accent-top {
+    height: 8px;
+    background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+  }
+
+  .cover-accent-bottom {
+    height: 8px;
+    background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+  }
+
+  .cover-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 80px 60px;
+  }
+
+  .cover-brand {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 60px;
+  }
+
+  .cover-eyebrow {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(201, 168, 76, 0.7);
+    margin-bottom: 20px;
+  }
+
+  .cover-title {
+    font-family: var(--font-serif);
+    font-size: 64px;
+    font-weight: 900;
+    line-height: 1.05;
+    color: var(--white);
+    margin-bottom: 24px;
+    letter-spacing: -1px;
+  }
+
+  .cover-title span {
+    color: var(--gold);
+  }
+
+  .cover-subtitle {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-weight: 400;
+    font-style: italic;
+    color: rgba(248, 244, 237, 0.85);
+    line-height: 1.5;
+    max-width: 600px;
+    margin-bottom: 60px;
+  }
+
+  .cover-divider {
+    width: 80px;
+    height: 3px;
+    background: var(--gold);
+    margin-bottom: 40px;
+  }
+
+  .cover-tagline {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 400;
+    color: rgba(248, 244, 237, 0.6);
+    letter-spacing: 0.5px;
+    line-height: 1.6;
+    max-width: 500px;
+  }
+
+  .cover-footer {
+    padding: 30px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(201, 168, 76, 0.2);
+  }
+
+  .cover-footer-brand {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .cover-footer-meta {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: rgba(248, 244, 237, 0.4);
+    letter-spacing: 1px;
+  }
+
+  .cover-geometric {
+    position: absolute;
+    right: -80px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 400px;
+    height: 400px;
+    border: 60px solid rgba(201, 168, 76, 0.06);
+    border-radius: 50%;
+  }
+
+  .cover-geometric::before {
+    content: '';
+    position: absolute;
+    inset: 60px;
+    border: 40px solid rgba(201, 168, 76, 0.04);
+    border-radius: 50%;
+  }
+
+  /* ===== DOCUMENT WRAPPER ===== */
+  .document {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* ===== INTRO PAGE ===== */
+  .intro-page {
+    background: var(--cream);
+    padding: 80px;
+    page-break-after: always;
+    position: relative;
+  }
+
+  .intro-label {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 40px;
+  }
+
+  .intro-headline {
+    font-family: var(--font-serif);
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 30px;
+  }
+
+  .intro-text {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--text-mid);
+    line-height: 1.8;
+    max-width: 680px;
+    margin-bottom: 24px;
+  }
+
+  .intro-pull-quote {
+    background: var(--navy);
+    color: var(--white);
+    padding: 36px 48px;
+    margin: 48px 0;
+    position: relative;
+  }
+
+  .intro-pull-quote::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background: var(--gold);
+  }
+
+  .intro-pull-quote p {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.55;
+    color: var(--white);
+  }
+
+  .intro-pull-quote cite {
+    display: block;
+    margin-top: 16px;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ===== TABLE OF CONTENTS ===== */
+  .toc-page {
+    background: var(--white);
+    padding: 80px;
+    page-break-after: always;
+  }
+
+  .toc-header {
+    margin-bottom: 48px;
+  }
+
+  .toc-label {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .toc-title {
+    font-family: var(--font-serif);
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.15;
+  }
+
+  .toc-divider {
+    width: 60px;
+    height: 3px;
+    background: var(--gold);
+    margin-top: 20px;
+  }
+
+  .toc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 40px;
+  }
+
+  .toc-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px 24px;
+    background: var(--cream);
+    border-left: 3px solid transparent;
+    transition: border-color 0.2s;
+    text-decoration: none;
+  }
+
+  .toc-item:hover {
+    border-left-color: var(--gold);
+  }
+
+  .toc-number {
+    font-family: var(--font-serif);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    min-width: 36px;
+    opacity: 0.7;
+  }
+
+  .toc-item-content {}
+
+  .toc-item-title {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 0.3px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+  }
+
+  .toc-item-sub {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-light);
+    font-style: italic;
+    line-height: 1.4;
+  }
+
+  /* ===== MODULE SECTIONS ===== */
+  .module-section {
+    page-break-before: always;
+    padding: 0;
+  }
+
+  .module-header {
+    background: var(--navy);
+    padding: 70px 80px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .module-header::after {
+    content: attr(data-number);
+    position: absolute;
+    right: 60px;
+    bottom: -20px;
+    font-family: var(--font-serif);
+    font-size: 180px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.04);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .module-number-label {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .module-title {
+    font-family: var(--font-serif);
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+  }
+
+  .module-subtitle {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-style: italic;
+    color: rgba(201, 168, 76, 0.85);
+    line-height: 1.4;
+  }
+
+  .module-accent {
+    height: 5px;
+    background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 60%, transparent 100%);
+  }
+
+  .module-body {
+    padding: 60px 80px;
+    background: var(--white);
+  }
+
+  /* ===== TYPOGRAPHY ===== */
+  .section-heading {
+    font-family: var(--font-serif);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 16px;
+    margin-top: 48px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--cream-dark);
+  }
+
+  .section-heading:first-child {
+    margin-top: 0;
+  }
+
+  p {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    color: var(--text-mid);
+    line-height: 1.8;
+    margin-bottom: 18px;
+  }
+
+  strong {
+    color: var(--navy);
+    font-weight: 600;
+  }
+
+  em {
+    color: var(--text-mid);
+  }
+
+  /* ===== CALLOUT BOXES ===== */
+  .callout {
+    background: var(--cream);
+    border-left: 5px solid var(--gold);
+    padding: 28px 32px;
+    margin: 36px 0;
+  }
+
+  .callout-label {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .callout p {
+    font-size: 16px;
+    margin-bottom: 0;
+    color: var(--navy);
+    line-height: 1.7;
+  }
+
+  .callout p + p {
+    margin-top: 12px;
+  }
+
+  .callout-dark {
+    background: var(--navy);
+    border-left: 5px solid var(--gold);
+    padding: 28px 32px;
+    margin: 36px 0;
+  }
+
+  .callout-dark p {
+    color: rgba(248, 244, 237, 0.9);
+  }
+
+  .callout-dark .callout-label {
+    color: var(--gold-light);
+  }
+
+  /* ===== PULL QUOTE ===== */
+  .pull-quote {
+    padding: 36px 48px;
+    margin: 48px 0;
+    position: relative;
+    background: var(--navy);
+  }
+
+  .pull-quote::before {
+    content: '\201C';
+    position: absolute;
+    top: 10px;
+    left: 30px;
+    font-family: var(--font-serif);
+    font-size: 80px;
+    color: var(--gold);
+    opacity: 0.4;
+    line-height: 1;
+  }
+
+  .pull-quote p {
+    font-family: var(--font-serif);
+    font-size: 21px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.55;
+    color: var(--white);
+    padding-left: 30px;
+    margin-bottom: 0;
+  }
+
+  /* ===== TABLES ===== */
+  .table-wrapper {
+    margin: 32px 0;
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-sans);
+    font-size: 14px;
+  }
+
+  thead tr {
+    background: var(--navy);
+    color: var(--white);
+  }
+
+  thead th {
+    padding: 14px 18px;
+    text-align: left;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+
+  thead th:first-child {
+    border-left: 4px solid var(--gold);
+  }
+
+  tbody tr {
+    border-bottom: 1px solid var(--cream-dark);
+  }
+
+  tbody tr:nth-child(even) {
+    background: var(--cream);
+  }
+
+  tbody td {
+    padding: 14px 18px;
+    color: var(--text-mid);
+    line-height: 1.5;
+    vertical-align: top;
+  }
+
+  tbody td:first-child {
+    font-weight: 600;
+    color: var(--navy);
+  }
+
+  /* ===== FRAMEWORK BOXES ===== */
+  .framework-box {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    padding: 40px 48px;
+    margin: 40px 0;
+    position: relative;
+  }
+
+  .framework-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+  }
+
+  .framework-label {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .framework-title {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+
+  .framework-content p {
+    color: rgba(248, 244, 237, 0.85);
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+
+  .framework-equation {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gold-light);
+    text-align: center;
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid rgba(201, 168, 76, 0.3);
+    letter-spacing: 1px;
+  }
+
+  /* ===== CHECKLIST ===== */
+  .checklist {
+    list-style: none;
+    padding: 0;
+    margin: 24px 0;
+  }
+
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--cream-dark);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  .checklist li:last-child {
+    border-bottom: none;
+  }
+
+  .checklist li::before {
+    content: '';
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--gold);
+    margin-top: 2px;
+  }
+
+  /* ===== NUMBERED LIST ===== */
+  .numbered-list {
+    list-style: none;
+    padding: 0;
+    margin: 24px 0;
+    counter-reset: item;
+  }
+
+  .numbered-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--cream-dark);
+    counter-increment: item;
+  }
+
+  .numbered-list li:last-child {
+    border-bottom: none;
+  }
+
+  .numbered-list li::before {
+    content: counter(item, decimal-leading-zero);
+    flex-shrink: 0;
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gold);
+    opacity: 0.8;
+    line-height: 1.2;
+    min-width: 36px;
+  }
+
+  .numbered-list li span {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+
+  .numbered-list li strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+
+  /* ===== MODULE APPLICATIONS ===== */
+  .application-box {
+    background: var(--cream);
+    padding: 36px 40px;
+    margin: 40px 0;
+    border-top: 4px solid var(--navy);
+  }
+
+  .application-label {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .application-title {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 20px;
+  }
+
+  /* ===== SECTION DIVIDER ===== */
+  .module-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 48px 0 32px;
+  }
+
+  .module-divider-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .module-divider-diamond {
+    width: 8px;
+    height: 8px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  /* ===== SUMMARY PAGE ===== */
+  .summary-page {
+    page-break-before: always;
+    padding: 80px;
+    background: var(--cream);
+  }
+
+  .summary-header {
+    margin-bottom: 48px;
+  }
+
+  .summary-label {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .summary-title {
+    font-family: var(--font-serif);
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.2;
+  }
+
+  .summary-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-top: 32px;
+  }
+
+  .summary-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    padding: 16px 0;
+    align-items: center;
+  }
+
+  .summary-row:first-child {
+    background: var(--navy);
+    padding: 14px 0;
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+
+  .summary-row:first-child .summary-cell {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .summary-cell {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.5;
+    padding: 0 20px;
+  }
+
+  .summary-cell:first-child {
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 14px;
+  }
+
+  .summary-cell-score {
+    font-family: var(--font-serif);
+    font-size: 13px;
+    color: var(--text-light);
+    text-align: center;
+  }
+
+  .score-blank {
+    display: inline-block;
+    width: 40px;
+    border-bottom: 2px solid var(--gold);
+    text-align: center;
+  }
+
+  /* ===== CLOSING PAGE ===== */
+  .closing-page {
+    page-break-before: always;
+    background: var(--navy);
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .closing-top-accent {
+    height: 8px;
+    background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+  }
+
+  .closing-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px;
+  }
+
+  .closing-label {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+  }
+
+  .closing-headline {
+    font-family: var(--font-serif);
+    font-size: 52px;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 32px;
+  }
+
+  .closing-headline em {
+    color: var(--gold);
+    font-style: normal;
+  }
+
+  .closing-text {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    color: rgba(248, 244, 237, 0.75);
+    line-height: 1.8;
+    max-width: 580px;
+    margin-bottom: 48px;
+  }
+
+  .closing-divider {
+    width: 80px;
+    height: 3px;
+    background: var(--gold);
+    margin-bottom: 40px;
+  }
+
+  .closing-reminder {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-style: italic;
+    color: rgba(248, 244, 237, 0.5);
+    max-width: 540px;
+    line-height: 1.55;
+  }
+
+  .closing-footer {
+    padding: 32px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(201, 168, 76, 0.2);
+  }
+
+  .closing-brand {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  .closing-tagline {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: rgba(248, 244, 237, 0.4);
+    letter-spacing: 1px;
+  }
+
+  /* ===== UTILITY ===== */
+  .mt-0 { margin-top: 0; }
+  .mb-0 { margin-bottom: 0; }
+  .gold { color: var(--gold); }
+  .no-break { page-break-inside: avoid; }
+
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- COVER PAGE -->
+<!-- ============================================================ -->
+<div class="cover-page">
+  <div class="cover-accent-top"></div>
+  <div class="cover-geometric"></div>
+
+  <div class="cover-content">
+    <div class="cover-brand">Lazy Scholar PH &nbsp;&mdash;&nbsp; Premium Knowledge Resources</div>
+
+    <div class="cover-eyebrow">A Complete 10-Module Guide</div>
+
+    <h1 class="cover-title">The <span>Invisible</span><br>Curriculum</h1>
+
+    <p class="cover-subtitle">What Nobody Teaches You About How Adult Social Reality Actually Works</p>
+
+    <div class="cover-divider"></div>
+
+    <p class="cover-tagline">
+      The operating rules of adult life that formal education never covers — and that determine outcomes in every domain: career, relationships, influence, and wealth. Ten modules. One complete map.
+    </p>
+  </div>
+
+  <div class="cover-footer">
+    <div class="cover-footer-brand">Lazy Scholar PH</div>
+    <div class="cover-footer-meta">Premium Edition &nbsp;&bull;&nbsp; 2026</div>
+  </div>
+
+  <div class="cover-accent-bottom"></div>
+</div>
+
+<div class="document">
+
+<!-- ============================================================ -->
+<!-- INTRODUCTION PAGE -->
+<!-- ============================================================ -->
+<div class="intro-page">
+
+  <div class="intro-label">Introduction</div>
+
+  <h2 class="intro-headline">The Education<br>You Never Received</h2>
+
+  <p class="intro-text">
+    There is a body of knowledge that determines outcomes in adult life more reliably than intelligence, credentials, or effort combined. It governs who gets promoted, who earns trust, who builds wealth, who navigates conflict cleanly — and who ends up perpetually bewildered by results that don't match their inputs.
+  </p>
+
+  <p class="intro-text">
+    No institution teaches it. No curriculum covers it. No mentor makes it explicit. This knowledge is the <strong>invisible curriculum</strong>.
+  </p>
+
+  <div class="intro-pull-quote">
+    <p>"The gap between people who succeed in adult life and those who stagnate is not primarily a gap in intelligence or work ethic. It is a gap in social operating knowledge — the practical understanding of how human systems actually function beneath their stated principles."</p>
+    <cite>The Invisible Curriculum, Module 1</cite>
+  </div>
+
+  <p class="intro-text">
+    The invisible curriculum exists. It is learnable. And the people who have it — whether they acquired it by accident, by mentorship, or by costly experience — operate in adult reality at a fundamentally different level than those who don't.
+  </p>
+
+  <p class="intro-text">
+    This guide covers ten modules of that curriculum. Not as theory — as operational frameworks you can apply immediately.
+  </p>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- TABLE OF CONTENTS -->
+<!-- ============================================================ -->
+<div class="toc-page">
+
+  <div class="toc-header">
+    <span class="toc-label">Contents</span>
+    <h2 class="toc-title">Ten Modules.<br>One Complete Map.</h2>
+    <div class="toc-divider"></div>
+  </div>
+
+  <div class="toc-grid">
+
+    <div class="toc-item">
+      <div class="toc-number">01</div>
+      <div class="toc-item-content">
+        <div class="toc-item-title">The Dual-Layer System</div>
+        <div class="toc-item-sub">Stated Rules vs. Actual Rules</div>
+      </div>
+    </div>
+
+    <div class="toc-item">
+      <div class="toc-number">02</div>
+      <div class="toc-item-content">
+        <div class="toc-item-title">Social Perception Economics</div>
+        <div class="toc-item-sub">How Others Are Pricing You Right Now</div>
+      </div>
+    </div>
+
+    <div class="toc-item">
+      <div class="toc-number">03</div>
+      <div class="toc-item-content">
+        <div class="toc-item-title">Status Mechanics</div>
+        <div class="toc-item-sub">The Invisible Currency That Moves Everything</div>
+      </div>
+    </div>
+
+    <div class="toc-item">
+      <div class="toc-number">04</div>
+      <div class="toc-item-content">
+        <div class="toc-item-title">Information Asymmetry</div>
+        <div class="toc-item-sub">Who Knows What and Why It Matters</div>
+      </div>
+    </div>
+
+    <div class="toc-item">
+      <div class="toc-number">05</div>
+      <div class="toc-item-content">
+        <div class="toc-item-title">Influence Without Authority</div>
+        <div class="toc-item-sub">How Non-Position Power Actually Works</div>
+      </div>
+    </div>
+
+    <div class="toc-item">
+      <div class="toc-number">06</div>
+      <div class="toc-item-content">
+        <div class="toc-item-title">Narrative Control</div>
+        <div class="toc-item-sub">Who Holds the Story Holds the Outcome</div>
+      </div>
+    </div>
+
+    <div class="toc-item">
+      <div class="toc-number">07</div>
+      <div class="toc-item-content">
+        <div class="toc-item-title">Loyalty Architecture</div>
+        <div class="toc-item-sub">How Alliances Are Built, Tested, and Broken</div>
+      </div>
+    </div>
+
+    <div class="toc-item">
+      <div class="toc-number">08</div>
+      <div class="toc-item-content">
+        <div class="toc-item-title">Behavioral Contracts</div>
+        <div class="toc-item-sub">The Unspoken Agreements Governing All Relationships</div>
+      </div>
+    </div>
+
+    <div class="toc-item">
+      <div class="toc-number">09</div>
+      <div class="toc-item-content">
+        <div class="toc-item-title">Exit Dynamics</div>
+        <div class="toc-item-sub">The Hidden Rules of Leaving Intact</div>
+      </div>
+    </div>
+
+    <div class="toc-item">
+      <div class="toc-number">10</div>
+      <div class="toc-item-content">
+        <div class="toc-item-title">The Curriculum Self-Audit</div>
+        <div class="toc-item-sub">Where Your Gaps Are and How to Close Them</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- MODULE 1 -->
+<!-- ============================================================ -->
+<div class="module-section" id="module-1">
+  <div class="module-header" data-number="01">
+    <span class="module-number-label">Module 01</span>
+    <h2 class="module-title">The Dual-Layer<br>System</h2>
+    <p class="module-subtitle">Stated Rules vs. Actual Rules</p>
+  </div>
+  <div class="module-accent"></div>
+
+  <div class="module-body">
+
+    <p>Every human environment — a workplace, a family, a social circle — operates simultaneously on two layers:</p>
+
+    <div class="callout no-break">
+      <span class="callout-label">Layer 1 — The Stated Rules</span>
+      <p>The official, publicly endorsed operating principles. In a workplace: "we promote based on merit." In a family: "everyone is treated equally." These rules exist in handbooks, mission statements, and social agreements. They are real. They matter. They are <strong>never the whole story.</strong></p>
+    </div>
+
+    <div class="callout-dark no-break">
+      <span class="callout-label">Layer 2 — The Actual Rules</span>
+      <p>The operational principles that determine real outcomes. Who gets promoted is determined by sponsorship, visibility, alliance, and perceived cultural fit — not performance alone. Who holds real power is determined by emotional leverage, information control, and coalition dynamics.</p>
+    </div>
+
+    <h3 class="section-heading">Why This Gap Exists</h3>
+
+    <p>People who operate exclusively from Layer 1 experience a persistent, confusing gap between their inputs and outcomes. They work hard and watch a less-competent but politically savvy peer advance. They make the logical argument in a meeting and watch it get ignored while a weaker argument from a higher-status person carries the room.</p>
+
+    <p>The response to this confusion is almost always self-blame: <em>"I must not be good enough."</em> This is the trap. The failure is not personal inadequacy — it is navigating from an incomplete map.</p>
+
+    <div class="pull-quote">
+      <p>The dual-layer reader is not cynicism — it is precision. You are not abandoning the stated rules. You are adding the actual rules to your operating map.</p>
+    </div>
+
+    <h3 class="section-heading">The Dual-Layer Reader Framework</h3>
+
+    <div class="table-wrapper no-break">
+    <table>
+      <thead>
+        <tr>
+          <th>Stated Rule</th>
+          <th>Likely Actual Rule</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Decisions are made by committee</td>
+          <td>Decision is made by the person with most informal authority, then ratified</td>
+        </tr>
+        <tr>
+          <td>Best idea wins</td>
+          <td>Best-positioned person's idea wins</td>
+        </tr>
+        <tr>
+          <td>We value work-life balance</td>
+          <td>We value visible commitment signals</td>
+        </tr>
+        <tr>
+          <td>Feedback is welcomed</td>
+          <td>Feedback is welcomed from people above you in status</td>
+        </tr>
+        <tr>
+          <td>Everyone has a voice</td>
+          <td>Everyone has a turn; influence is distributed unequally</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="application-box no-break">
+      <span class="application-label">Practical Application</span>
+      <p class="application-title">The Dual-Layer Meeting Read</p>
+      <ul class="checklist">
+        <li>What is the stated purpose of this meeting?</li>
+        <li>What decision has likely already been made before we sat down?</li>
+        <li>Who has real influence over the outcome?</li>
+        <li>What is the social dynamic beneath the surface agenda?</li>
+        <li>Who needs this meeting to go a certain way, and why?</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- MODULE 2 -->
+<!-- ============================================================ -->
+<div class="module-section" id="module-2">
+  <div class="module-header" data-number="02">
+    <span class="module-number-label">Module 02</span>
+    <h2 class="module-title">Social Perception<br>Economics</h2>
+    <p class="module-subtitle">How Others Are Pricing You Right Now</p>
+  </div>
+  <div class="module-accent"></div>
+
+  <div class="module-body">
+
+    <p>Every person in your social and professional environment carries a running valuation of you. Within milliseconds of contact, humans compute assessments of status, trustworthiness, competence, and warmth. These assessments update over time — but more slowly than most people assume.</p>
+
+    <p>You are being priced. The question is: do you understand which factors are being used, and do you have any influence over the result?</p>
+
+    <h3 class="section-heading">The Three Perception Drivers</h3>
+
+    <div class="framework-box no-break">
+      <span class="framework-label">Core Framework</span>
+      <div class="framework-title">How Social Pricing Works</div>
+      <div class="framework-content">
+        <p><strong style="color: var(--gold-light);">Warmth</strong> — Do you care about others? Are you trustworthy? Are you safe to be around? <em>Evaluated first.</em></p>
+        <p><strong style="color: var(--gold-light);">Competence</strong> — Can you deliver? Do you know what you're doing? Are you reliable?</p>
+        <p><strong style="color: var(--gold-light);">Status Congruence</strong> — Do you belong here? Do you match the calibration of this group?</p>
+      </div>
+    </div>
+
+    <p>These are not equal. <strong>Warmth is evaluated first.</strong> A person perceived as cold-but-competent is frequently undermined. A person perceived as warm-but-incompetent is tolerated but never trusted with high stakes. The highest-value positioning is <em>warm competence</em> — readable, credible, and trustworthy simultaneously.</p>
+
+    <h3 class="section-heading">The Anchor Problem</h3>
+
+    <p>The first strong impression functions as a baseline that subsequent data either confirms or struggles to override. If you carry a negative anchor in a given environment, updating it requires:</p>
+
+    <ol class="numbered-list no-break">
+      <li><span><strong>Consistent, repeated counter-evidence</strong> — one good performance is noise; a pattern of good performance is signal</span></li>
+      <li><span><strong>Patience (3–6 months minimum)</strong> — perceptions recalibrate slowly; there are no shortcuts</span></li>
+      <li><span><strong>A sponsor who can amplify the new signal</strong> — the person's own voice is the least efficient carrier of a new impression</span></li>
+    </ol>
+
+    <div class="callout no-break">
+      <span class="callout-label">Critical Insight</span>
+      <p>You cannot argue your way out of an anchor. You can only replace it with sustained behavioral data over time.</p>
+    </div>
+
+    <div class="application-box no-break">
+      <span class="application-label">Practical Application</span>
+      <p class="application-title">The Perception Audit (Run Now)</p>
+      <ul class="checklist">
+        <li>Ask 3 trusted people: "What is the first word that comes to mind when my name comes up?"</li>
+        <li>Ask: "What do people assume about me in the first five minutes?"</li>
+        <li>Ask: "Is there a gap between how I see myself and how I am perceived?"</li>
+        <li>Identify your current anchors — positive and negative — in each key environment</li>
+        <li>Map which perception signals you are managing consciously vs. by default</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- MODULE 3 -->
+<!-- ============================================================ -->
+<div class="module-section" id="module-3">
+  <div class="module-header" data-number="03">
+    <span class="module-number-label">Module 03</span>
+    <h2 class="module-title">Status Mechanics</h2>
+    <p class="module-subtitle">The Invisible Currency That Moves Everything</p>
+  </div>
+  <div class="module-accent"></div>
+
+  <div class="module-body">
+
+    <p>Status is the invisible currency of adult social reality. It is not money. It is not title. It is the informal social credibility that determines whose ideas get heard, whose requests get fulfilled, whose mistakes get forgiven, and whose behavior sets the tone for the room.</p>
+
+    <h3 class="section-heading">What Status Is Actually Built From</h3>
+
+    <div class="table-wrapper no-break">
+    <table>
+      <thead>
+        <tr>
+          <th>Status Factor</th>
+          <th>How It Operates</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Demonstrated competence</td>
+          <td>In domains the group specifically values</td>
+        </tr>
+        <tr>
+          <td>Behavioral consistency</td>
+          <td>Predictability and reliability of response across contexts</td>
+        </tr>
+        <tr>
+          <td>Alliance network</td>
+          <td>Who vouches for you and how powerful those people are</td>
+        </tr>
+        <tr>
+          <td>Signaling capacity</td>
+          <td>Ability to give, withhold, or grant access to valued resources</td>
+        </tr>
+        <tr>
+          <td>Narrative control</td>
+          <td>How you are spoken about in your absence</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="callout no-break">
+      <span class="callout-label">Not on the List</span>
+      <p>Raw intelligence, moral virtue, or seniority alone. These contribute to status only when they are <strong>visible, valued, and socially legible</strong> to the specific group you are operating within.</p>
+    </div>
+
+    <h3 class="section-heading">Status Moves: A Field Guide</h3>
+
+    <div class="table-wrapper no-break">
+    <table>
+      <thead>
+        <tr>
+          <th>Behavior</th>
+          <th>Status Effect</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Asking for reassurance publicly</td>
+          <td>Lowers status</td>
+        </tr>
+        <tr>
+          <td>Speaking with certainty about what you know</td>
+          <td>Raises status</td>
+        </tr>
+        <tr>
+          <td>Occupying physical and conversational space calmly</td>
+          <td>Raises status</td>
+        </tr>
+        <tr>
+          <td>Deferring to room consensus reflexively</td>
+          <td>Lowers status</td>
+        </tr>
+        <tr>
+          <td>Holding a position under pressure with equanimity</td>
+          <td>Raises status significantly</td>
+        </tr>
+        <tr>
+          <td>Qualifying everything you say</td>
+          <td>Lowers status</td>
+        </tr>
+        <tr>
+          <td>Expressing measured disagreement from a place of authority</td>
+          <td>Raises status</td>
+        </tr>
+        <tr>
+          <td>Performing enthusiasm you don't feel</td>
+          <td>Lowers status</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="pull-quote">
+      <p>The highest-status individuals project indifference to status — they take up space without appearing to want it.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- MODULE 4 -->
+<!-- ============================================================ -->
+<div class="module-section" id="module-4">
+  <div class="module-header" data-number="04">
+    <span class="module-number-label">Module 04</span>
+    <h2 class="module-title">Information<br>Asymmetry</h2>
+    <p class="module-subtitle">Who Knows What and Why It Matters</p>
+  </div>
+  <div class="module-accent"></div>
+
+  <div class="module-body">
+
+    <p>In every organization, relationship, and social system, information is distributed unevenly. This unevenness is not accidental — it is the primary mechanism by which power is structured and maintained.</p>
+
+    <h3 class="section-heading">The Three Information Zones</h3>
+
+    <div class="callout no-break">
+      <span class="callout-label">Zone 1 — Public Information</span>
+      <p>What everyone knows. Shared in meetings, emails, public channels. <strong>Low-value for positioning</strong> because access is equal.</p>
+    </div>
+
+    <div class="callout no-break">
+      <span class="callout-label">Zone 2 — Informal Information</span>
+      <p>What travels through relationships and trusted channels. The actual context behind a decision. What leadership is genuinely debating. <strong>Access depends on network position.</strong></p>
+    </div>
+
+    <div class="callout-dark no-break">
+      <span class="callout-label">Zone 3 — Strategic Information</span>
+      <p>What is deliberately held by a small number of people. Pending decisions, confidential priorities, personnel matters. <strong>Proximity to this zone is both a function of trust and a generator of it.</strong></p>
+    </div>
+
+    <p>Most people operate primarily in Zone 1. The invisible curriculum teaches navigation of Zones 2 and 3.</p>
+
+    <h3 class="section-heading">Building Information Access</h3>
+
+    <ol class="numbered-list no-break">
+      <li><span><strong>Relationship investment</strong> — time spent in genuine, non-transactional connection with people across levels and functions</span></li>
+      <li><span><strong>Trust signaling</strong> — consistently demonstrating that you handle information with discretion</span></li>
+      <li><span><strong>Value exchange</strong> — providing useful information creates reciprocal information flows</span></li>
+      <li><span><strong>Positioning</strong> — being in physical and relational proximity to where decisions are made</span></li>
+    </ol>
+
+    <h3 class="section-heading">The Information Discipline</h3>
+
+    <p>Having information carries non-negotiable obligations:</p>
+
+    <ul class="checklist no-break">
+      <li>Never use information to harm the person who gave it — this terminates access permanently</li>
+      <li>Distinguish between what you can use and what you must protect</li>
+      <li>Do not surface Zone 3 information in Zone 1 settings — this is a major trust violation</li>
+      <li>Treat information access as a responsibility, not just an advantage</li>
+    </ul>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- MODULE 5 -->
+<!-- ============================================================ -->
+<div class="module-section" id="module-5">
+  <div class="module-header" data-number="05">
+    <span class="module-number-label">Module 05</span>
+    <h2 class="module-title">Influence Without<br>Authority</h2>
+    <p class="module-subtitle">How Non-Position Power Actually Works</p>
+  </div>
+  <div class="module-accent"></div>
+
+  <div class="module-body">
+
+    <p>Most formal training in influence focuses on positional authority. But the most durable and flexible influence in adult reality is non-positional — it operates without formal authority and frequently outlasts it.</p>
+
+    <h3 class="section-heading">The Sources of Non-Positional Influence</h3>
+
+    <div class="table-wrapper no-break">
+    <table>
+      <thead>
+        <tr>
+          <th>Source</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Expertise</td>
+          <td>Specific, legible, and rare knowledge that others need</td>
+        </tr>
+        <tr>
+          <td>Relationships</td>
+          <td>Access to people and information others don't have</td>
+        </tr>
+        <tr>
+          <td>Track record</td>
+          <td>Demonstrated pattern of delivering outcomes over time</td>
+        </tr>
+        <tr>
+          <td>Framing</td>
+          <td>The ability to shape how a situation or problem is understood</td>
+        </tr>
+        <tr>
+          <td>Emotional regulation</td>
+          <td>Remaining calm when others are reactive — this creates gravity</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="framework-box no-break">
+      <span class="framework-label">Core Framework</span>
+      <div class="framework-title">The Influence Equation</div>
+      <div class="framework-equation">Influence = Perceived Value × Trust × Relationship Depth</div>
+      <div class="framework-content">
+        <p>You can have high perceived value but low trust — and have very limited influence. You can have deep relationships but be seen as low-value — same result. All three variables compound each other. Building one without the others limits your ceiling.</p>
+      </div>
+    </div>
+
+    <h3 class="section-heading">Practical Influence Tactics</h3>
+
+    <div class="callout no-break">
+      <span class="callout-label">Tactic 1 — Framing</span>
+      <p><strong>The first person to name the problem sets the terms of the solution.</strong> In any discussion where you want influence, arrive with a clear frame for what the problem actually is — before the group anchors on their own.</p>
+    </div>
+
+    <div class="callout no-break">
+      <span class="callout-label">Tactic 2 — Strategic Agreement</span>
+      <p>Begin with areas of alignment before introducing divergence. People are far more open to challenge from someone who has demonstrated they understand and respect their position.</p>
+    </div>
+
+    <div class="callout no-break">
+      <span class="callout-label">Tactic 3 — Timing</span>
+      <p>Influence attempts delivered at the wrong moment fail regardless of quality. Read when someone is open — which is rarely immediately after a decision, during high stress, or when they are in performance mode.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- MODULE 6 -->
+<!-- ============================================================ -->
+<div class="module-section" id="module-6">
+  <div class="module-header" data-number="06">
+    <span class="module-number-label">Module 06</span>
+    <h2 class="module-title">Narrative Control</h2>
+    <p class="module-subtitle">Who Holds the Story Holds the Outcome</p>
+  </div>
+  <div class="module-accent"></div>
+
+  <div class="module-body">
+
+    <p>In every conflict, negotiation, and career situation, there is a story being told about what happened, who is responsible, and what should happen next. The person who controls this narrative controls the outcome.</p>
+
+    <p>Human decision-making is fundamentally story-based. People rationalize after the fact but decide based on the narrative that feels most coherent and emotionally consistent.</p>
+
+    <h3 class="section-heading">The Narrative Architecture</h3>
+
+    <div class="framework-box no-break">
+      <span class="framework-label">Every Powerful Narrative Contains</span>
+      <div class="framework-title">The Four Elements</div>
+      <div class="framework-content">
+        <p><strong style="color: var(--gold-light);">Protagonist</strong> — Whose perspective is centered? Who are we rooting for?</p>
+        <p><strong style="color: var(--gold-light);">Problem</strong> — What are the stakes? What needs to be resolved?</p>
+        <p><strong style="color: var(--gold-light);">Cause</strong> — Attribution. Who or what created this situation?</p>
+        <p><strong style="color: var(--gold-light);">Solution</strong> — What should be done? Who should do it?</p>
+      </div>
+    </div>
+
+    <p>In any high-stakes situation, the party whose frame gets adopted — whose protagonist, problem, cause, and solution defines shared understanding — has won the first and most important battle.</p>
+
+    <h3 class="section-heading">Common Narrative Failures</h3>
+
+    <ul class="checklist no-break">
+      <li>Waiting for facts to speak for themselves — facts don't speak; they are interpreted through pre-existing narratives</li>
+      <li>Over-explaining — lengthy explanations signal defensiveness, which the audience reads as guilt</li>
+      <li>Letting others define the problem — once a problem is named to your disadvantage, repositioning requires enormous energy</li>
+      <li>Responding instead of initiating — the party in response position is always playing defense</li>
+    </ul>
+
+    <div class="pull-quote">
+      <p>When you know a difficult situation is developing, name it first, in your own frame, before others define it.</p>
+    </div>
+
+    <h3 class="section-heading">Narrative Control Tactics</h3>
+
+    <div class="callout no-break">
+      <span class="callout-label">Tactic — Reframe Attribution</span>
+      <p>When blame is being assigned, the most effective response is not denial — it is reframing the cause. Move from <em>"who is responsible"</em> to <em>"what systemic factors created this outcome."</em></p>
+    </div>
+
+    <div class="callout no-break">
+      <span class="callout-label">Tactic — Anchor the Future</span>
+      <p>The most resilient narratives are forward-oriented. <em>"Here is what this situation shows us about what needs to change"</em> pulls the room out of blame and into action.</p>
+    </div>
+
+    <div class="callout-dark no-break">
+      <span class="callout-label">Tactic — Third-Party Amplification</span>
+      <p>Narratives spread faster when carried by credible third parties. A truth you tell about yourself is far less powerful than the same truth told about you by someone the audience already trusts.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- MODULE 7 -->
+<!-- ============================================================ -->
+<div class="module-section" id="module-7">
+  <div class="module-header" data-number="07">
+    <span class="module-number-label">Module 07</span>
+    <h2 class="module-title">Loyalty<br>Architecture</h2>
+    <p class="module-subtitle">How Alliances Are Built, Tested, and Broken</p>
+  </div>
+  <div class="module-accent"></div>
+
+  <div class="module-body">
+
+    <p>Adult social reality is not a meritocracy — it is a network. Outcomes are heavily determined by who is in your corner: who vouches for you, advocates in your absence, shares information, pulls you into opportunities, and stands with you under pressure.</p>
+
+    <h3 class="section-heading">The Loyalty Stack</h3>
+
+    <div class="table-wrapper no-break">
+    <table>
+      <thead>
+        <tr>
+          <th>Level</th>
+          <th>Description</th>
+          <th>Built By</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Acquaintance</td>
+          <td>Positive mutual recognition</td>
+          <td>Repeated contact</td>
+        </tr>
+        <tr>
+          <td>Colleague</td>
+          <td>Professional goodwill</td>
+          <td>Shared work, reliability</td>
+        </tr>
+        <tr>
+          <td>Ally</td>
+          <td>Active support</td>
+          <td>Mutual benefit, trust signals</td>
+        </tr>
+        <tr>
+          <td>Sponsor</td>
+          <td>Advocates for you without being asked</td>
+          <td>Demonstrated value + personal investment</td>
+        </tr>
+        <tr>
+          <td>Champion</td>
+          <td>Stakes their reputation on you</td>
+          <td>Deep trust + sustained track record</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="callout no-break">
+      <span class="callout-label">Critical Gap</span>
+      <p>Most networking advice focuses on moving people from acquaintance to colleague. The invisible curriculum focuses on the harder, more valuable work: <strong>colleague → ally → sponsor.</strong></p>
+    </div>
+
+    <h3 class="section-heading">Alliance Testing Moments</h3>
+
+    <p>Alliances are not formed by positive interactions alone — they are cemented by how they hold under pressure. The key testing moments:</p>
+
+    <ul class="checklist no-break">
+      <li>When you need something and ask directly</li>
+      <li>When you make a mistake and the ally must choose to defend or distance</li>
+      <li>When a third party criticizes you and the ally must respond</li>
+      <li>When a conflict arises between your interests and theirs</li>
+    </ul>
+
+    <p>Every alliance eventually hits these tests. The ones that survive become durable. The ones that don't reveal themselves as surface relationships — which is equally useful information.</p>
+
+    <h3 class="section-heading">Alliance Breaking: The Hidden Rules</h3>
+
+    <div class="table-wrapper no-break">
+    <table>
+      <thead>
+        <tr>
+          <th>How Alliances Break</th>
+          <th>Mechanism</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Perceived betrayal</td>
+          <td>Using shared information against the person, or failing to advocate when needed</td>
+        </tr>
+        <tr>
+          <td>Status divergence</td>
+          <td>When one party moves significantly up or down, the alliance recalibrates</td>
+        </tr>
+        <tr>
+          <td>Neglect</td>
+          <td>Alliances not actively maintained will deteriorate over time</td>
+        </tr>
+        <tr>
+          <td>Competing interests</td>
+          <td>When a shared goal disappears, the glue weakens without replacement</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- MODULE 8 -->
+<!-- ============================================================ -->
+<div class="module-section" id="module-8">
+  <div class="module-header" data-number="08">
+    <span class="module-number-label">Module 08</span>
+    <h2 class="module-title">Behavioral<br>Contracts</h2>
+    <p class="module-subtitle">The Unspoken Agreements Governing All Relationships</p>
+  </div>
+  <div class="module-accent"></div>
+
+  <div class="module-body">
+
+    <p>Every relationship you have — professional, personal, romantic, familial — is governed by expectations that were never explicitly negotiated but are fully operative. These are behavioral contracts: implicit agreements about how each party will behave, what they can expect, and what the consequences are for deviation.</p>
+
+    <h3 class="section-heading">How Behavioral Contracts Form</h3>
+
+    <ol class="numbered-list no-break">
+      <li><span><strong>Precedent</strong> — the first few interactions set expectations that function as contractual terms going forward</span></li>
+      <li><span><strong>Reciprocity</strong> — matching energy and investment establishes mutual norms</span></li>
+      <li><span><strong>Stated agreements</strong> — explicit commitments become contractual anchors</span></li>
+      <li><span><strong>Observed behavior</strong> — how someone treats others in similar roles tells you what to expect yourself</span></li>
+    </ol>
+
+    <h3 class="section-heading">Common Behavioral Contract Violations</h3>
+
+    <div class="table-wrapper no-break">
+    <table>
+      <thead>
+        <tr>
+          <th>Context</th>
+          <th>Implicit Contract</th>
+          <th>Common Violation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Manager-employee</td>
+          <td>Regular, honest feedback</td>
+          <td>Silence until performance review</td>
+        </tr>
+        <tr>
+          <td>Close friendship</td>
+          <td>Mutual disclosure and investment</td>
+          <td>Consistent one-sidedness</td>
+        </tr>
+        <tr>
+          <td>Romantic partnership</td>
+          <td>Emotional presence and responsiveness</td>
+          <td>Chronic unavailability</td>
+        </tr>
+        <tr>
+          <td>Team collaboration</td>
+          <td>Equitable contribution</td>
+          <td>Missing commitments repeatedly</td>
+        </tr>
+        <tr>
+          <td>Mentor-mentee</td>
+          <td>Guidance in exchange for effort</td>
+          <td>Advice without follow-through</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3 class="section-heading">Renegotiating Behavioral Contracts</h3>
+
+    <p>When your capacity or priorities change, the contract needs explicit renegotiation. Most people change their behavior without explanation — which the other party experiences as a violation.</p>
+
+    <div class="framework-box no-break">
+      <span class="framework-label">Effective Renegotiation — Four Steps</span>
+      <div class="framework-title">The Renegotiation Script</div>
+      <div class="framework-content">
+        <p><strong style="color: var(--gold-light);">Step 1 — Name the contract:</strong> "I realize I've been operating under the expectation that..."</p>
+        <p><strong style="color: var(--gold-light);">Step 2 — Explain the change:</strong> "My capacity/priorities have shifted in a way that..."</p>
+        <p><strong style="color: var(--gold-light);">Step 3 — Propose new terms:</strong> "Going forward, here's what I can offer, and here's what I need..."</p>
+        <p><strong style="color: var(--gold-light);">Step 4 — Invite negotiation:</strong> "Does this work for you? What would you need from me?"</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- MODULE 9 -->
+<!-- ============================================================ -->
+<div class="module-section" id="module-9">
+  <div class="module-header" data-number="09">
+    <span class="module-number-label">Module 09</span>
+    <h2 class="module-title">Exit Dynamics</h2>
+    <p class="module-subtitle">The Hidden Rules of Leaving Rooms, Jobs, and Relationships Intact</p>
+  </div>
+  <div class="module-accent"></div>
+
+  <div class="module-body">
+
+    <p>How you leave matters as much as how you enter — and far more than most people understand. Poor exits are among the most consistently costly and under-examined mistakes in adult life.</p>
+
+    <div class="pull-quote">
+      <p>People forgive performance problems more easily than they forgive poor exits. How you leave a job, a partnership, or a project resets how the entire experience is remembered.</p>
+    </div>
+
+    <h3 class="section-heading">The Clean Exit Framework</h3>
+
+    <ol class="numbered-list no-break">
+      <li><span><strong>Timely communication</strong> — inform relevant parties as early as honestly possible; surprises damage trust</span></li>
+      <li><span><strong>Clear framing</strong> — articulate the reason in a way that closes loops without assigning blame</span></li>
+      <li><span><strong>Complete handoffs</strong> — ensure the transition is as smooth as possible for those remaining</span></li>
+      <li><span><strong>Positive attribution</strong> — acknowledge what the experience gave you, genuinely and specifically</span></li>
+      <li><span><strong>Preserved relationships</strong> — maintain personal warmth independent of institutional separation</span></li>
+    </ol>
+
+    <h3 class="section-heading">Exit Mistakes to Avoid</h3>
+
+    <div class="callout no-break">
+      <span class="callout-label">Mistake — The Slow Withdrawal</span>
+      <p>Gradually reducing investment without explanation. Creates confusion, resentment, and damaged reputation — and you still have to leave eventually.</p>
+    </div>
+
+    <div class="callout no-break">
+      <span class="callout-label">Mistake — The Venting Exit</span>
+      <p>Using the exit as an opportunity to finally say everything you held back. Feels cathartic. Is almost always net-negative. The audience remembers the venting, not the grievances.</p>
+    </div>
+
+    <div class="callout-dark no-break">
+      <span class="callout-label">Mistake — The Ghost</span>
+      <p>Disappearing without communication. Perceived as the highest form of disrespect in professional and personal contexts. The reputation damage is disproportionate to the discomfort avoided.</p>
+    </div>
+
+    <div class="application-box no-break">
+      <span class="application-label">Practical Application</span>
+      <p class="application-title">Exit Audit</p>
+      <ul class="checklist">
+        <li>Are there past exits that were poorly handled and continue affecting your reputation?</li>
+        <li>Are you currently doing a slow withdrawal from any commitment or relationship?</li>
+        <li>For your next expected exit, have you planned the five clean-exit components?</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- MODULE 10 -->
+<!-- ============================================================ -->
+<div class="module-section" id="module-10">
+  <div class="module-header" data-number="10">
+    <span class="module-number-label">Module 10</span>
+    <h2 class="module-title">The Curriculum<br>Self-Audit</h2>
+    <p class="module-subtitle">Where Your Gaps Are and How to Close Them</p>
+  </div>
+  <div class="module-accent"></div>
+
+  <div class="module-body">
+
+    <p>No one has all ten modules fully developed. Most people have two or three areas of genuine fluency, three or four areas of awareness, and two or three areas of significant blindness. This self-audit maps your specific gap profile so you can build a targeted development plan.</p>
+
+    <h3 class="section-heading">The Self-Audit Assessment</h3>
+
+    <div class="table-wrapper no-break">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Module</th>
+          <th>Assessment Question</th>
+          <th>Score (1–5)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>01</td>
+          <td>Dual-Layer System</td>
+          <td>Can you read stated vs. actual rules in real time?</td>
+          <td><span class="score-blank">&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+        </tr>
+        <tr>
+          <td>02</td>
+          <td>Social Perception</td>
+          <td>Do you understand how you are currently priced?</td>
+          <td><span class="score-blank">&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+        </tr>
+        <tr>
+          <td>03</td>
+          <td>Status Mechanics</td>
+          <td>Do you manage status consciously and effectively?</td>
+          <td><span class="score-blank">&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+        </tr>
+        <tr>
+          <td>04</td>
+          <td>Information Asymmetry</td>
+          <td>Are you positioned in Zones 2 and 3?</td>
+          <td><span class="score-blank">&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+        </tr>
+        <tr>
+          <td>05</td>
+          <td>Influence Without Authority</td>
+          <td>Can you move people without positional power?</td>
+          <td><span class="score-blank">&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+        </tr>
+        <tr>
+          <td>06</td>
+          <td>Narrative Control</td>
+          <td>Do you shape how situations are understood?</td>
+          <td><span class="score-blank">&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+        </tr>
+        <tr>
+          <td>07</td>
+          <td>Loyalty Architecture</td>
+          <td>Have you intentionally built your alliance network?</td>
+          <td><span class="score-blank">&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+        </tr>
+        <tr>
+          <td>08</td>
+          <td>Behavioral Contracts</td>
+          <td>Are you aware of your implicit contracts?</td>
+          <td><span class="score-blank">&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+        </tr>
+        <tr>
+          <td>09</td>
+          <td>Exit Dynamics</td>
+          <td>Do you manage transitions cleanly and strategically?</td>
+          <td><span class="score-blank">&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="framework-box no-break">
+      <span class="framework-label">Scoring Guide</span>
+      <div class="framework-title">How to Read Your Results</div>
+      <div class="framework-content">
+        <p><strong style="color: var(--gold-light);">1–2 — Immediate Priority:</strong> These gaps are actively costing you. Start here first.</p>
+        <p><strong style="color: var(--gold-light);">3 — Development Zone:</strong> You understand the concept but aren't executing consistently. Pick one environment for deliberate practice.</p>
+        <p><strong style="color: var(--gold-light);">4–5 — Maintain and Apply:</strong> Examine whether these strengths are being fully leveraged.</p>
+      </div>
+    </div>
+
+    <h3 class="section-heading">The 90-Day Development Plan</h3>
+
+    <ol class="numbered-list no-break">
+      <li><span><strong>Identify your two lowest-scoring modules</strong> — these are your highest-priority gaps</span></li>
+      <li><span><strong>Choose one environment for practice</strong> — your current job, a specific relationship, or a project</span></li>
+      <li><span><strong>Assign one concrete behavior change per module</strong> — not a mindset shift; a specific, observable behavior</span></li>
+      <li><span><strong>Set a 30-day check-in</strong> — did the behavior change? What result did it produce?</span></li>
+      <li><span><strong>Expand to the next lowest module at day 60</strong> — compound the gains</span></li>
+    </ol>
+
+    <div class="callout-dark no-break">
+      <span class="callout-label">The Compounding Effect</span>
+      <p>These modules reinforce each other. Status affects narrative control. Information asymmetry affects influence. Exit dynamics affect loyalty architecture. As fluency across modules develops, the compounding capability grows significantly faster than isolated improvement in any single area.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- QUICK REFERENCE SUMMARY -->
+<!-- ============================================================ -->
+<div class="summary-page">
+
+  <div class="summary-header">
+    <span class="summary-label">Quick Reference</span>
+    <h2 class="summary-title">The Complete Curriculum<br>at a Glance</h2>
+  </div>
+
+  <div class="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Module</th>
+        <th>Core Concept</th>
+        <th>Key Action</th>
+        <th>Your Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>01 — Dual-Layer</td>
+        <td>Every environment has stated and actual rules</td>
+        <td>Run a dual-layer read in each new environment</td>
+        <td><span class="score-blank">&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      </tr>
+      <tr>
+        <td>02 — Perception</td>
+        <td>You are constantly being priced by others</td>
+        <td>Audit your perception signals and anchors</td>
+        <td><span class="score-blank">&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      </tr>
+      <tr>
+        <td>03 — Status</td>
+        <td>Status is currency; it can be built and managed</td>
+        <td>Track your status deposits and withdrawals</td>
+        <td><span class="score-blank">&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      </tr>
+      <tr>
+        <td>04 — Information</td>
+        <td>Information access = power access</td>
+        <td>Build Zone 2 and 3 information relationships</td>
+        <td><span class="score-blank">&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      </tr>
+      <tr>
+        <td>05 — Influence</td>
+        <td>Influence ≠ authority; it is earned and compounded</td>
+        <td>Develop perceived value + trust + relationship depth</td>
+        <td><span class="score-blank">&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      </tr>
+      <tr>
+        <td>06 — Narrative</td>
+        <td>Whoever names the story controls the outcome</td>
+        <td>Frame before others do; anchor the future</td>
+        <td><span class="score-blank">&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      </tr>
+      <tr>
+        <td>07 — Loyalty</td>
+        <td>Outcomes follow alliances, not just performance</td>
+        <td>Move key relationships up the loyalty stack</td>
+        <td><span class="score-blank">&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      </tr>
+      <tr>
+        <td>08 — Contracts</td>
+        <td>All relationships run on implicit agreements</td>
+        <td>Audit and renegotiate behavioral contracts</td>
+        <td><span class="score-blank">&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      </tr>
+      <tr>
+        <td>09 — Exits</td>
+        <td>How you leave determines how you are remembered</td>
+        <td>Execute clean exits with five components</td>
+        <td><span class="score-blank">&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- CLOSING PAGE -->
+<!-- ============================================================ -->
+<div class="closing-page">
+  <div class="closing-top-accent"></div>
+
+  <div class="closing-content">
+    <div class="closing-label">Conclusion</div>
+
+    <h2 class="closing-headline">You Now Have<br>The <em>Map</em></h2>
+
+    <p class="closing-text">
+      You have been given ten modules of the education that should have been universal but wasn't. This is not a competitive advantage in a zero-sum sense — understanding social reality more clearly does not require operating against others.
+    </p>
+
+    <p class="closing-text">
+      The most effective application of this curriculum is generative: building better relationships, navigating conflict more cleanly, influencing more effectively, and contributing more fully to every environment you enter.
+    </p>
+
+    <div class="closing-divider"></div>
+
+    <p class="closing-reminder">
+      "Most people will spend their entire adult lives operating from the stated-rules layer, wondering why outcomes don't match their effort. You now have the map. Use it well."
+    </p>
+  </div>
+
+  <div class="closing-footer">
+    <div class="closing-brand">Lazy Scholar PH</div>
+    <div class="closing-tagline">Premium Knowledge Resources &nbsp;&bull;&nbsp; The Education You Actually Need</div>
+  </div>
+</div>
+
+</div><!-- end .document -->
+
+</body>
+</html>

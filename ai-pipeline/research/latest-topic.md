@@ -1,4 +1,9 @@
-Status: READY_FOR_WRITING
+Status: COMPLETED
+Completed: 2026-06-01
+Output Files:
+- ai-pipeline/drafts/2026-06-01-article.md
+- ai-pipeline/drafts/2026-06-01-article.html
+- ai-pipeline/pdfs/2026-06-01-premium.pdf
 
 Title: The Invisible Curriculum: What Nobody Teaches You About How Adult Social Reality Actually Works
 
