@@ -1,4 +1,4 @@
-Status: READY_FOR_WRITING
+Status: COMPLETED
 
 Title: The Manipulation Map: How to Recognize, Decode, and Neutralize Psychological Influence Before It Works on You
 
