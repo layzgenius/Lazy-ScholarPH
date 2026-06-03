@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>The Composure Code — Lazy Scholar PH</title>
+<style>
+/* ─── BASE ─── */
+@page { size: A4; margin: 18mm 18mm 16mm 18mm; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 11pt; }
+body { font-family: Georgia, "Times New Roman", serif; background: #FFFFFF; color: #2D2D2D; line-height: 1.75; }
+
+/* ─── COLOURS ─── */
+/* --navy #1A1A2E  --gold #C9A84C  --slate #5A6B7B  --cream #FAF8F3  --crimson #C84B31 */
+
+/* ════════════════════════════
+   TITLE PAGE
+════════════════════════════ */
+.title-page {
+  page-break-after: always;
+  background: #1A1A2E;
+  margin: -18mm -18mm 0 -18mm;
+  padding: 32mm 22mm 28mm;
+  text-align: center;
+  min-height: 257mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.brand-badge {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 7.5pt;
+  font-weight: bold;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #C9A84C;
+  border: 1px solid #C9A84C;
+  display: inline-block;
+  padding: 5px 14px;
+  margin-bottom: 16mm;
+}
+.title-ornament {
+  width: 50px;
+  height: 3px;
+  background: #C9A84C;
+  margin: 0 auto 10mm;
+}
+.main-title {
+  font-family: Georgia, serif;
+  font-size: 40pt;
+  font-weight: bold;
+  color: #FFFFFF;
+  line-height: 1.1;
+  margin-bottom: 6mm;
+  letter-spacing: -0.5px;
+}
+.main-title .gold { color: #C9A84C; }
+.main-title .break { display: block; font-size: 28pt; color: rgba(255,255,255,0.7); font-style: italic; font-weight: normal; margin-top: 5mm; line-height: 1.3; }
+.title-rule { width: 70px; height: 1px; background: rgba(201,168,76,0.5); margin: 10mm auto; }
+.subtitle {
+  font-family: Georgia, serif;
+  font-size: 11.5pt;
+  font-style: italic;
+  color: rgba(255,255,255,0.55);
+  max-width: 130mm;
+  line-height: 1.6;
+  margin: 0 auto 16mm;
+}
+.title-descriptor {
+  font-family: Arial, sans-serif;
+  font-size: 7pt;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+.title-footer {
+  margin-top: 22mm;
+  font-family: Arial, sans-serif;
+  font-size: 7pt;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ════════════════════════════
+   TABLE OF CONTENTS
+════════════════════════════ */
+.toc-page { page-break-after: always; padding-top: 4mm; }
+.toc-header {
+  text-align: center;
+  border-bottom: 2px solid #1A1A2E;
+  padding-bottom: 5mm;
+  margin-bottom: 9mm;
+}
+.toc-header h2 {
+  font-family: Georgia, serif;
+  font-size: 20pt;
+  font-weight: bold;
+  color: #1A1A2E;
+  letter-spacing: 0.5px;
+}
+.toc-header .toc-sub {
+  font-family: Arial, sans-serif;
+  font-size: 7.5pt;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #C9A84C;
+  margin-top: 2mm;
+}
+.toc-row {
+  border-bottom: 1px solid #DDD5C8;
+  padding: 5px 0;
+  overflow: hidden;
+}
+.toc-row.section-row { margin-top: 3mm; }
+.toc-num { font-family: Arial, sans-serif; font-size: 7.5pt; font-weight: bold; color: #C9A84C; float: left; width: 28px; padding-top: 2px; }
+.toc-title { font-family: Georgia, serif; font-size: 11pt; color: #1A1A2E; float: left; max-width: 130mm; }
+.toc-title.sub { color: #5A6B7B; font-size: 10pt; padding-left: 22px; font-style: italic; }
+.toc-pg { font-family: Arial, sans-serif; font-size: 8pt; color: #5A6B7B; float: right; padding-top: 2px; }
+.toc-clear { clear: both; }
+.toc-intro-text {
+  font-family: Georgia, serif;
+  font-size: 10.5pt;
+  font-style: italic;
+  color: #5A6B7B;
+  text-align: center;
+  margin-bottom: 7mm;
+  line-height: 1.6;
+}
+
+/* ════════════════════════════
+   SECTION OPENER
+════════════════════════════ */
+.section-opener {
+  page-break-before: always;
+  background: #1A1A2E;
+  margin: -18mm -18mm 12mm -18mm;
+  padding: 14mm 20mm 12mm;
+}
+.section-label {
+  font-family: Arial, sans-serif;
+  font-size: 7pt;
+  font-weight: bold;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #C9A84C;
+  margin-bottom: 4mm;
+}
+.section-title {
+  font-family: Georgia, serif;
+  font-size: 27pt;
+  font-weight: bold;
+  color: #FFFFFF;
+  line-height: 1.2;
+  margin-bottom: 4mm;
+}
+.section-subtitle {
+  font-family: Georgia, serif;
+  font-size: 10.5pt;
+  font-style: italic;
+  color: rgba(255,255,255,0.5);
+}
+
+/* ════════════════════════════
+   HEADINGS
+════════════════════════════ */
+h2 {
+  font-family: Georgia, serif;
+  font-size: 17pt;
+  font-weight: bold;
+  color: #1A1A2E;
+  line-height: 1.3;
+  margin-top: 10mm;
+  margin-bottom: 3mm;
+  padding-bottom: 2mm;
+  border-bottom: 2px solid #1A1A2E;
+}
+h3 {
+  font-family: Arial, sans-serif;
+  font-size: 8pt;
+  font-weight: bold;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: #C84B31;
+  margin-top: 7mm;
+  margin-bottom: 3mm;
+}
+h4 {
+  font-family: Georgia, serif;
+  font-size: 12pt;
+  font-weight: bold;
+  color: #1A1A2E;
+  margin-top: 5mm;
+  margin-bottom: 2mm;
+}
+
+/* ─── BODY TEXT ─── */
+p { font-family: Georgia, serif; font-size: 11pt; line-height: 1.82; color: #2D2D2D; margin-bottom: 3.5mm; }
+strong { font-weight: bold; color: #1A1A2E; }
+em { font-style: italic; color: #2C3E50; }
+ul, ol { padding-left: 7mm; margin-bottom: 4mm; }
+li { font-family: Georgia, serif; font-size: 11pt; line-height: 1.75; color: #2D2D2D; margin-bottom: 2mm; }
+li strong { color: #1A1A2E; }
+
+/* ════════════════════════════
+   PULL QUOTE
+════════════════════════════ */
+.pull-quote {
+  background: #1A1A2E;
+  border-left: 5px solid #C9A84C;
+  padding: 7mm 10mm;
+  margin: 8mm 0;
+}
+.pull-quote p {
+  font-family: Georgia, serif;
+  font-size: 12.5pt;
+  font-style: italic;
+  color: #FFFFFF;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ════════════════════════════
+   CALLOUT BOX
+════════════════════════════ */
+.callout {
+  background: #F3EDE0;
+  border: 1.5px solid #E8D5A3;
+  border-left: 5px solid #C9A84C;
+  padding: 5mm 7mm;
+  margin: 6mm 0;
+}
+.callout-label {
+  font-family: Arial, sans-serif;
+  font-size: 7pt;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #C9A84C;
+  margin-bottom: 3mm;
+}
+.callout p { font-size: 11pt; color: #2C3E50; margin: 0; }
+
+/* ════════════════════════════
+   INSIGHT BOX
+════════════════════════════ */
+.insight-box { background: #EEF2F7; border-left: 5px solid #1A1A2E; padding: 4mm 7mm; margin: 5mm 0; }
+.insight-box .insight-label {
+  font-family: Arial, sans-serif;
+  font-size: 7pt;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #1A1A2E;
+  margin-bottom: 2mm;
+}
+.insight-box p { color: #1A1A2E; font-size: 10.5pt; margin: 0; }
+
+/* ════════════════════════════
+   TYPE CARD (ATTACK PATTERNS)
+════════════════════════════ */
+.type-card {
+  border: 1.5px solid #DDD5C8;
+  border-top: 4px solid #1A1A2E;
+  padding: 5mm 6mm;
+  margin: 4mm 0;
+  background: #FFFFFF;
+}
+.type-card-label {
+  font-family: Arial, sans-serif;
+  font-size: 7pt;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #5A6B7B;
+  margin-bottom: 3mm;
+}
+.type-card h4 { margin-top: 0; color: #1A1A2E; font-size: 11.5pt; }
+.type-card p { font-size: 10.5pt; color: #2D2D2D; margin-bottom: 2mm; }
+.type-card .counter { color: #C84B31; font-weight: bold; }
+
+/* ════════════════════════════
+   STEP BOX (NUMBERED PROTOCOL)
+════════════════════════════ */
+.step-box { display: flex; gap: 5mm; margin: 3mm 0 4mm; align-items: flex-start; }
+.step-num {
+  background: #1A1A2E;
+  color: #C9A84C;
+  font-family: Arial, sans-serif;
+  font-size: 9pt;
+  font-weight: bold;
+  min-width: 8mm;
+  height: 8mm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 0.5mm;
+}
+.step-content p { margin: 0; font-size: 10.5pt; line-height: 1.7; }
+.step-content strong { color: #1A1A2E; }
+
+/* ════════════════════════════
+   CHECKLIST
+════════════════════════════ */
+.checklist { list-style: none; padding-left: 0; margin-bottom: 5mm; }
+.checklist li {
+  padding-left: 7mm;
+  position: relative;
+  font-size: 10.5pt;
+  margin-bottom: 2.5mm;
+  color: #2D2D2D;
+  line-height: 1.65;
+}
+.checklist li::before {
+  content: "☐";
+  position: absolute;
+  left: 0;
+  color: #C9A84C;
+  font-size: 11pt;
+}
+.checklist-section {
+  border: 1.5px solid #DDD5C8;
+  border-top: 4px solid #C9A84C;
+  padding: 5mm 6mm;
+  margin: 4mm 0;
+  background: #FAF8F3;
+}
+.checklist-section-title {
+  font-family: Arial, sans-serif;
+  font-size: 7.5pt;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #1A1A2E;
+  margin-bottom: 4mm;
+}
+
+/* ════════════════════════════
+   SCENARIO BOX
+════════════════════════════ */
+.scenario-box {
+  border: 1.5px solid #DDD5C8;
+  border-left: 5px solid #C84B31;
+  padding: 5mm 7mm;
+  margin: 5mm 0;
+}
+.scenario-label {
+  font-family: Arial, sans-serif;
+  font-size: 7pt;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #C84B31;
+  margin-bottom: 2mm;
+}
+.scenario-box h4 { margin-top: 0; font-size: 11.5pt; }
+.scenario-box p { font-size: 10.5pt; margin-bottom: 2mm; }
+
+/* ════════════════════════════
+   LAYER VISUAL
+════════════════════════════ */
+.layer-stack { margin: 6mm 0; }
+.layer {
+  display: flex;
+  align-items: stretch;
+  margin-bottom: 2mm;
+}
+.layer-num {
+  background: #1A1A2E;
+  color: #C9A84C;
+  font-family: Arial, sans-serif;
+  font-size: 8pt;
+  font-weight: bold;
+  padding: 4mm 5mm;
+  min-width: 28mm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.layer-content {
+  flex: 1;
+  border: 1.5px solid #DDD5C8;
+  border-left: none;
+  padding: 3mm 6mm;
+  background: #FAF8F3;
+}
+.layer-content strong { font-size: 10.5pt; color: #1A1A2E; display: block; margin-bottom: 1mm; }
+.layer-content span { font-size: 10pt; color: #5A6B7B; font-style: italic; }
+
+/* ════════════════════════════
+   SOCIAL PRINCIPLE / KEY PRINCIPLE
+════════════════════════════ */
+.principle-box {
+  background: #1A1A2E;
+  padding: 6mm 8mm;
+  margin: 7mm 0;
+  border-left: 5px solid #C9A84C;
+}
+.principle-label {
+  font-family: Arial, sans-serif;
+  font-size: 7pt;
+  font-weight: bold;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #C9A84C;
+  margin-bottom: 3mm;
+}
+.principle-box p {
+  font-family: Georgia, serif;
+  font-size: 11pt;
+  color: #FFFFFF;
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* ════════════════════════════
+   TRIGGER CATEGORY CARD
+════════════════════════════ */
+.trigger-grid { display: flex; gap: 4mm; margin: 5mm 0; flex-wrap: wrap; }
+.trigger-card {
+  flex: 1;
+  min-width: 50mm;
+  border: 1.5px solid #DDD5C8;
+  border-top: 4px solid #C84B31;
+  padding: 4mm 5mm;
+  background: #FFFFFF;
+}
+.trigger-card-num {
+  font-family: Arial, sans-serif;
+  font-size: 7pt;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #C84B31;
+  margin-bottom: 2mm;
+}
+.trigger-card h4 { margin-top: 0; font-size: 11pt; margin-bottom: 2mm; }
+.trigger-card p { font-size: 10pt; margin: 0; color: #5A6B7B; line-height: 1.6; }
+
+/* ════════════════════════════
+   PRESENCE COMPONENT
+════════════════════════════ */
+.presence-grid { margin: 5mm 0; }
+.presence-row {
+  display: flex;
+  gap: 4mm;
+  margin-bottom: 3mm;
+  align-items: flex-start;
+}
+.presence-icon {
+  background: #C9A84C;
+  color: #1A1A2E;
+  font-family: Arial, sans-serif;
+  font-size: 8pt;
+  font-weight: bold;
+  padding: 2mm 3mm;
+  min-width: 8mm;
+  text-align: center;
+  flex-shrink: 0;
+  margin-top: 0.5mm;
+}
+.presence-row p { font-size: 10.5pt; margin: 0; line-height: 1.65; }
+
+/* ════════════════════════════
+   AUDIT DOMAIN TABLE
+════════════════════════════ */
+.audit-table { width: 100%; border-collapse: collapse; margin: 5mm 0; }
+.audit-table th {
+  background: #1A1A2E;
+  color: #C9A84C;
+  font-family: Arial, sans-serif;
+  font-size: 8pt;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 3mm 4mm;
+  text-align: left;
+}
+.audit-table td {
+  font-family: Georgia, serif;
+  font-size: 10.5pt;
+  color: #2D2D2D;
+  padding: 3mm 4mm;
+  border-bottom: 1px solid #DDD5C8;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.audit-table tr:nth-child(even) td { background: #FAF8F3; }
+.audit-domain-label {
+  font-family: Arial, sans-serif;
+  font-size: 7.5pt;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #C84B31;
+}
+
+/* ════════════════════════════
+   RESET STEP (special)
+════════════════════════════ */
+.reset-step {
+  display: flex;
+  gap: 5mm;
+  margin-bottom: 4mm;
+  align-items: flex-start;
+}
+.reset-num {
+  background: #C84B31;
+  color: #FFFFFF;
+  font-family: Arial, sans-serif;
+  font-size: 9.5pt;
+  font-weight: bold;
+  min-width: 9mm;
+  height: 9mm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.reset-content h4 { margin-top: 0; margin-bottom: 1mm; font-size: 11pt; }
+.reset-content p { font-size: 10.5pt; margin: 0; line-height: 1.65; }
+
+/* ════════════════════════════
+   CLOSING PAGE
+════════════════════════════ */
+.closing-page {
+  page-break-before: always;
+  background: #1A1A2E;
+  margin: -18mm -18mm -16mm -18mm;
+  padding: 30mm 22mm;
+  text-align: center;
+  min-height: 257mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.closing-ornament { width: 50px; height: 3px; background: #C9A84C; margin: 0 auto 12mm; }
+.closing-headline {
+  font-family: Georgia, serif;
+  font-size: 30pt;
+  font-weight: bold;
+  color: #FFFFFF;
+  line-height: 1.2;
+  margin-bottom: 8mm;
+}
+.closing-headline .gold { color: #C9A84C; }
+.closing-subhead {
+  font-family: Georgia, serif;
+  font-size: 12pt;
+  font-style: italic;
+  color: rgba(255,255,255,0.5);
+  max-width: 120mm;
+  line-height: 1.6;
+  margin-bottom: 16mm;
+}
+.closing-rule { width: 70px; height: 1px; background: rgba(201,168,76,0.4); margin: 0 auto 12mm; }
+.closing-tagline {
+  font-family: Arial, sans-serif;
+  font-size: 7.5pt;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 5mm;
+}
+.closing-brand {
+  font-family: Arial, sans-serif;
+  font-size: 9pt;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #C9A84C;
+}
+.closing-url {
+  font-family: Arial, sans-serif;
+  font-size: 8.5pt;
+  color: rgba(255,255,255,0.3);
+  margin-top: 3mm;
+}
+.closing-disclaimer {
+  margin-top: 20mm;
+  font-family: Arial, sans-serif;
+  font-size: 7pt;
+  color: rgba(255,255,255,0.15);
+  max-width: 140mm;
+  line-height: 1.5;
+}
+
+/* ════════════════════════════
+   PAGE DIVIDER
+════════════════════════════ */
+.divider { border: none; border-top: 1px solid #DDD5C8; margin: 7mm 0; }
+.gold-divider { border: none; border-top: 2px solid #C9A84C; width: 50px; margin: 5mm 0; }
+
+/* ─── INTRO SECTION (no section-opener) ─── */
+.intro-section { padding-top: 4mm; }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════ TITLE PAGE ════════════════════════ -->
+<div class="title-page">
+  <div class="brand-badge">Lazy Scholar PH</div>
+  <div class="title-ornament"></div>
+  <h1 class="main-title">
+    The <span class="gold">Composure</span> Code
+    <span class="break">How Emotional Regulation Becomes Social Power</span>
+  </h1>
+  <div class="title-rule"></div>
+  <p class="subtitle">A systematic architecture for managing your emotional output — across conflict, pressure, provocation, and every high-stakes situation where composure is the margin between winning and losing.</p>
+  <p class="title-descriptor">Premium Guide &nbsp;·&nbsp; Behavioral Strategy &nbsp;·&nbsp; Social Intelligence</p>
+  <div class="title-footer">© 2026 Lazy Scholar PH &nbsp;·&nbsp; All Rights Reserved</div>
+</div>
+
+<!-- ════════════════════════ TABLE OF CONTENTS ════════════════════════ -->
+<div class="toc-page">
+  <div class="toc-header">
+    <p class="toc-sub">Contents</p>
+    <h2>Table of Contents</h2>
+  </div>
+  <p class="toc-intro-text">Eight frameworks. One architecture. Built for real conditions.</p>
+
+  <div class="toc-row section-row"><span class="toc-num">I</span><span class="toc-title">Introduction: The Cost of Breaking</span><span class="toc-pg">3</span><div class="toc-clear"></div></div>
+  <div class="toc-row section-row"><span class="toc-num">01</span><span class="toc-title">The Composure Stack</span><span class="toc-pg">4</span><div class="toc-clear"></div></div>
+  <div class="toc-row"><span class="toc-num"></span><span class="toc-title sub">The 3-Layer Model &amp; Cascade Mechanics</span><span class="toc-pg">4</span><div class="toc-clear"></div></div>
+  <div class="toc-row section-row"><span class="toc-num">02</span><span class="toc-title">Trigger Mapping</span><span class="toc-pg">6</span><div class="toc-clear"></div></div>
+  <div class="toc-row"><span class="toc-num"></span><span class="toc-title sub">Personal Early-Warning System</span><span class="toc-pg">6</span><div class="toc-clear"></div></div>
+  <div class="toc-row section-row"><span class="toc-num">03</span><span class="toc-title">The 4-Second Window</span><span class="toc-pg">8</span><div class="toc-clear"></div></div>
+  <div class="toc-row"><span class="toc-num"></span><span class="toc-title sub">Neurological Gap Protocol &amp; Window Expansion</span><span class="toc-pg">8</span><div class="toc-clear"></div></div>
+  <div class="toc-row section-row"><span class="toc-num">04</span><span class="toc-title">Composure Under Social Attack</span><span class="toc-pg">10</span><div class="toc-clear"></div></div>
+  <div class="toc-row"><span class="toc-num"></span><span class="toc-title sub">Four Attack Patterns &amp; Their Counters</span><span class="toc-pg">10</span><div class="toc-clear"></div></div>
+  <div class="toc-row section-row"><span class="toc-num">05</span><span class="toc-title">Workplace Composure Protocol</span><span class="toc-pg">13</span><div class="toc-clear"></div></div>
+  <div class="toc-row"><span class="toc-num"></span><span class="toc-title sub">Five High-Stakes Professional Scenarios</span><span class="toc-pg">13</span><div class="toc-clear"></div></div>
+  <div class="toc-row section-row"><span class="toc-num">06</span><span class="toc-title">The Emotional Output Audit</span><span class="toc-pg">16</span><div class="toc-clear"></div></div>
+  <div class="toc-row"><span class="toc-num"></span><span class="toc-title sub">Four-Domain Review Framework</span><span class="toc-pg">16</span><div class="toc-clear"></div></div>
+  <div class="toc-row section-row"><span class="toc-num">07</span><span class="toc-title">Cold Presence Architecture</span><span class="toc-pg">18</span><div class="toc-clear"></div></div>
+  <div class="toc-row"><span class="toc-num"></span><span class="toc-title sub">Calm Authority Without Emotional Flatness</span><span class="toc-pg">18</span><div class="toc-clear"></div></div>
+  <div class="toc-row section-row"><span class="toc-num">08</span><span class="toc-title">The Regulation Reset</span><span class="toc-pg">20</span><div class="toc-clear"></div></div>
+  <div class="toc-row"><span class="toc-num"></span><span class="toc-title sub">5-Step Post-Break Recovery Protocol</span><span class="toc-pg">20</span><div class="toc-clear"></div></div>
+  <div class="toc-row section-row"><span class="toc-num">↓</span><span class="toc-title">Master Checklist &amp; Quick Reference</span><span class="toc-pg">22</span><div class="toc-clear"></div></div>
+</div>
+
+<!-- ════════════════════════ INTRODUCTION ════════════════════════ -->
+<div class="intro-section">
+  <div class="section-opener">
+    <div class="section-label">Introduction</div>
+    <div class="section-title">The Cost of Breaking</div>
+    <div class="section-subtitle">Why composure is not a personality trait — it's a competitive system</div>
+  </div>
+
+  <p>There is a specific moment most people remember. A meeting where they snapped. A confrontation where their voice cracked. A negotiation where frustration showed on their face — and they watched the other person register it, and use it.</p>
+
+  <p>Composure isn't just about feeling calm. It is the signal you broadcast to every social environment you enter. <strong>The brain reads visible calm as evidence of control, competence, and high status.</strong> Dysregulation — visible anger, anxiety, or reactivity — reads as weakness or threat at the primal social level. It costs you authority before you've spoken a word.</p>
+
+  <div class="pull-quote">
+    <p>"Composure is not emotional suppression. It is the external signal of an internally stable architecture — and that architecture can be built deliberately."</p>
+  </div>
+
+  <p>This guide is not therapy. It is not a mindfulness practice. It is a systematic architecture for managing your emotional output in real time — across conflict, pressure, provocation, and every high-stakes situation where the margin between composed and reactive is the margin between winning and losing.</p>
+
+  <div class="callout">
+    <div class="callout-label">What This Guide Is</div>
+    <p>A behavioral system for emotional regulation framed as social strategy. Eight frameworks built on neuroscience, social psychology, and applied behavioral architecture. The goal is not to feel less — it is to output more deliberately.</p>
+  </div>
+</div>
+
+<!-- ════════════════════════ PART 1: COMPOSURE STACK ════════════════════════ -->
+<div class="section-opener">
+  <div class="section-label">Framework 01</div>
+  <div class="section-title">The Composure Stack</div>
+  <div class="section-subtitle">The 3-layer model and why breaks cascade upward</div>
+</div>
+
+<h3>The 3-Layer Model</h3>
+<p>Composure doesn't break randomly. It breaks in a predictable sequence — and understanding that sequence is the first step toward interrupting it.</p>
+
+<div class="layer-stack">
+  <div class="layer">
+    <div class="layer-num">Layer 1</div>
+    <div class="layer-content"><strong>Nervous System</strong><span>Physiological baseline — heart rate, cortisol, muscle tension, breathing. Pre-cognitive. Fires before you think.</span></div>
+  </div>
+  <div class="layer">
+    <div class="layer-num">Layer 2</div>
+    <div class="layer-content"><strong>Cognition</strong><span>Once the nervous system activates, rational processing narrows. Threat interpretation amplifies. Misreads become automatic.</span></div>
+  </div>
+  <div class="layer">
+    <div class="layer-num">Layer 3</div>
+    <div class="layer-content"><strong>Social Output</strong><span>What everyone sees — tone, expression, word choice, posture. The visible consequence of Layers 1 and 2.</span></div>
+  </div>
+</div>
+
+<div class="principle-box">
+  <div class="principle-label">Key Principle</div>
+  <p>You cannot reliably manage your social output without managing the layers beneath it. Most people try to control Layer 3 directly — trying to "look calm" — without addressing the cascade below. That is why surface-level composure collapses under real pressure. The Composure Code works from Layer 1 upward.</p>
+</div>
+
+<h3>Why Breaks Cascade</h3>
+<p>A nervous system activation that isn't interrupted in Layer 1 becomes a cognitive distortion in Layer 2, which presents as visible dysregulation in Layer 3. Each escalation takes approximately 4–7 seconds. This is the window you have to work with.</p>
+
+<div class="insight-box">
+  <div class="insight-label">Behavioral Insight</div>
+  <p>Observers assign composure breaks to character, not circumstance. When they see your Layer 3 break, they draw conclusions about your internal stability — and those conclusions become part of your social reputation.</p>
+</div>
+
+<!-- ════════════════════════ PART 2: TRIGGER MAPPING ════════════════════════ -->
+<div class="section-opener">
+  <div class="section-label">Framework 02</div>
+  <div class="section-title">Trigger Mapping</div>
+  <div class="section-subtitle">Building your personal early-warning system</div>
+</div>
+
+<p>You cannot regulate what you cannot predict. Trigger mapping identifies your specific dysregulation patterns <em>before</em> they activate, so that your response is a prepared protocol, not an improvised reaction.</p>
+
+<h3>The Three Trigger Categories</h3>
+
+<div class="trigger-grid">
+  <div class="trigger-card">
+    <div class="trigger-card-num">Category 1</div>
+    <h4>Context Triggers</h4>
+    <p>Environments that reliably elevate your baseline — performance reviews, open-plan offices, public presentations, confrontational family settings.</p>
+  </div>
+  <div class="trigger-card">
+    <div class="trigger-card-num">Category 2</div>
+    <h4>Relational Triggers</h4>
+    <p>Specific individuals or dynamics — dismissive colleagues, authority figures, those who use contempt as communication, those who challenge competence publicly.</p>
+  </div>
+  <div class="trigger-card">
+    <div class="trigger-card-num">Category 3</div>
+    <h4>Conversational Triggers</h4>
+    <p>Topics, tones, or patterns — being interrupted, having motives questioned, dismissal framed as logic, being talked over in group settings.</p>
+  </div>
+</div>
+
+<h3>The Trigger Map Exercise</h3>
+<p>Take 15 minutes. Write down your five most significant composure breaks in the last two years. For each one, answer:</p>
+<ul>
+  <li>What was the environment?</li>
+  <li>Who was present?</li>
+  <li>What specifically was said or done?</li>
+  <li><strong>What physical sensation preceded the visible break?</strong></li>
+</ul>
+
+<div class="callout">
+  <div class="callout-label">Your Early Warning Signal</div>
+  <p>That physical sensation — chest tightening, jaw clenching, a flush of heat — is your Layer 1 activation signal. It fires <em>before</em> Layer 3 breaks. Learning to recognize it in real time gives you access to the 4-second window.</p>
+</div>
+
+<div class="pull-quote">
+  <p>"Composure isn't built in the moment. It's built by knowing, in advance, exactly which moments will test it."</p>
+</div>
+
+<!-- ════════════════════════ PART 3: 4-SECOND WINDOW ════════════════════════ -->
+<div class="section-opener">
+  <div class="section-label">Framework 03</div>
+  <div class="section-title">The 4-Second Window</div>
+  <div class="section-subtitle">The neurological gap where response choice lives</div>
+</div>
+
+<p>Between the activation of your threat response and your visible social output, there is a 4-second gap. This is not metaphor — it is the neurological processing time between amygdala activation and prefrontal cortex re-engagement. Most people spend this window automatically. The Composure Code is a protocol for spending it deliberately.</p>
+
+<h3>The 4-Second Protocol</h3>
+<p>When you detect your early warning signal, execute this sequence:</p>
+
+<div class="step-box">
+  <div class="step-num">1</div>
+  <div class="step-content"><p><strong>Register (0.5 sec) —</strong> Name what's happening internally: <em>"My nervous system just activated."</em> This single act of affect labeling activates the prefrontal cortex and measurably reduces amygdala reactivity. It begins the cascade interruption.</p></div>
+</div>
+<div class="step-box">
+  <div class="step-num">2</div>
+  <div class="step-content"><p><strong>Breathe Down (1.5 sec) —</strong> One deliberate exhale, longer than the inhale. A 4-second inhale followed by a 6-second exhale triggers the parasympathetic response. This is a biological interrupt at Layer 1.</p></div>
+</div>
+<div class="step-box">
+  <div class="step-num">3</div>
+  <div class="step-content"><p><strong>Choose the Output (1 sec) —</strong> Ask one question: <em>"What response serves my strategic position here?"</em> Not what you feel like saying — what response preserves or advances your standing.</p></div>
+</div>
+<div class="step-box">
+  <div class="step-num">4</div>
+  <div class="step-content"><p><strong>Execute Deliberately (1 sec) —</strong> Respond at 80% of your normal pace. Slowing speech by 20% signals cognitive control to observers — and to your own nervous system. It reads as authority, not hesitation.</p></div>
+</div>
+
+<h3>Expanding the Window Under Pressure</h3>
+<p>The 4-second window is a floor, not a ceiling. In high-stakes situations, extend it using a legitimate delay phrase:</p>
+
+<div class="callout">
+  <div class="callout-label">Delay Phrases</div>
+  <p><em>"Let me make sure I understand what you're saying."</em> &nbsp;·&nbsp; <em>"That's worth thinking through carefully."</em> &nbsp;·&nbsp; <em>"Give me a moment on that."</em><br><br>Each phrase buys 10–15 additional seconds while signaling careful processing — which is itself a composure signal.</p>
+</div>
+
+<!-- ════════════════════════ PART 4: SOCIAL ATTACK ════════════════════════ -->
+<div class="section-opener">
+  <div class="section-label">Framework 04</div>
+  <div class="section-title">Composure Under Social Attack</div>
+  <div class="section-subtitle">Handling provocation, contempt, and deliberate destabilization</div>
+</div>
+
+<p>Some composure challenges are accidental. Many are not. Status challenges, contempt signals, public dismissals, and deliberate provocations are real social weapons. <strong>The goal of social attack is not to win an argument — it is to get you to visibly react.</strong> Visible reaction concedes social status, regardless of argument merit.</p>
+
+<h3>Four Attack Patterns and Their Counters</h3>
+
+<div class="type-card">
+  <div class="type-card-label">Pattern 01</div>
+  <h4>Contempt Display</h4>
+  <p><em>What it looks like:</em> Eye rolls, smirks, dismissive sighs, "That's interesting" with downward inflection.</p>
+  <p><em>What it's designed to do:</em> Trigger you to justify yourself — which frames you as subordinate.</p>
+  <p class="counter"><em>Counter:</em> Respond only to the explicit content of what was said, at reduced pace. Refusing to acknowledge the contempt signal denies it the audience it requires.</p>
+</div>
+
+<div class="type-card">
+  <div class="type-card-label">Pattern 02</div>
+  <h4>The Public Diminish</h4>
+  <p><em>What it looks like:</em> Interrupting your point; correcting minor errors in group settings; rephrasing your idea and attributing it to themselves.</p>
+  <p><em>What it's designed to do:</em> Test whether you'll escalate. Escalation costs you twice — once to the diminish, once to your visible agitation.</p>
+  <p class="counter"><em>Counter:</em> Anchor calmly: <em>"I'll finish that thought: [complete your point]."</em> No editorializing. No reference to the interruption. Continuation reads as confidence.</p>
+</div>
+
+<div class="type-card">
+  <div class="type-card-label">Pattern 03</div>
+  <h4>The Competence Challenge</h4>
+  <p><em>What it looks like:</em> "Are you sure about that?" delivered with skepticism. Or "That's not quite right" without substantive correction.</p>
+  <p><em>What it's designed to do:</em> Introduce self-doubt and prompt defensive over-explanation or visible uncertainty.</p>
+  <p class="counter"><em>Counter:</em> Invite specificity without conceding ground. <em>"Which part specifically?"</em> — said with genuine curiosity. This returns the burden of substance to the challenger.</p>
+</div>
+
+<div class="type-card">
+  <div class="type-card-label">Pattern 04</div>
+  <h4>The Emotion Bait</h4>
+  <p><em>What it looks like:</em> Unfair characterizations, accusations, deliberate misquotation of your position.</p>
+  <p><em>What it's designed to do:</em> Shift the conversation from the substance of the disagreement to your emotional state.</p>
+  <p class="counter"><em>Counter:</em> Name the reframe without naming the aggression. <em>"What I actually said was [X]. To be accurate about what we're discussing."</em> Returning to the factual record is composed and unanswerable.</p>
+</div>
+
+<div class="principle-box">
+  <div class="principle-label">Social Principle</div>
+  <p>In any public composure challenge, the composed person wins regardless of the argument's merit. Observers assign credibility to the person who appears least destabilized — not the person who makes the strongest point under visible agitation.</p>
+</div>
+
+<!-- ════════════════════════ PART 5: WORKPLACE PROTOCOL ════════════════════════ -->
+<div class="section-opener">
+  <div class="section-label">Framework 05</div>
+  <div class="section-title">Workplace Composure Protocol</div>
+  <div class="section-subtitle">High-pressure professional scenarios — mapped and solved</div>
+</div>
+
+<p>The professional context intensifies composure challenges because the stakes are real and the audience is consistent. You see these people again. Your composure patterns — or lack of them — accrue into a reputation over months and years.</p>
+
+<h3>Five High-Stakes Professional Scenarios</h3>
+
+<div class="scenario-box">
+  <div class="scenario-label">Scenario 01</div>
+  <h4>Critical Performance Review</h4>
+  <p><em>Pre-entry:</em> Identify two or three specific responses to likely criticisms. Prepare them as factual statements, not defenses. Arriving with prepared responses eliminates the gap where defensiveness lives.</p>
+  <p><em>In the meeting:</em> Ask clarifying questions before responding to any criticism. <em>"Can you give me a specific example?"</em> buys time and signals that you process feedback, not deflect it.</p>
+</div>
+
+<div class="scenario-box">
+  <div class="scenario-label">Scenario 02</div>
+  <h4>Public Failure or Visible Mistake</h4>
+  <p><em>The instinct:</em> Minimize, justify, redirect blame.</p>
+  <p><em>The composed response:</em> Acknowledge briefly, own specifically, redirect to resolution. <em>"That was my error — here's what I'm doing about it."</em> Brevity and ownership read as strength. Extended justification reads as fragility.</p>
+</div>
+
+<div class="scenario-box">
+  <div class="scenario-label">Scenario 03</div>
+  <h4>Difficult Authority</h4>
+  <p><em>The pattern:</em> Hostile or dismissive management activates the threat response — the power differential makes direct challenge risky, but visible submission costs credibility with peers.</p>
+  <p><em>The protocol:</em> Respond to the substance, not the tone. When content is unfair, address it without emotional coloring: <em>"What would a better outcome have looked like?"</em></p>
+</div>
+
+<div class="scenario-box">
+  <div class="scenario-label">Scenario 04</div>
+  <h4>Interpersonal Conflict with a Peer</h4>
+  <p><em>The trap:</em> Escalation contests — each person raising the emotional temperature to signal they take the issue seriously.</p>
+  <p><em>The protocol:</em> Unilateral deceleration. Drop pace, lower volume slightly, increase the specificity of your language. This physiologically cues the other person to regulate — and positions you as the adult in the room.</p>
+</div>
+
+<div class="scenario-box">
+  <div class="scenario-label">Scenario 05</div>
+  <h4>High-Stakes Presentations</h4>
+  <p><em>The composure risk:</em> Unexpected questions, technical failures, visible skepticism from the audience.</p>
+  <p><em>The protocol:</em> Develop a reset phrase — a neutral verbal placeholder (<em>"That's a useful question to dig into"</em>) — that gives you 4–6 seconds to apply the 4-second protocol without visible pause. Build two or three and use them consistently.</p>
+</div>
+
+<!-- ════════════════════════ PART 6: EMOTIONAL OUTPUT AUDIT ════════════════════════ -->
+<div class="section-opener">
+  <div class="section-label">Framework 06</div>
+  <div class="section-title">The Emotional Output Audit</div>
+  <div class="section-subtitle">Reviewing the domains where composure breaks have cost you most</div>
+</div>
+
+<p>Progress requires accurate data. The Emotional Output Audit is a structured review of where dysregulation has created the most significant costs in your life. You cannot optimize defenses you haven't mapped.</p>
+
+<table class="audit-table">
+  <thead>
+    <tr>
+      <th>Domain</th>
+      <th>What to Audit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="audit-domain-label">Professional</span></td>
+      <td>Career opportunities lost to reactive behavior; relationships damaged by escalation; reputation costs from visible agitation in group settings; negotiations where composure broke and outcomes suffered.</td>
+    </tr>
+    <tr>
+      <td><span class="audit-domain-label">Relational</span></td>
+      <td>Relationships where pattern reactivity is the defining dynamic; situations where you said what you felt rather than what served the relationship; recurring arguments following the same escalation pattern.</td>
+    </tr>
+    <tr>
+      <td><span class="audit-domain-label">Social</span></td>
+      <td>Status costs from visible destabilization in group settings; how composure breaks have changed how others relate to you; patterns of avoidance where you now skip situations that reliably break composure.</td>
+    </tr>
+    <tr>
+      <td><span class="audit-domain-label">Internal</span></td>
+      <td>The cost of living with unregulated reactivity — anxiety, rumination, post-break shame; cognitive load of fighting your own nervous system; energy expenditure on recovery that could be redirected.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <div class="callout-label">Audit Exercise</div>
+  <p>For each domain: identify your most significant composure break, what it cost you, and your dominant trigger pattern. This converts vague self-awareness into specific targets for the Composure Code frameworks.</p>
+</div>
+
+<!-- ════════════════════════ PART 7: COLD PRESENCE ════════════════════════ -->
+<div class="section-opener">
+  <div class="section-label">Framework 07</div>
+  <div class="section-title">Cold Presence Architecture</div>
+  <div class="section-subtitle">Calm authority without emotional flatness or social inaccessibility</div>
+</div>
+
+<p>There is a failure mode in composure work nearly as costly as reactivity: the emotionally blank presentation. People who have overlearned suppression rather than regulation come across as cold, disengaged, or untrustworthy. <strong>Composure is not the absence of affect. It is the deliberate modulation of affect.</strong></p>
+
+<h3>The Four Components of Cold Presence</h3>
+
+<div class="presence-grid">
+  <div class="presence-row">
+    <div class="presence-icon">01</div>
+    <p><strong>Grounded Physical Architecture</strong> — Posture, stillness, and spatial economy. Composed people take up consistent space — they don't shrink under pressure or expand aggressively when challenged. Neutral baseline: seated upright without rigidity, hands visible and still.</p>
+  </div>
+  <div class="presence-row">
+    <div class="presence-icon">02</div>
+    <p><strong>Calibrated Pace</strong> — Speech slightly slower than the conversational baseline reads as authority. Not so slow it seems calculated — deliberate enough to suggest you are not driven by urgency. Composure also manifests in not filling silences. Let pauses exist.</p>
+  </div>
+  <div class="presence-row">
+    <div class="presence-icon">03</div>
+    <p><strong>Selective Emotional Expression</strong> — Composed people express warmth, interest, humor, and gravity. The distinction is that these are chosen, not leaked. The signal of composure is not absence of expression but absence of <em>involuntary</em> expression.</p>
+  </div>
+  <div class="presence-row">
+    <div class="presence-icon">04</div>
+    <p><strong>Consistent Attention Quality</strong> — Distracted or avoidant eye contact signals anxiety. Sustained, interested attention signals security. The composed baseline is relaxed, consistent engagement — particularly during challenges, where the instinct is to look away.</p>
+  </div>
+</div>
+
+<h3>The Presence Calibration Exercise</h3>
+<div class="callout">
+  <div class="callout-label">7-Day Practice</div>
+  <p>Once per day for one week, hold a 60-second conversation while tracking three things simultaneously: physical stillness, speech pace, and expression. Discomfort during the exercise is evidence that it's working. This is a skill being built, not a personality being faked.</p>
+</div>
+
+<!-- ════════════════════════ PART 8: REGULATION RESET ════════════════════════ -->
+<div class="section-opener">
+  <div class="section-label">Framework 08</div>
+  <div class="section-title">The Regulation Reset</div>
+  <div class="section-subtitle">Rebuilding composure quickly after a break — without extended recovery</div>
+</div>
+
+<p>Breaks happen. The variable separating high-composure individuals from low-composure individuals is not frequency of breaks — it is recovery speed. A 10-second break followed by a composed re-entry is categorically different from a break followed by an extended visible spiral.</p>
+
+<h3>The 5-Step Reset Protocol</h3>
+
+<div class="reset-step">
+  <div class="reset-num">1</div>
+  <div class="reset-content">
+    <h4>Acknowledge Internally — Don't Perform</h4>
+    <p>Do not visibly perform recovery. Internal acknowledgment is enough: <em>"That just happened, and it's behind me now."</em> Visible self-correction draws more attention to the break than the break itself.</p>
+  </div>
+</div>
+<div class="reset-step">
+  <div class="reset-num">2</div>
+  <div class="reset-content">
+    <h4>Physiological Interrupt</h4>
+    <p>If possible, change your physical position: stand, walk briefly, or shift your posture if seated. Physical state changes interrupt rumination and reduce cortisol. Even a 30-second break out of the room provides a disproportionate reset.</p>
+  </div>
+</div>
+<div class="reset-step">
+  <div class="reset-num">3</div>
+  <div class="reset-content">
+    <h4>Return to Fact</h4>
+    <p>Composure breaks are emotional events. Re-anchor to factual, specific language: <em>"The meeting is continuing. The conversation is about X. My position is Y."</em> Concrete language re-engages the prefrontal cortex.</p>
+  </div>
+</div>
+<div class="reset-step">
+  <div class="reset-num">4</div>
+  <div class="reset-content">
+    <h4>Re-Enter at Reduced Pace</h4>
+    <p>When you return to the conversation or situation, begin at 80% of normal pace. Slow reentry reads as consideration, not defeat. It also continues the physiological downregulation started in Step 2.</p>
+  </div>
+</div>
+<div class="reset-step">
+  <div class="reset-num">5</div>
+  <div class="reset-content">
+    <h4>Do Not Reference the Break</h4>
+    <p>Unless directly necessary, do not acknowledge or apologize for the break in the moment. Drawing attention to it extends its social life. Continue the conversation from its current position.</p>
+  </div>
+</div>
+
+<div class="pull-quote">
+  <p>"The composure break is the first event. How you recover is the second event — and the second event has more social weight than the first."</p>
+</div>
+
+<!-- ════════════════════════ MASTER CHECKLIST ════════════════════════ -->
+<div class="section-opener">
+  <div class="section-label">Quick Reference</div>
+  <div class="section-title">Master Checklist</div>
+  <div class="section-subtitle">The Composure Code in action — before, during, and after</div>
+</div>
+
+<div class="checklist-section">
+  <div class="checklist-section-title">Before High-Stakes Situations</div>
+  <ul class="checklist">
+    <li>Map context, relational, and conversational triggers for this specific situation</li>
+    <li>Identify your personal early warning signal (physical sensation preceding a break)</li>
+    <li>Prepare specific responses to likely challenges — factual, not defensive</li>
+    <li>Build two reset phrases for unexpected questions or provocations</li>
+    <li>Ground physical baseline: posture, breath rate, pace</li>
+    <li>Review the relevant attack pattern counter if social challenge is likely</li>
+  </ul>
+</div>
+
+<div class="checklist-section">
+  <div class="checklist-section-title">During High-Stakes Situations</div>
+  <ul class="checklist">
+    <li>Monitor Layer 1 (nervous system) continuously for early warning signals</li>
+    <li>Apply the 4-second protocol immediately upon signal detection</li>
+    <li>Respond to explicit content only — not to meta-messages or tone</li>
+    <li>Hold 80% pace throughout — slower under pressure, not faster</li>
+    <li>Use legitimate delay phrases to extend your processing window</li>
+    <li>Hold neutral physical architecture: stillness, consistent eye contact, grounded posture</li>
+  </ul>
+</div>
+
+<div class="checklist-section">
+  <div class="checklist-section-title">After Composure Breaks</div>
+  <ul class="checklist">
+    <li>Apply the 5-step reset protocol — especially Steps 1 and 5</li>
+    <li>Do not extend the break's social life by over-acknowledging or apologizing</li>
+    <li>Add the break to your Trigger Map as new data</li>
+    <li>Audit the domain and update your targeted defenses</li>
+    <li>Review the recovery — was re-entry pace maintained? Was the return to fact executed?</li>
+  </ul>
+</div>
+
+<!-- ════════════════════════ CLOSING PAGE ════════════════════════ -->
+<div class="closing-page">
+  <div class="closing-ornament"></div>
+  <h2 class="closing-headline">Build the System.<br><span class="gold">Own the Room.</span></h2>
+  <p class="closing-subhead">Composure is not a personality trait. It is a learnable architecture — and the most reliable competitive advantage in any high-stakes social environment.</p>
+  <div class="closing-rule"></div>
+  <p class="closing-tagline">Premium Digital Resources</p>
+  <p class="closing-brand">Lazy Scholar PH</p>
+  <p class="closing-url">lazyscholarph.com</p>
+  <p class="closing-disclaimer">© 2026 Lazy Scholar PH. All rights reserved. This content is for personal use only and may not be redistributed, reproduced, or resold without written permission.</p>
+</div>
+
+</body>
+</html>
