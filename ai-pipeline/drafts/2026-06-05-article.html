@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Unspoken Contract – Lazy Scholar PH</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Inter:wght@300;400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:      #0D1B2A;
+      --navy-mid:  #162032;
+      --gold:      #C9A84C;
+      --gold-light:#E8C97A;
+      --cream:     #FAF8F2;
+      --white:     #FFFFFF;
+      --gray-100:  #F5F4F0;
+      --gray-200:  #E8E6DF;
+      --gray-400:  #9C9484;
+      --gray-600:  #6B6157;
+      --gray-800:  #3A332B;
+      --text:      #1C1915;
+
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-body:  'Inter', system-ui, sans-serif;
+      --font-quote: 'EB Garamond', Georgia, serif;
+
+      --page-width: 760px;
+      --page-pad:   56px;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      background: var(--gray-100);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== PAGE WRAPPER ===== */
+    .page {
+      max-width: var(--page-width);
+      margin: 0 auto;
+      background: var(--white);
+      box-shadow: 0 4px 60px rgba(0,0,0,.12);
+    }
+
+    /* ===== COVER PAGE ===== */
+    .cover {
+      background: var(--navy);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 80px var(--page-pad);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(201,168,76,.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent 0%, var(--gold) 30%, var(--gold-light) 50%, var(--gold) 70%, transparent 100%);
+    }
+
+    .cover-brand {
+      font-family: var(--font-body);
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 60px;
+      opacity: .9;
+    }
+
+    .cover-eyebrow {
+      font-family: var(--font-body);
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      opacity: .75;
+      margin-bottom: 24px;
+    }
+
+    .cover-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.6rem, 5vw, 3.8rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.12;
+      letter-spacing: -.01em;
+      margin-bottom: 28px;
+      max-width: 560px;
+    }
+
+    .cover-title span {
+      color: var(--gold-light);
+    }
+
+    .cover-rule {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      margin: 0 auto 28px;
+    }
+
+    .cover-subtitle {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.18rem;
+      color: rgba(255,255,255,.72);
+      max-width: 420px;
+      line-height: 1.5;
+      margin-bottom: 64px;
+    }
+
+    .cover-tagline-box {
+      border: 1px solid rgba(201,168,76,.3);
+      border-radius: 4px;
+      padding: 20px 36px;
+      background: rgba(201,168,76,.06);
+      margin-bottom: 72px;
+    }
+
+    .cover-tagline {
+      font-family: var(--font-quote);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: rgba(255,255,255,.68);
+      line-height: 1.55;
+    }
+
+    .cover-footer {
+      font-family: var(--font-body);
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.35);
+    }
+
+    /* ===== INTERIOR PAGE BASE ===== */
+    .interior {
+      padding: 72px var(--page-pad);
+    }
+
+    /* ===== SECTION TYPES ===== */
+    .about-section {
+      background: var(--cream);
+      border-left: 4px solid var(--gold);
+      padding: 48px 52px;
+    }
+
+    .about-section p {
+      font-size: .97rem;
+      line-height: 1.8;
+      color: var(--gray-800);
+      margin-bottom: 1em;
+    }
+
+    .about-section p:last-child { margin-bottom: 0; }
+
+    /* ===== TOC ===== */
+    .toc-section {
+      padding: 72px var(--page-pad);
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .toc-heading {
+      font-family: var(--font-body);
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 36px;
+    }
+
+    .toc-list { list-style: none; }
+
+    .toc-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px dashed var(--gray-200);
+    }
+
+    .toc-num {
+      font-family: var(--font-body);
+      font-size: .7rem;
+      font-weight: 600;
+      color: var(--gold);
+      min-width: 28px;
+      letter-spacing: .05em;
+    }
+
+    .toc-title {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      color: var(--navy);
+      flex: 1;
+    }
+
+    .toc-sub {
+      font-family: var(--font-body);
+      font-size: .72rem;
+      color: var(--gray-400);
+      font-style: italic;
+    }
+
+    /* ===== SECTION DIVIDER ===== */
+    .section-divider {
+      background: var(--navy);
+      padding: 52px var(--page-pad);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      page-break-before: always;
+    }
+
+    .divider-num {
+      font-family: var(--font-serif);
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: rgba(201,168,76,.25);
+      line-height: 1;
+      min-width: 70px;
+    }
+
+    .divider-content { flex: 1; }
+
+    .divider-label {
+      font-family: var(--font-body);
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .divider-title {
+      font-family: var(--font-serif);
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    .divider-sub {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: .88rem;
+      color: rgba(255,255,255,.5);
+      line-height: 1.4;
+    }
+
+    .divider-line {
+      width: 3px;
+      height: 60px;
+      background: linear-gradient(180deg, var(--gold), transparent);
+      flex-shrink: 0;
+    }
+
+    /* ===== CHAPTER CONTENT ===== */
+    .chapter {
+      padding: 60px var(--page-pad);
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    /* ===== TYPOGRAPHY ===== */
+    h1, h2, h3, h4 { font-family: var(--font-serif); }
+
+    .chapter-intro {
+      font-size: 1.08rem;
+      line-height: 1.82;
+      color: var(--gray-800);
+      margin-bottom: 2rem;
+    }
+
+    .chapter-intro strong {
+      color: var(--navy);
+      font-family: var(--font-serif);
+      font-weight: 600;
+    }
+
+    p {
+      font-size: .96rem;
+      line-height: 1.78;
+      color: var(--gray-800);
+      margin-bottom: 1.2em;
+    }
+
+    h3 {
+      font-size: 1.22rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 2.2rem 0 .8rem;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--gold);
+      display: inline-block;
+    }
+
+    h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy-mid);
+      margin: 1.8rem 0 .5rem;
+    }
+
+    strong {
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    em { font-style: italic; color: var(--gray-600); }
+
+    /* ===== PULL QUOTE ===== */
+    .pull-quote {
+      background: var(--navy);
+      border-left: 4px solid var(--gold);
+      padding: 30px 36px;
+      margin: 2.5rem 0;
+      position: relative;
+    }
+
+    .pull-quote::before {
+      content: '\201C';
+      font-family: var(--font-serif);
+      font-size: 5rem;
+      color: var(--gold);
+      opacity: .2;
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      line-height: 1;
+    }
+
+    .pull-quote p {
+      font-family: var(--font-quote);
+      font-style: italic;
+      font-size: 1.15rem;
+      line-height: 1.6;
+      color: var(--white);
+      margin: 0;
+    }
+
+    /* ===== CALLOUT BOX ===== */
+    .callout {
+      background: var(--cream);
+      border: 1px solid var(--gray-200);
+      border-top: 3px solid var(--gold);
+      padding: 24px 28px;
+      margin: 2rem 0;
+      border-radius: 0 0 4px 4px;
+    }
+
+    .callout-label {
+      font-family: var(--font-body);
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .callout p {
+      font-size: .92rem;
+      margin: 0;
+      color: var(--gray-800);
+    }
+
+    /* ===== TABLE ===== */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 2rem 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .88rem;
+    }
+
+    thead {
+      background: var(--navy);
+    }
+
+    thead th {
+      padding: 12px 16px;
+      text-align: left;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: .72rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+    }
+
+    tbody tr:nth-child(odd) { background: var(--cream); }
+    tbody tr:nth-child(even) { background: var(--white); }
+
+    tbody td {
+      padding: 11px 16px;
+      color: var(--gray-800);
+      border-bottom: 1px solid var(--gray-200);
+      line-height: 1.5;
+    }
+
+    tbody td:first-child {
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    /* ===== CHECKLIST ===== */
+    .checklist {
+      background: var(--cream);
+      border: 1px solid var(--gray-200);
+      padding: 28px 32px;
+      margin: 2rem 0;
+      border-radius: 4px;
+    }
+
+    .checklist-title {
+      font-family: var(--font-body);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .checklist ul {
+      list-style: none;
+    }
+
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 7px 0;
+      font-size: .9rem;
+      color: var(--gray-800);
+      border-bottom: 1px solid rgba(0,0,0,.04);
+    }
+
+    .checklist li::before {
+      content: '';
+      width: 16px;
+      height: 16px;
+      min-width: 16px;
+      border: 1.5px solid var(--gold);
+      border-radius: 3px;
+      margin-top: 2px;
+      background: var(--white);
+    }
+
+    /* ===== NUMBERED LIST ===== */
+    .step-list { counter-reset: step; list-style: none; margin: 1.2rem 0 1.6rem; }
+
+    .step-list li {
+      counter-increment: step;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+      font-size: .94rem;
+      line-height: 1.7;
+      color: var(--gray-800);
+    }
+
+    .step-list li::before {
+      content: counter(step);
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: .85rem;
+      color: var(--white);
+      background: var(--navy);
+      min-width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+
+    /* ===== INTRO QUOTE ===== */
+    .intro-quote {
+      text-align: center;
+      padding: 40px var(--page-pad);
+      background: var(--cream);
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .intro-quote blockquote {
+      font-family: var(--font-quote);
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--navy);
+      line-height: 1.6;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .intro-quote cite {
+      display: block;
+      font-family: var(--font-body);
+      font-style: normal;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 16px;
+    }
+
+    /* ===== LAWS / SUMMARY ===== */
+    .laws-section {
+      background: var(--navy);
+      padding: 72px var(--page-pad);
+      page-break-before: always;
+    }
+
+    .laws-header {
+      text-align: center;
+      margin-bottom: 52px;
+    }
+
+    .laws-eyebrow {
+      font-family: var(--font-body);
+      font-size: .68rem;
+      font-weight: 600;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .laws-title {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--white);
+    }
+
+    .law-card {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .law-num {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--gold);
+      opacity: .6;
+      min-width: 36px;
+      line-height: 1.2;
+    }
+
+    .law-body { flex: 1; }
+
+    .law-name {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .law-desc {
+      font-size: .88rem;
+      color: rgba(255,255,255,.58);
+      line-height: 1.6;
+    }
+
+    /* ===== CLOSING PAGE ===== */
+    .closing-page {
+      background: var(--cream);
+      padding: 80px var(--page-pad);
+      text-align: center;
+      page-break-before: always;
+    }
+
+    .closing-rule {
+      width: 50px;
+      height: 2px;
+      background: var(--gold);
+      margin: 0 auto 36px;
+    }
+
+    .closing-title {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 28px;
+    }
+
+    .closing-body {
+      font-size: .97rem;
+      line-height: 1.82;
+      color: var(--gray-600);
+      max-width: 520px;
+      margin: 0 auto 40px;
+    }
+
+    .closing-quote-box {
+      border: 1px solid var(--gray-200);
+      border-left: 4px solid var(--gold);
+      background: var(--white);
+      padding: 24px 32px;
+      max-width: 500px;
+      margin: 0 auto 60px;
+      text-align: left;
+    }
+
+    .closing-quote-box p {
+      font-family: var(--font-quote);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--navy);
+      margin: 0;
+    }
+
+    .closing-brand {
+      font-family: var(--font-body);
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .closing-tagline {
+      font-size: .82rem;
+      color: var(--gray-400);
+      letter-spacing: .04em;
+    }
+
+    .closing-copy {
+      margin-top: 40px;
+      font-size: .72rem;
+      color: var(--gray-400);
+      letter-spacing: .03em;
+    }
+
+    /* ===== FRAMEWORK INTRO ===== */
+    .framework-intro {
+      font-family: var(--font-serif);
+      font-size: 1.12rem;
+      font-style: italic;
+      color: var(--gray-600);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    /* ===== INTEGRATION GRID ===== */
+    .integration-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--gray-200);
+      border: 1px solid var(--gray-200);
+      margin: 2rem 0;
+    }
+
+    .integration-cell {
+      background: var(--white);
+      padding: 20px 22px;
+    }
+
+    .integration-cell:nth-child(odd) { background: var(--cream); }
+
+    .int-num {
+      font-family: var(--font-body);
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .int-title {
+      font-family: var(--font-serif);
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 5px;
+    }
+
+    .int-desc {
+      font-size: .82rem;
+      color: var(--gray-600);
+      line-height: 1.5;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 640px) {
+      :root { --page-pad: 28px; }
+      .cover { min-height: auto; padding: 64px var(--page-pad); }
+      .cover-title { font-size: 2.2rem; }
+      .integration-grid { grid-template-columns: 1fr; }
+      .divider-num { display: none; }
+      .divider-line { display: none; }
+    }
+
+    /* ===== PRINT / PDF ===== */
+    @media print {
+      body { background: white; }
+      .page { box-shadow: none; max-width: 100%; }
+      .section-divider, .laws-section, .cover { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .chapter { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ===== COVER PAGE ===== -->
+  <section class="cover">
+    <div class="cover-brand">Lazy Scholar PH &nbsp;·&nbsp; Premium Digital Library</div>
+    <div class="cover-eyebrow">Social Intelligence Series</div>
+    <h1 class="cover-title">The <span>Unspoken</span> Contract</h1>
+    <div class="cover-rule"></div>
+    <p class="cover-subtitle">Hidden Social Rules Every Adult Should Have Been Taught</p>
+    <div class="cover-tagline-box">
+      <p class="cover-tagline">"The rules of the game were written before you arrived.<br>This is the rulebook."</p>
+    </div>
+    <div class="cover-footer">8 Frameworks &nbsp;·&nbsp; Actionable Checklists &nbsp;·&nbsp; Complete Integration Guide</div>
+  </section>
+
+  <!-- ===== OPENING QUOTE ===== -->
+  <div class="intro-quote">
+    <blockquote>
+      "There is a version of reality operating beneath every interaction you have ever had. This guide maps it."
+    </blockquote>
+    <cite>Lazy Scholar PH</cite>
+  </div>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="about-section">
+    <p><strong>This guide is not about being more likable.</strong> It is not a collection of social hacks or a manipulation playbook.</p>
+    <p>It is a structural map — the kind of document that reveals the invisible architecture of adult social life that most people sense but never name. If you have ever left a meeting not knowing what went wrong, watched someone else get the promotion, or felt the temperature of a room shift and not understood why — you were encountering the Unspoken Contract.</p>
+    <p>The Contract exists everywhere: in offices, families, friendships, negotiating tables, and networking events. It governs who gets trusted, who gets passed over, who is heard, and who is quietly excluded. It runs on rules transmitted through proximity — through growing up around people who already knew the system.</p>
+    <p><strong>This guide closes that gap.</strong></p>
+  </section>
+
+  <!-- ===== TABLE OF CONTENTS ===== -->
+  <section class="toc-section">
+    <div class="toc-heading">Table of Contents</div>
+    <ul class="toc-list">
+      <li>
+        <span class="toc-num">INTRO</span>
+        <span class="toc-title">The Education You Never Got</span>
+      </li>
+      <li>
+        <span class="toc-num">01</span>
+        <div>
+          <div class="toc-title">The Invisible Education</div>
+          <div class="toc-sub">Why These Rules Exist and Who Benefits From Their Silence</div>
+        </div>
+      </li>
+      <li>
+        <span class="toc-num">02</span>
+        <div>
+          <div class="toc-title">The Hierarchy Decoder</div>
+          <div class="toc-sub">Reading Power Structures in Any Room Within 5 Minutes</div>
+        </div>
+      </li>
+      <li>
+        <span class="toc-num">03</span>
+        <div>
+          <div class="toc-title">The Reciprocity Engine</div>
+          <div class="toc-sub">Social Debt, Invisible Currency, and How Adults Exchange Value</div>
+        </div>
+      </li>
+      <li>
+        <span class="toc-num">04</span>
+        <div>
+          <div class="toc-title">The Face Preservation Protocol</div>
+          <div class="toc-sub">How Ego Protection Shapes Every Conversation, Favor, and Silence</div>
+        </div>
+      </li>
+      <li>
+        <span class="toc-num">05</span>
+        <div>
+          <div class="toc-title">The Permission System</div>
+          <div class="toc-sub">How Access, Opportunity, and Acceptance Are Actually Granted</div>
+        </div>
+      </li>
+      <li>
+        <span class="toc-num">06</span>
+        <div>
+          <div class="toc-title">The Signal-to-Noise Map</div>
+          <div class="toc-sub">What You Communicate Before You Speak</div>
+        </div>
+      </li>
+      <li>
+        <span class="toc-num">07</span>
+        <div>
+          <div class="toc-title">The Conflict Code</div>
+          <div class="toc-sub">How Real Disagreement Operates vs. How Adults Pretend It Does</div>
+        </div>
+      </li>
+      <li>
+        <span class="toc-num">08</span>
+        <div>
+          <div class="toc-title">The Identity Armor Framework</div>
+          <div class="toc-sub">How People Construct and Defend Social Self-Image</div>
+        </div>
+      </li>
+      <li>
+        <span class="toc-num">+</span>
+        <span class="toc-title">Integration Guide, Master Checklists &amp; The 8 Laws</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ===== INTRODUCTION ===== -->
+  <div class="section-divider">
+    <div class="divider-num">00</div>
+    <div class="divider-line"></div>
+    <div class="divider-content">
+      <div class="divider-label">Introduction</div>
+      <div class="divider-title">The Education You Never Got</div>
+      <div class="divider-sub">Why you're missing information most people don't know they have</div>
+    </div>
+  </div>
+
+  <section class="chapter">
+    <p class="framework-intro">There is a version of reality operating beneath every professional meeting, social gathering, and casual interaction you have ever attended. It runs on rules no one stated, currencies no one named, and contracts no one signed.</p>
+
+    <p>Yet violations are punished swiftly and silently, and mastery is rewarded with access, trust, and opportunity.</p>
+    <p><strong>You were never taught these rules. Almost no one was.</strong></p>
+    <p>This is not an accident. The invisible social architecture governing adult life is transmitted through <em>proximity</em> — through watching the right people in the right contexts, through mentors who decoded what they saw, through families and environments where social navigation was modeled and refined across generations.</p>
+    <p>If you did not grow up inside those environments, you entered adult life without the operating manual that others carried without knowing they had one. They are not smarter than you. They are not more gifted. They simply had an earlier and more complete installation.</p>
+    <p>This guide is that installation.</p>
+
+    <div class="pull-quote">
+      <p>After reading this guide, you will not suddenly become a social genius. What you will become is a <em>structural reader</em> — someone who sees the rules beneath the behavior, the contract beneath the words, the system beneath the interaction.</p>
+    </div>
+
+    <p>You will stop personalizing events that were never personal. You will stop attributing to malice or incompetence what was always the result of unread social architecture. And in that clarity, you will navigate with a precision that feels — to everyone around you — like extraordinary social intelligence.</p>
+    <p>It is not magic. It is literacy.</p>
+  </section>
+
+  <!-- ===== FRAMEWORK 1 ===== -->
+  <div class="section-divider">
+    <div class="divider-num">01</div>
+    <div class="divider-line"></div>
+    <div class="divider-content">
+      <div class="divider-label">Framework One</div>
+      <div class="divider-title">The Invisible Education</div>
+      <div class="divider-sub">Why these rules exist and who benefits from keeping them hidden</div>
+    </div>
+  </div>
+
+  <section class="chapter">
+    <p class="framework-intro">Every civilization, institution, and social group develops informal rules to manage cooperation, status, and access. These rules are efficient — and exclusive by design.</p>
+
+    <p>When rules are unspoken, only insiders can follow them. And when only insiders can follow them, the circle maintains itself without obvious gatekeeping. Understanding the origin of these rules is the first step to navigating them.</p>
+
+    <h3>The Three Origins of Social Rules</h3>
+
+    <h4>1. Functional Coordination</h4>
+    <p>Groups need to coordinate without constant negotiation. Who speaks first in a meeting, how disagreement is signaled without open conflict, what constitutes an acceptable response time — these emerge organically and become the default operating system of a group.</p>
+
+    <h4>2. Status Maintenance</h4>
+    <p>Status hierarchies are expensive to negotiate explicitly. Informal rules make them automatic. The person who arrived first, who knows more people, who holds the most relevant credentials — all of this is encoded in behavioral patterns the group reads and enforces without a word.</p>
+
+    <h4>3. Tribal Membership</h4>
+    <p>Groups create identity markers — ways of speaking, behaving, and signaling that distinguish members from non-members. These markers are rarely explicit because making them explicit would expose the exclusion. They do not say "you don't belong here." They simply make it <em>feel</em> true.</p>
+
+    <div class="pull-quote">
+      <p>The rules are not a conspiracy. They are an ecosystem. And like any ecosystem, knowing how it works transforms your ability to move through it.</p>
+    </div>
+
+    <h3>The Four Categories of Invisible Education</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>What It Governs</th>
+            <th>How It's Enforced</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Power Literacy</td>
+            <td>Who holds influence and how it flows</td>
+            <td>Subtle social penalties for misreads</td>
+          </tr>
+          <tr>
+            <td>Reciprocity Norms</td>
+            <td>What is owed after what is given</td>
+            <td>Relationship withdrawal</td>
+          </tr>
+          <tr>
+            <td>Status Signals</td>
+            <td>How position is claimed and challenged</td>
+            <td>Exclusion and reputation damage</td>
+          </tr>
+          <tr>
+            <td>Conflict Protocols</td>
+            <td>How disagreement is managed</td>
+            <td>Ostracism and opportunity denial</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">The Practical Implication</div>
+      <p>You cannot change this system by resenting it. You can only change your position within it by reading it accurately. The goal is not cynicism — it is clarity. The vast majority of social friction adults experience comes not from bad people, but from misread rules.</p>
+    </div>
+  </section>
+
+  <!-- ===== FRAMEWORK 2 ===== -->
+  <div class="section-divider">
+    <div class="divider-num">02</div>
+    <div class="divider-line"></div>
+    <div class="divider-content">
+      <div class="divider-label">Framework Two</div>
+      <div class="divider-title">The Hierarchy Decoder</div>
+      <div class="divider-sub">Reading power structures in any room within 5 minutes</div>
+    </div>
+  </div>
+
+  <section class="chapter">
+    <p class="framework-intro">Every room has a power structure. It exists in families, friend groups, offices, and first dates. The structure is rarely what the titles suggest.</p>
+
+    <p>Power in practice — the ability to shape outcomes, hold attention, and direct social energy — flows through a different map than the org chart. Here is how to read it.</p>
+
+    <h3>The 5-Minute Protocol</h3>
+    <ul class="step-list">
+      <li><strong>Track Attention (Min 1–2):</strong> Whose entrance changes the energy of the room? Whose speaking is met with sustained eye contact? Power attracts attention involuntarily. The person being watched most closely, not the one talking most loudly, often holds the real influence.</li>
+      <li><strong>Track Deference Signals (Min 2–3):</strong> Who do people face when making a collective decision? Who gets the final word even in casual conversation? Deference is subtle — a slight lean, a pause before speaking, a checking-of-eyes before agreeing.</li>
+      <li><strong>Track Information Flow (Min 3–4):</strong> Who gets told things first? Who asks questions that others answer? The person at the center of information — the one others brief or loop in — is often the practical power node regardless of title.</li>
+      <li><strong>Track Humor Rights (Min 4–5):</strong> Who can make a joke that others laugh at? Who can tease someone without it being awkward? Humor rights are a reliable proxy for social capital. The person others can't tease without discomfort holds the floor.</li>
+    </ul>
+
+    <div class="pull-quote">
+      <p>Titles are the official map. Attention flow is the real terrain. Learn to read both.</p>
+    </div>
+
+    <h3>The Three Power Types</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Power Type</th><th>Source</th><th>How to Engage</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Formal Power</td>
+            <td>Position, title, authority</td>
+            <td>Direct engagement; explicit respect for role</td>
+          </tr>
+          <tr>
+            <td>Relational Power</td>
+            <td>Trust networks, loyalty, connection</td>
+            <td>Invest in relationships over time</td>
+          </tr>
+          <tr>
+            <td>Expertise Power</td>
+            <td>Demonstrated knowledge and competence</td>
+            <td>Be genuinely excellent at something that matters</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="checklist">
+      <div class="checklist-title">Checklist: Reading a New Room</div>
+      <ul>
+        <li>Whose entrance caused others to look up?</li>
+        <li>Who speaks last before group decisions?</li>
+        <li>Who gets interrupted least?</li>
+        <li>Who does humor flow toward — who is the target of safe jokes?</li>
+        <li>Who gets information before it is formally shared?</li>
+        <li>Who do people physically orient toward during conflict?</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== FRAMEWORK 3 ===== -->
+  <div class="section-divider">
+    <div class="divider-num">03</div>
+    <div class="divider-line"></div>
+    <div class="divider-content">
+      <div class="divider-label">Framework Three</div>
+      <div class="divider-title">The Reciprocity Engine</div>
+      <div class="divider-sub">Social debt, invisible currency, and how adults actually exchange value</div>
+    </div>
+  </div>
+
+  <section class="chapter">
+    <p class="framework-intro">Reciprocity is not kindness. It is the foundational mechanism of every human social system. Understanding it changes how you give, how you receive, and how you build social capital that compounds over time.</p>
+
+    <h3>The Core Principle</h3>
+    <p>When someone does something for you — a favor, an introduction, a compliment, support in a meeting — an invisible obligation is created. The recipient is socially indebted. This debt is tracked automatically, subconsciously, by both parties. Failing to acknowledge it does not erase it. It converts it to resentment.</p>
+    <p>This is not transactional cynicism. It is human wiring. Reciprocity is so deeply encoded that cross-cultural anthropology consistently identifies it as a human universal.</p>
+
+    <h3>The Four Rules of Social Debt</h3>
+    <h4>Rule 1: Acknowledge Before Repaying</h4>
+    <p>The first step is acknowledgment, not repayment. <em>"You didn't have to do that, and I won't forget it"</em> creates more goodwill than an immediate counter-favor that bypasses acknowledgment.</p>
+
+    <h4>Rule 2: Match Value, Not Form</h4>
+    <p>A favor does not need to be repaid in kind. What matters is the perceived equivalence of value, not the category of exchange.</p>
+
+    <h4>Rule 3: Offer Before Asking</h4>
+    <p>The most effective builders of social capital do not ask first. They give consistently, without immediate expectation, and build a reservoir. When they eventually ask, the request lands differently.</p>
+
+    <h4>Rule 4: Never Let a Favor Expire Without Acknowledgment</h4>
+    <p>Unacknowledged favors become resentments. Acknowledge even significantly late — silence compounds the debt. A belated acknowledgment discharges it.</p>
+
+    <div class="pull-quote">
+      <p>Social capital is not accumulated by being liked. It is accumulated by being reliably reciprocal.</p>
+    </div>
+
+    <h3>The Obligation Spectrum</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Exchange Type</th><th>Obligation Strength</th><th>Repayment Window</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Small spontaneous gesture</td><td>Low</td><td>Days to weeks</td></tr>
+          <tr><td>Professional favor / introduction</td><td>Medium</td><td>Weeks to months</td></tr>
+          <tr><td>Career-defining support</td><td>High</td><td>Indefinite</td></tr>
+          <tr><td>Crisis support (emotional / financial)</td><td>Very High</td><td>Long-term loyalty bond</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">The Trap: Refusing to Receive</div>
+      <p>Some people refuse help — from discomfort with obligation or vulnerability. This is a social capital error. Allowing others to give to you is itself an act of generosity. It creates connection. Refusing everything signals arrogance or distrust.</p>
+    </div>
+  </section>
+
+  <!-- ===== FRAMEWORK 4 ===== -->
+  <div class="section-divider">
+    <div class="divider-num">04</div>
+    <div class="divider-line"></div>
+    <div class="divider-content">
+      <div class="divider-label">Framework Four</div>
+      <div class="divider-title">The Face Preservation Protocol</div>
+      <div class="divider-sub">How ego protection shapes every conversation, favor, and silence</div>
+    </div>
+  </div>
+
+  <section class="chapter">
+    <p class="framework-intro">"Face" — in the social science sense — is the public image a person maintains and the identity they believe others hold of them. Its preservation is not vanity. It is a survival mechanism.</p>
+
+    <h3>The Three Face Threats</h3>
+
+    <h4>1. Public Correction</h4>
+    <p>Correcting someone in front of others is one of the most common and costly social errors adults make. The person may say nothing. But the record has been created. Their public image was damaged. The response — delayed, disguised, often unconscious — will shape the relationship from that moment.</p>
+    <p><em>The alternative:</em> Private correction, delivered with acknowledgment of competence first. <strong>"I know you know this space better than most — I wanted to flag something privately before the next meeting."</strong></p>
+
+    <h4>2. Unsolicited Feedback</h4>
+    <p>Offering feedback no one asked for tells the recipient that their public image does not match the standard. Even when accurate, this is experienced as an attack.</p>
+    <p><em>The alternative:</em> Ask permission. <strong>"Would it be useful if I shared an observation?"</strong> The permission request transfers agency — and the feedback, once invited, is received entirely differently.</p>
+
+    <h4>3. Forced Disagreement</h4>
+    <p>When you disagree in a way that leaves the person no exit, you create an adversary. The topic does not matter. The public defeat creates debt they will collect.</p>
+    <p><em>The alternative:</em> Build the bridge. <strong>"The direction you're pointing is right — I just think the path might look slightly different."</strong> Give them a way to agree while maintaining that their original instinct was sound.</p>
+
+    <div class="pull-quote">
+      <p>In every conversation, there is the content — and there is the identity transaction. Managing both is the difference between being right and being effective.</p>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">The Face Gift</div>
+      <p>The inverse of threatening face: a moment where you publicly attribute positive qualities to someone, acknowledge their expertise, or credit a contribution that could have gone unnamed. Face gifts create disproportionate loyalty. They are remembered. They are repaid — often with access and advocacy that reshapes careers.</p>
+    </div>
+
+    <div class="checklist">
+      <div class="checklist-title">Checklist: Before a Difficult Conversation</div>
+      <ul>
+        <li>Am I about to correct someone in front of others?</li>
+        <li>Have I created a face-saving exit for the other person?</li>
+        <li>Can I acknowledge their expertise or intention before delivering the message?</li>
+        <li>Is this feedback invited or unsolicited?</li>
+        <li>If unsolicited — have I asked permission first?</li>
+        <li>Will they be able to agree with me without publicly losing?</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== FRAMEWORK 5 ===== -->
+  <div class="section-divider">
+    <div class="divider-num">05</div>
+    <div class="divider-line"></div>
+    <div class="divider-content">
+      <div class="divider-label">Framework Five</div>
+      <div class="divider-title">The Permission System</div>
+      <div class="divider-sub">How access, opportunity, and acceptance are actually granted</div>
+    </div>
+  </div>
+
+  <section class="chapter">
+    <p class="framework-intro">In formal institutions, advancement is governed by criteria. In practice, it is governed by an informal system of endorsements and social permissions that determines who gets seen, considered, vouched for, and let into rooms.</p>
+
+    <h3>How the Permission System Works</h3>
+    <p>Opportunity rarely flows from direct application. It flows from chains of endorsement. Someone vouches for you to someone who vouches for you to someone who has the authority to grant access. Each link in that chain requires a social permission — an implicit consent by the endorser to risk their credibility on you.</p>
+    <p>People only extend that permission when three conditions are met:</p>
+    <ol style="margin: 1em 0 1em 1.5em; line-height: 1.9; font-size: .94rem; color: var(--gray-800);">
+      <li><strong>Trust</strong> — they believe you will not embarrass them</li>
+      <li><strong>Relevance</strong> — they believe you are genuinely suited for the opportunity</li>
+      <li><strong>Reciprocity</strong> — there is history of exchange, or the endorsement serves their interests too</li>
+    </ol>
+
+    <h3>The Four Permission Blockers</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Blocker</th><th>What It Looks Like</th><th>Why It Kills Opportunity</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Unknown Quantity</td><td>No track record with the endorser</td><td>No basis for trust</td></tr>
+          <tr><td>Misalignment</td><td>Ask doesn't match their network</td><td>Relevance fails</td></tr>
+          <tr><td>Over-asking</td><td>Too much before trust is built</td><td>Burns the relationship</td></tr>
+          <tr><td>Reputation Risk</td><td>History creates endorsement liability</td><td>They can't afford the risk</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pull-quote">
+      <p>The door was never locked. It was just guarded by a relationship that hadn't been built yet.</p>
+    </div>
+
+    <h3>Strategic Relationship Architecture</h3>
+    <p>Map your relationships in three rings:</p>
+    <div class="callout">
+      <div class="callout-label">The Three Rings</div>
+      <p><strong>Ring 1 (Core):</strong> People who would endorse you in any context right now.<br>
+      <strong>Ring 2 (Warm):</strong> People who know you well enough for a limited endorsement.<br>
+      <strong>Ring 3 (Cold):</strong> Target domain contacts with no existing relationship.</p>
+    </div>
+    <p>Most careers stall because people try to convert Ring 3 into endorsements without first moving them to Ring 2. The work is: investment before ask, relationship before request.</p>
+  </section>
+
+  <!-- ===== FRAMEWORK 6 ===== -->
+  <div class="section-divider">
+    <div class="divider-num">06</div>
+    <div class="divider-line"></div>
+    <div class="divider-content">
+      <div class="divider-label">Framework Six</div>
+      <div class="divider-title">The Signal-to-Noise Map</div>
+      <div class="divider-sub">What you communicate before you speak</div>
+    </div>
+  </div>
+
+  <section class="chapter">
+    <p class="framework-intro">Before you say a word, you have already communicated your confidence level, your status orientation, your emotional state, and your level of investment in the interaction.</p>
+
+    <h3>The Pre-Verbal Signal Stack</h3>
+
+    <h4>1. Temporal Positioning</h4>
+    <p>When you speak carries meaning. Speaking too quickly to fill silence signals discomfort and low status. Speaking after others, from a position of calm observation, signals confidence. Pausing before answering signals that your time and attention are valuable.</p>
+    <p><strong>The person who can sit in silence without anxious filling is always read as more powerful than the person who rushes to fill it.</strong></p>
+
+    <h4>2. Physical Space</h4>
+    <p>Contracted posture — shoulders forward, arms close, taking up less space — signals submission. Expanded posture signals belonging. Occupying space signals that you believe you belong in it.</p>
+
+    <h4>3. Eye Contact Pattern</h4>
+    <p>Holding eye contact while <em>listening</em> (not just speaking) signals genuine attention and confidence. Looking away at the moment of agreement reveals uncertainty. Looking toward the person whose approval you're seeking exposes your hierarchy read — even when unintended.</p>
+
+    <h3>Framing Language: The Status Table</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Low-Status Framing</th><th>High-Status Framing</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>"I was just wondering if maybe…"</td><td>"I want to propose something."</td></tr>
+          <tr><td>"Sorry for bothering you, but…"</td><td>"I have something worth a few minutes."</td></tr>
+          <tr><td>"You probably know this better, but…"</td><td>"Here's my read — correct me if I'm missing context."</td></tr>
+          <tr><td>"Does that make sense?" (seeking validation)</td><td>"What questions do you have?" (assuming competence)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pull-quote">
+      <p>The content of what you say determines what you're communicating. The frame determines whether anyone receives it.</p>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Written Communication Corollary</div>
+      <p>Everything above applies to email and written communication. Response time, salutation formality, paragraph density, and closing language all carry status and relationship signals. The most powerful written communicators write <em>less</em> per message, respond within appropriate but not anxious windows, and never over-explain.</p>
+    </div>
+  </section>
+
+  <!-- ===== FRAMEWORK 7 ===== -->
+  <div class="section-divider">
+    <div class="divider-num">07</div>
+    <div class="divider-line"></div>
+    <div class="divider-content">
+      <div class="divider-label">Framework Seven</div>
+      <div class="divider-title">The Conflict Code</div>
+      <div class="divider-sub">How real disagreement operates vs. how adults pretend it does</div>
+    </div>
+  </div>
+
+  <section class="chapter">
+    <p class="framework-intro">Adult conflict is almost never about what it appears to be about.</p>
+
+    <p>The meeting dispute over the timeline is about who holds decision authority. The colleague who never responds promptly is communicating a status claim. The friend who goes quiet after a perceived slight is enforcing a broken social contract. The manager who increases scrutiny after you push back is reasserting hierarchy.</p>
+
+    <h3>The Four Real Causes of Adult Conflict</h3>
+
+    <h4>1. Unacknowledged Hierarchy Disputes</h4>
+    <p>Two people disagree about who has decision authority. Neither names this. The argument appears to be about the decision itself. It will not be resolved by improving the decision — it will be resolved only when the hierarchy question is addressed.</p>
+
+    <h4>2. Violated Social Contracts</h4>
+    <p>Someone failed to reciprocate, acknowledge a contribution, or follow an implicit rule of the relationship. The explicit fight — about something minor — is the expression of that deeper grievance. Resolving the surface issue without addressing the underlying contract violation leaves the conflict structurally intact.</p>
+
+    <h4>3. Face Debt</h4>
+    <p>Someone was publicly corrected, embarrassed, or diminished. The conflict that follows is the recovery attempt — restoring face by winning the next round. The topic does not matter. The win matters.</p>
+
+    <h4>4. Resource Competition</h4>
+    <p>Two people want the same opportunity, recognition, or relationship. The competition is rarely named. It is expressed as disagreement, criticism, or diminishment. Recognizing this allows you to address the real issue — or remove yourself from the competition — rather than fighting the proxy battle.</p>
+
+    <div class="pull-quote">
+      <p>The fastest way to resolve a conflict is to identify which real cause it is disguising. Solve the real cause and the surface conflict often evaporates.</p>
+    </div>
+
+    <h3>The De-escalation Architecture</h3>
+    <ul class="step-list">
+      <li><strong>Name the positive intent:</strong> "I think we both want the same outcome here."</li>
+      <li><strong>Acknowledge the valid point in their position</strong> — even if minor. This preserves face.</li>
+      <li><strong>Name the real question:</strong> "What I think we're actually working through is a [hierarchy / contract / resource] question."</li>
+      <li><strong>Propose a face-preserving resolution</strong> — ensure they can agree without publicly losing.</li>
+    </ul>
+
+    <div class="callout">
+      <div class="callout-label">What Silence in Conflict Means</div>
+      <p>When someone goes quiet after conflict, it is almost never indifference. It is the most reliable signal of face debt. The silence says: <em>"I was damaged and I am waiting to see if you acknowledge it."</em> In professional environments, silence after conflict is a relationship in holding — waiting for a repair that may never come.</p>
+    </div>
+
+    <div class="checklist">
+      <div class="checklist-title">Checklist: Before Entering a Conflict Resolution</div>
+      <ul>
+        <li>Have I identified the real cause beneath the surface issue?</li>
+        <li>Have I created a face-saving exit for the other party?</li>
+        <li>Have I acknowledged their valid point before stating mine?</li>
+        <li>Am I resolving the contract violation, not just the incident?</li>
+        <li>Is there a hierarchy question that needs to be named explicitly?</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== FRAMEWORK 8 ===== -->
+  <div class="section-divider">
+    <div class="divider-num">08</div>
+    <div class="divider-line"></div>
+    <div class="divider-content">
+      <div class="divider-label">Framework Eight</div>
+      <div class="divider-title">The Identity Armor Framework</div>
+      <div class="divider-sub">How people construct and defend social self-image</div>
+    </div>
+  </div>
+
+  <section class="chapter">
+    <p class="framework-intro">Every person you interact with carries a story about who they are — their competence, their worth, their place in the hierarchy of their field and relationships. This story is actively defended.</p>
+
+    <p>When something threatens the story — feedback, a comparison, a failure, a slight — the defense system activates before rational processing. It shapes what information gets heard, what gets dismissed, and what triggers a disproportionate response.</p>
+
+    <h3>The Five Identity Anchors</h3>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Anchor</th><th>Core Belief</th><th>Threats That Activate Defense</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Competence</td><td>"I am good at what I do."</td><td>Being shown wrong; being taught what they feel they should know</td></tr>
+          <tr><td>Integrity</td><td>"I am a good person."</td><td>Implications of selfishness, dishonesty, or bad motive</td></tr>
+          <tr><td>Status</td><td>"I am respected in my domain."</td><td>Being overlooked, compared unfavorably, treated as junior</td></tr>
+          <tr><td>Autonomy</td><td>"I control my own choices."</td><td>Being told what to do; being micromanaged</td></tr>
+          <tr><td>Belonging</td><td>"I am accepted and valued here."</td><td>Exclusion, dismissal, not being included</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pull-quote">
+      <p>You don't have to attack someone's identity to damage it. You only have to ignore which anchor they're defending.</p>
+    </div>
+
+    <h3>Engaging Across Identity Types</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Dominant Anchor</th><th>What They Need to Hear First</th><th>What Will Shut Them Down</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Competence</td><td>Acknowledgment of their expertise</td><td>Being publicly corrected</td></tr>
+          <tr><td>Integrity</td><td>Recognition of their good intent</td><td>Implication of bad motive</td></tr>
+          <tr><td>Status</td><td>Recognition of their standing</td><td>Being treated as lower rank</td></tr>
+          <tr><td>Autonomy</td><td>"This is your call" framing</td><td>Being told what to do</td></tr>
+          <tr><td>Belonging</td><td>Inclusion in "we" language</td><td>Being treated as an outsider</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">The Self-Audit</div>
+      <p>Understanding your own dominant identity anchor is equally important. When do you get disproportionately defensive? What feedback do you dismiss that might be worth hearing? The answer points directly to your primary armor — and the blindspots it creates.</p>
+    </div>
+  </section>
+
+  <!-- ===== INTEGRATION ===== -->
+  <div class="section-divider">
+    <div class="divider-num">+</div>
+    <div class="divider-line"></div>
+    <div class="divider-content">
+      <div class="divider-label">Integration Guide</div>
+      <div class="divider-title">Your New Operating System</div>
+      <div class="divider-sub">Applying the 8 frameworks together</div>
+    </div>
+  </div>
+
+  <section class="chapter">
+    <p class="framework-intro">The eight frameworks are not independent tools. They form a single, integrated operating system for reading and navigating adult social reality.</p>
+
+    <h3>Before Any High-Stakes Interaction</h3>
+    <div class="integration-grid">
+      <div class="integration-cell">
+        <div class="int-num">Framework 02</div>
+        <div class="int-title">Map the Hierarchy</div>
+        <div class="int-desc">Who holds power, what type, how does it flow?</div>
+      </div>
+      <div class="integration-cell">
+        <div class="int-num">Framework 03</div>
+        <div class="int-title">Check Reciprocity Balance</div>
+        <div class="int-desc">What is the current state of social debt in this relationship?</div>
+      </div>
+      <div class="integration-cell">
+        <div class="int-num">Framework 04</div>
+        <div class="int-title">Identify Face Stakes</div>
+        <div class="int-desc">What does the other person need to protect in this interaction?</div>
+      </div>
+      <div class="integration-cell">
+        <div class="int-num">Framework 05</div>
+        <div class="int-title">Trace the Permission Chain</div>
+        <div class="int-desc">Who actually grants access, and what permissions are required?</div>
+      </div>
+      <div class="integration-cell">
+        <div class="int-num">Framework 06</div>
+        <div class="int-title">Audit Your Signals</div>
+        <div class="int-desc">Do your framing, timing, and presence match your intended message?</div>
+      </div>
+      <div class="integration-cell">
+        <div class="int-num">Framework 08</div>
+        <div class="int-title">Read Identity Anchors</div>
+        <div class="int-desc">What does this person need to protect? How does your message land with their armor?</div>
+      </div>
+    </div>
+
+    <div class="pull-quote">
+      <p>Mastery is not thinking about all eight frameworks consciously in every moment. It is having run through them enough times that they become the lens through which you naturally see.</p>
+    </div>
+
+    <h3>After Any High-Stakes Interaction</h3>
+    <div class="checklist">
+      <div class="checklist-title">Post-Interaction Review</div>
+      <ul>
+        <li>Did any face damage occur that needs repair?</li>
+        <li>Was a social debt created or cleared?</li>
+        <li>Was a contract violated or reinforced?</li>
+        <li>What did my signals communicate independent of my words?</li>
+        <li>Did silence follow — if so, what repair is needed?</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== MASTER CHECKLISTS ===== -->
+  <section class="chapter">
+    <h3>Master Checklists</h3>
+
+    <div class="checklist">
+      <div class="checklist-title">Before a Job Interview</div>
+      <ul>
+        <li>Research the power structure: who is the real decision maker?</li>
+        <li>Identify face gifts you can give the interviewer (acknowledge their expertise)</li>
+        <li>Audit your framing language — eliminate low-status qualifiers</li>
+        <li>Map the permission chain: who vouched for you, and what do they need?</li>
+        <li>Prepare to demonstrate reciprocity: ask about their challenges, not just the role</li>
+      </ul>
+    </div>
+
+    <div class="checklist">
+      <div class="checklist-title">Before Salary or Contract Negotiation</div>
+      <ul>
+        <li>Identify the hierarchy dynamic: who has formal authority, who has relational authority?</li>
+        <li>Check reciprocity balance: what is the current state of your relationship account?</li>
+        <li>Prepare face-preserving exits for the other party</li>
+        <li>Frame your ask in terms of value, not need — signal framing is everything</li>
+        <li>Identify their dominant identity anchor and open from there</li>
+      </ul>
+    </div>
+
+    <div class="checklist">
+      <div class="checklist-title">Before Entering a New Team or Organization</div>
+      <ul>
+        <li>Run the 5-minute hierarchy decoder on day one</li>
+        <li>Identify informal power nodes — not just the titles</li>
+        <li>Begin giving before asking: small contributions that demonstrate investment</li>
+        <li>Watch for existing conflict lines and map their real underlying causes</li>
+        <li>Identify your own identity anchor — what will you over-protect?</li>
+      </ul>
+    </div>
+
+    <div class="checklist">
+      <div class="checklist-title">After a Conflict or Difficult Interaction</div>
+      <ul>
+        <li>What was the real cause? (hierarchy, face debt, contract violation, resource competition)</li>
+        <li>Was face damaged — mine or theirs? What repair is needed?</li>
+        <li>What contract was implicitly broken? How is it restored?</li>
+        <li>Did silence follow? If so, proactive repair is required before the relationship moves again.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== LAWS / SUMMARY ===== -->
+  <section class="laws-section">
+    <div class="laws-header">
+      <div class="laws-eyebrow">Summary</div>
+      <div class="laws-title">The 8 Laws of the Unspoken Contract</div>
+    </div>
+
+    <div class="law-card">
+      <div class="law-num">01</div>
+      <div class="law-body">
+        <div class="law-name">The Invisible Education</div>
+        <div class="law-desc">Every social environment runs on rules no one stated. Understanding them is not cynicism — it is literacy.</div>
+      </div>
+    </div>
+    <div class="law-card">
+      <div class="law-num">02</div>
+      <div class="law-body">
+        <div class="law-name">The Hierarchy Decoder</div>
+        <div class="law-desc">Power in practice is always different from power on paper. Read attention flow, deference signals, and information centrality to find the real map.</div>
+      </div>
+    </div>
+    <div class="law-card">
+      <div class="law-num">03</div>
+      <div class="law-body">
+        <div class="law-name">The Reciprocity Engine</div>
+        <div class="law-desc">Social capital is built through reliable, generous, acknowledged exchange. Always give before you ask.</div>
+      </div>
+    </div>
+    <div class="law-card">
+      <div class="law-num">04</div>
+      <div class="law-body">
+        <div class="law-name">The Face Preservation Protocol</div>
+        <div class="law-desc">Never damage someone's public self-image without a face-saving exit. Public correction is the most common cause of durable professional enmity.</div>
+      </div>
+    </div>
+    <div class="law-card">
+      <div class="law-num">05</div>
+      <div class="law-body">
+        <div class="law-name">The Permission System</div>
+        <div class="law-desc">Opportunity flows through chains of endorsement. Build relationships before you need them. Ask only after you have invested.</div>
+      </div>
+    </div>
+    <div class="law-card">
+      <div class="law-num">06</div>
+      <div class="law-body">
+        <div class="law-name">The Signal-to-Noise Map</div>
+        <div class="law-desc">You communicate status, confidence, and intent before you speak. Congruence between pre-verbal signals and message makes people believe you.</div>
+      </div>
+    </div>
+    <div class="law-card">
+      <div class="law-num">07</div>
+      <div class="law-body">
+        <div class="law-name">The Conflict Code</div>
+        <div class="law-desc">Adult conflict is almost never about its surface content. Identify the real cause — hierarchy, face, contract, resource — and address that.</div>
+      </div>
+    </div>
+    <div class="law-card">
+      <div class="law-num">08</div>
+      <div class="law-body">
+        <div class="law-name">The Identity Armor Framework</div>
+        <div class="law-desc">Every person defends a story about who they are. Engage with that story, not against it, and cooperation becomes the natural outcome.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CLOSING PAGE ===== -->
+  <section class="closing-page">
+    <div class="closing-rule"></div>
+    <h2 class="closing-title">The Fluent Reader</h2>
+    <p class="closing-body">
+      There is a particular quality shared by people who navigate adult environments with what appears to be exceptional social intelligence. They are not smarter than others. They are not more charismatic. They are <strong>better readers.</strong><br><br>
+      They read rooms. They read power. They read the contract beneath the interaction. They read what is not said, what is being preserved, what is being risked. And from that reading, they navigate — not perfectly, but fluidly. They recover from mistakes quickly because they understand what broke and how to repair it.<br><br>
+      This is the person this guide is designed to help you become.
+    </p>
+
+    <div class="closing-quote-box">
+      <p>"The unspoken contract is not a prison. It is a language. And like any language, once you are fluent, it opens more than it constrains."</p>
+    </div>
+
+    <div class="closing-brand">Lazy Scholar PH</div>
+    <div class="closing-tagline">Premium Digital Learning Resources</div>
+    <div class="closing-copy">© 2026 Lazy Scholar PH. All rights reserved. For personal use only.</div>
+  </section>
+
+</div><!-- /.page -->
+</body>
+</html>
