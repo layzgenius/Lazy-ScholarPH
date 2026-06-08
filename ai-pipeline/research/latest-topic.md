@@ -1,4 +1,4 @@
-Status: READY_FOR_WRITING
+Status: COMPLETED
 
 Title: Status Mechanics: The Invisible Architecture of Social Rank
 
