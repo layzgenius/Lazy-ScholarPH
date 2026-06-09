@@ -1,4 +1,4 @@
-Status: READY_FOR_WRITING
+Status: COMPLETED
 
 Title: The Respect Matrix: Why Some People Command It Without Asking
 
