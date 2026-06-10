@@ -1,4 +1,4 @@
-Status: READY_FOR_WRITING
+Status: COMPLETED
 
 Title: The Influence Architecture: How People Shape Your Thinking Without You Noticing
 
