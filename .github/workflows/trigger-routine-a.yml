@@ -1,0 +1,30 @@
+name: Trigger Routine A (Research Agent)
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'
+  workflow_dispatch:
+
+jobs:
+  trigger-research-agent:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Check if new topic is needed
+        id: check
+        run: |
+          if ! grep -q "Status: READY_FOR_WRITING" ai-pipeline/research/latest-topic.md 2>/dev/null; then
+            echo "status=needed" >> $GITHUB_OUTPUT
+          else
+            echo "status=not_needed" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Trigger Routine A via API
+        if: steps.check.outputs.status == 'needed' || github.event_name == 'workflow_dispatch'
+        run: |
+          curl -X POST "https://api.anthropic.com/v1/claude_code/routines/trig_01RsearchAgentRoutineAAAA/fire" \
+            -H "Authorization: Bearer ${{ secrets.ROUTINE_A_TOKEN }}" \
+            -H "anthropic-version: 2023-06-01" \
+            -H "anthropic-beta: experimental-cc-routine-2026-04-01"
